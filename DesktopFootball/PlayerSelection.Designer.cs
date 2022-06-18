@@ -116,6 +116,7 @@
             this.Controls.Add(this.label1);
             this.Name = "PlayerSelection";
             this.Text = "Player";
+            this.Load += new System.EventHandler(this.PlayerSelection_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

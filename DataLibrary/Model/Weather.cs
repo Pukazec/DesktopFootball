@@ -9,6 +9,9 @@ namespace DataLibrary.Model
 {
     public class Weather
     {
+        public enum DescriptionE { ClearNight, Cloudy, PartlyCloudy, PartlyCloudyNight, Sunny };
+
+
         [JsonProperty("humidity")]
         [JsonConverter(typeof(ParseStringConverter))]
         public long Humidity { get; set; }
@@ -26,7 +29,7 @@ namespace DataLibrary.Model
         public long WindSpeed { get; set; }
 
         [JsonProperty("description")]
-        public Description Description { get; set; }
+        public DescriptionE Description { get; set; }
         //public int Humidity { get; set; }
         //public int TempCelsius { get; set; }
         //public int TempFarenheit { get; set; }

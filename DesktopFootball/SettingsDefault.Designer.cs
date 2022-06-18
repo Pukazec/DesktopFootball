@@ -1,6 +1,6 @@
 ﻿namespace DesktopFootball
 {
-    partial class Settings
+    partial class SettingsDefault
     {
         /// <summary>
         /// Required designer variable.
@@ -31,15 +31,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.ddlLanguage = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.ddlTheme = new System.Windows.Forms.ComboBox();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.gbChampionship = new System.Windows.Forms.GroupBox();
+            this.rbMen = new System.Windows.Forms.RadioButton();
+            this.rbWomen = new System.Windows.Forms.RadioButton();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.groupBox1.SuspendLayout();
+            this.gbChampionship.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -72,26 +70,6 @@
             this.ddlLanguage.Size = new System.Drawing.Size(121, 32);
             this.ddlLanguage.TabIndex = 4;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 123);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(76, 24);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Theme:";
-            // 
-            // ddlTheme
-            // 
-            this.ddlTheme.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ddlTheme.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ddlTheme.FormattingEnabled = true;
-            this.ddlTheme.Location = new System.Drawing.Point(257, 115);
-            this.ddlTheme.Name = "ddlTheme";
-            this.ddlTheme.Size = new System.Drawing.Size(121, 32);
-            this.ddlTheme.TabIndex = 6;
-            // 
             // btnNext
             // 
             this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -114,57 +92,55 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // groupBox1
+            // gbChampionship
             // 
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Location = new System.Drawing.Point(257, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(121, 59);
-            this.groupBox1.TabIndex = 11;
-            this.groupBox1.TabStop = false;
+            this.gbChampionship.Controls.Add(this.rbMen);
+            this.gbChampionship.Controls.Add(this.rbWomen);
+            this.gbChampionship.Location = new System.Drawing.Point(257, 12);
+            this.gbChampionship.Name = "gbChampionship";
+            this.gbChampionship.Size = new System.Drawing.Size(121, 59);
+            this.gbChampionship.TabIndex = 11;
+            this.gbChampionship.TabStop = false;
             // 
-            // radioButton2
+            // rbMen
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton2.Location = new System.Drawing.Point(0, 34);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(66, 28);
-            this.radioButton2.TabIndex = 11;
-            this.radioButton2.Text = "Men";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rbMen.AutoSize = true;
+            this.rbMen.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbMen.Location = new System.Drawing.Point(0, 34);
+            this.rbMen.Name = "rbMen";
+            this.rbMen.Size = new System.Drawing.Size(66, 28);
+            this.rbMen.TabIndex = 11;
+            this.rbMen.Text = "Men";
+            this.rbMen.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // rbWomen
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.Location = new System.Drawing.Point(0, 0);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(95, 28);
-            this.radioButton1.TabIndex = 10;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Women";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rbWomen.AutoSize = true;
+            this.rbWomen.Checked = true;
+            this.rbWomen.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbWomen.Location = new System.Drawing.Point(0, 0);
+            this.rbWomen.Name = "rbWomen";
+            this.rbWomen.Size = new System.Drawing.Size(95, 28);
+            this.rbWomen.TabIndex = 10;
+            this.rbWomen.TabStop = true;
+            this.rbWomen.Text = "Women";
+            this.rbWomen.UseVisualStyleBackColor = true;
             // 
-            // Settings
+            // SettingsDefault
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(398, 226);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbChampionship);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnNext);
-            this.Controls.Add(this.ddlTheme);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.ddlLanguage);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Settings";
+            this.Name = "SettingsDefault";
             this.Text = "Form1";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbChampionship.ResumeLayout(false);
+            this.gbChampionship.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -175,13 +151,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox ddlLanguage;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox ddlTheme;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.GroupBox gbChampionship;
+        private System.Windows.Forms.RadioButton rbMen;
+        private System.Windows.Forms.RadioButton rbWomen;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

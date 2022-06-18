@@ -10,9 +10,13 @@ namespace DataLibrary
     public interface IRepo
     {
         IList<Match> LoadMatches();
-        IList<Result> LoadResults();
-        IList<GroupResults> LoadGroupResults();
+        IList<Team> LoadResults();
+        IList<Team> LoadGroupResults();
         IList<Team> LoadTeams();
+        IList<Group> LoadGroups();
+        IList<Player> LoadPlayers();
+        IList<TeamEvent> LoadTeamEvents();
+        IList<TeamStatistics> LoadTeamStatistics();
         void SaveSettings();
     }
 }

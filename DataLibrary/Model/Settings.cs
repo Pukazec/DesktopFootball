@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataLibrary.Model
 {
-    internal class Settings
+    public class Settings
     {
         public enum ChampionshipE
         {
@@ -22,7 +22,7 @@ namespace DataLibrary.Model
 
         public ChampionshipE Championship { get; set; }
         public LanguageE Language { get; set; }
-        public Result FavoreteRepresentation { get; set; }
-        public Player FavoretePlayer { get; set; }
+        public Team FavoreteRepresentation { get; set; }
+        public IList<Player> FavoretePlayer { get; set; }
     }
 }
