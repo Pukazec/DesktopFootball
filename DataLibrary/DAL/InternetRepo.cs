@@ -35,18 +35,30 @@ namespace DataLibrary
             matches = (IList<Match>)DeserializeTeams<IList<Match>>(restResponse);
             foreach (Match match in matches)
             {
-                teams.Add(match.AwayTeamStatistics);
-                teams.Add(match.HomeTeamStatistics);
+                if (teams.FirstOrDefault(e => e.Country == match.AwayTeamCountry) == null)
+                {
+                    teams.Add(match.AwayTeamStatistics);
+                }
+                if (teams.FirstOrDefault(e => e.Country == match.HomeTeamCountry) == null)
+                {
+                    teams.Add(match.HomeTeamStatistics);
+                }
             }
             foreach(TeamStatistics team in teams)
             {
                 foreach (Player player in team.StartingEleven)
                 {
-                    players.Add(player);
+                    if (players.FirstOrDefault(e => e.Name == player.Name) == null)
+                    {
+                        players.Add(player);
+                    }
                 }
                 foreach (Player player in team.Substitutes)
                 {
-                    players.Add(player);
+                    if (players.FirstOrDefault(e => e.Name == player.Name) == null)
+                    {
+                        players.Add(player);
+                    }
                 }
             }
             return players;

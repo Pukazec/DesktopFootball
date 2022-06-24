@@ -31,6 +31,7 @@ namespace DesktopFootball
             {
                 lblPlayerCapetan.Text = "No";
             }
+            lblPlayerFavorete.Text = "";
         }
     }
 }
