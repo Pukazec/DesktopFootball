@@ -16,6 +16,14 @@ namespace DesktopFootball
         public SettingsDefault()
         {
             InitializeComponent();
+            LoadLanguages();
+        }
+
+        private void LoadLanguages()
+        {
+            ddlLanguage.Items.Add(Settings.LanguageE.English);
+            ddlLanguage.Items.Add(Settings.LanguageE.Croatian);
+            ddlLanguage.SelectedIndex = 0;
         }
 
         private void btnSave_Click(object sender, EventArgs e)

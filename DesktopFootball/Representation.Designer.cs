@@ -63,6 +63,7 @@
             this.btnBack.TabIndex = 10;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // lblFavoreteRepresentationError
             // 
@@ -97,6 +98,7 @@
             this.Controls.Add(this.ddlRepresentation);
             this.Controls.Add(this.label1);
             this.Name = "Representation";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Representation";
             this.Load += new System.EventHandler(this.Representation_Load);
             this.ResumeLayout(false);

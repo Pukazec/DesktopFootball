@@ -9,6 +9,16 @@ namespace DataLibrary.Model
 {
     public class Team
     {
+        public Team(long id)
+        {
+            LoadTeam(id);
+        }
+
+        private void LoadTeam(long id)
+        {
+            
+        }
+
         [JsonProperty("id")]
         public long Id { get; set; }
 
@@ -47,11 +57,6 @@ namespace DataLibrary.Model
 
         [JsonProperty("goals_against")]
         public long GoalsAgainst { get; set; }
-
-        public static explicit operator List<object>(Team v)
-        {
-            throw new NotImplementedException();
-        }
 
         [JsonProperty("goal_differential")]
         public long GoalDifferential { get; set; }

@@ -23,17 +23,5 @@ namespace DataLibrary.Model
 
         [JsonProperty("position")]
         public PositionE Position { get; set; }
-        //public enum PositionE
-        //{ 
-        //    Goalie,
-        //    Defender,
-        //    Forward,
-        //    Midfield
-        //}
-
-        //public string Name { get; set; }
-        //public bool Captain { get; set; }
-        //public int ShirtNumber { get; set; }
-        //public PositionE Position { get; set; }
     }
 }

@@ -138,7 +138,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "SettingsDefault";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Main settings";
             this.gbChampionship.ResumeLayout(false);
             this.gbChampionship.PerformLayout();
             this.ResumeLayout(false);

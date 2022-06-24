@@ -22,7 +22,7 @@ namespace DataLibrary.Model
 
         public ChampionshipE Championship { get; set; }
         public LanguageE Language { get; set; }
-        public Team FavoreteRepresentation { get; set; }
+        public int FavoreteRepresentationId { get; set; }
         public IList<Player> FavoretePlayer { get; set; }
     }
 }

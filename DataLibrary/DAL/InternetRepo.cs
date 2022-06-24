@@ -28,7 +28,11 @@ namespace DataLibrary
 
         public IList<Player> LoadPlayers()
         {
-            throw new NotImplementedException();
+            IList<Match> matches = new List<Match>();
+            IList<Player> players = new List<Player>();
+            RestResponse<IList<Match>> restResponse = GetData<IList<Match>>("https://world-cup-json-2018.herokuapp.com/matches");
+            matches = (IList<Match>)DeserializeTeams<IList<Match>>(restResponse);
+            return players;
         }
 
         public IList<Team> LoadResults()
@@ -44,23 +48,15 @@ namespace DataLibrary
         public IList<Team> LoadTeams()
         {
             IList<Team> teams = new List<Team>();
-                RestResponse<IList<Team>> restResponse = GetData<IList<Team>>("https://world-cup-json-2018.herokuapp.com/teams/results");
-                teams = (IList<Team>)DeserializeTeams<IList<Team>>(restResponse);
-                return teams;
-            
+            RestResponse<IList<Team>> restResponse = GetData<IList<Team>>("https://world-cup-json-2018.herokuapp.com/teams/results");
+            teams = (IList<Team>)DeserializeTeams<IList<Team>>(restResponse);
+            return teams;
         }
 
         public IList<TeamStatistics> LoadTeamStatistics()
         {
             throw new NotImplementedException();
         }
-
-        public void SaveSettings()
-        {
-            throw new NotImplementedException();
-        }
-
-
 
         private RestResponse<T> GetData<T>(string source)
         {

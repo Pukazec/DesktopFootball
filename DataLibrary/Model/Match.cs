@@ -2,16 +2,30 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace DataLibrary.Model
 {
     public class Match
     {
-        public enum StatusE { Completed };
-        public enum TimeE { FullTime };
-        public enum StageNameE { Final, FirstStage, PlayOffForThirdPlace, QuarterFinals, RoundOf16, SemiFinals };
+        [System.Text.Json.Serialization.JsonConverter(typeof(JsonStringEnumConverterWithAttributeSupport))]
+        public enum StageNameE 
+        {
+            Final,
+            [EnumMember(Value = "Final Stage")]
+            FirstStage, 
+            [EnumMember(Value = "Play Off For Third Place")]
+            PlayOffForThirdPlace, 
+            [EnumMember(Value = "Quarter Finals")]
+            QuarterFinals, 
+            [EnumMember(Value = "Round Of 16")]
+            RoundOf16, 
+            [EnumMember(Value = "Semi Finals")]
+            SemiFinals 
+        };
 
 
         [JsonProperty("venue")]
@@ -21,20 +35,20 @@ namespace DataLibrary.Model
         public string Location { get; set; }
 
         [JsonProperty("status")]
-        public StatusE Status { get; set; }
+        public string Status { get; set; }
 
         [JsonProperty("time")]
-        public TimeE Time { get; set; }
+        public string Time { get; set; }
 
         [JsonProperty("fifa_id")]
-        [JsonConverter(typeof(ParseStringConverter))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(ParseStringConverter))]
         public long FifaId { get; set; }
 
         [JsonProperty("weather")]
         public Weather Weather { get; set; }
 
         [JsonProperty("attendance")]
-        [JsonConverter(typeof(ParseStringConverter))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(ParseStringConverter))]
         public long Attendance { get; set; }
 
         [JsonProperty("officials")]

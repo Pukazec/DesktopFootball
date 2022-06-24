@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataLibrary.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,20 @@ namespace DesktopFootball
         public PlayerSelectionUC()
         {
             InitializeComponent();
+        }
+
+        public PlayerSelectionUC(string lblPlayerName, long lblPlayerNumber, Player.PositionE lblPlayerPosition, bool isCapetan)
+        {
+            this.lblPlayerName.Text = lblPlayerName;
+            this.lblPlayerNumber.Text = lblPlayerNumber.ToString();
+            this.lblPlayerPosition.Text = lblPlayerPosition.ToString();
+            if (isCapetan)
+            {
+                lblPlayerCapetan.Text = "Yes";
+            } else
+            {
+                lblPlayerCapetan.Text = "No";
+            }
         }
     }
 }

@@ -15,29 +15,39 @@ namespace DataLibrary.DAL
         private static readonly char DEL = '|';
 
 
+        public FileSettingsRepo()
+        {
+            CreateFilesIfNonExistent();
+        }
+
+        private void CreateFilesIfNonExistent()
+        {
+            if (!File.Exists(PATH))
+            {
+                File.Create(PATH).Close();
+            }
+        }
+
         public Settings LoadSettings()
         {
             Settings settings = new Settings();
-
             string[] lines = File.ReadAllLines(PATH);
-            if (lines.Length == 0)
-            {
-                throw new Exception("Settings empty");
-            }
+
+            settings.Language = (LanguageE)Enum.Parse(typeof(LanguageE), lines[0]);
+            settings.Championship = (ChampionshipE)Enum.Parse(typeof(ChampionshipE), lines[1]);
 
 
-            //settings.Championship = line.Split(DEL).First()[0];
-            //settings.Language = line.Split(DEL).Last()[0];
-
-            //settings.FavoreteRepresentation = lines[1];
+            settings.FavoreteRepresentationId = int.Parse(lines[2]);
+            //settings.FavoretePlayer = lines[3] != null ? lines[3] : 
             
-
             return settings;
         }
 
         public void SaveMainSettings()
         {
-            
+            Settings settings = LoadSettings();
+            //settings.MainSettingsUpdate();
+            //File.WriteAllLines(PATH, settings);
         }
 
         public void SavePlayers()

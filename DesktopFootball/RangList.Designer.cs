@@ -76,7 +76,8 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "RangList";
-            this.Text = "RangList";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Rang lists";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -30,8 +30,8 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.pnlPlayers = new System.Windows.Forms.FlowLayoutPanel();
+            this.pnlFavourets = new System.Windows.Forms.FlowLayoutPanel();
             this.lblFavoretePlayersError = new System.Windows.Forms.Label();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
@@ -57,26 +57,26 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Favorete players";
             // 
-            // flowLayoutPanel1
+            // pnlPlayers
             // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 36);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(363, 500);
-            this.flowLayoutPanel1.TabIndex = 2;
+            this.pnlPlayers.Location = new System.Drawing.Point(12, 36);
+            this.pnlPlayers.Name = "pnlPlayers";
+            this.pnlPlayers.Size = new System.Drawing.Size(363, 500);
+            this.pnlPlayers.TabIndex = 2;
             // 
-            // flowLayoutPanel2
+            // pnlFavourets
             // 
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(409, 36);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(363, 500);
-            this.flowLayoutPanel2.TabIndex = 3;
+            this.pnlFavourets.Location = new System.Drawing.Point(409, 36);
+            this.pnlFavourets.Name = "pnlFavourets";
+            this.pnlFavourets.Size = new System.Drawing.Size(363, 500);
+            this.pnlFavourets.TabIndex = 3;
             // 
             // lblFavoretePlayersError
             // 
             this.lblFavoretePlayersError.AutoSize = true;
             this.lblFavoretePlayersError.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFavoretePlayersError.ForeColor = System.Drawing.Color.Red;
-            this.lblFavoretePlayersError.Location = new System.Drawing.Point(433, 558);
+            this.lblFavoretePlayersError.Location = new System.Drawing.Point(198, 550);
             this.lblFavoretePlayersError.Name = "lblFavoretePlayersError";
             this.lblFavoretePlayersError.Size = new System.Drawing.Size(246, 24);
             this.lblFavoretePlayersError.TabIndex = 13;
@@ -85,7 +85,7 @@
             // btnNext
             // 
             this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNext.Location = new System.Drawing.Point(685, 542);
+            this.btnNext.Location = new System.Drawing.Point(105, 542);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(87, 40);
             this.btnNext.TabIndex = 14;
@@ -101,6 +101,7 @@
             this.btnBack.TabIndex = 15;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // PlayerSelection
             // 
@@ -110,12 +111,13 @@
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.lblFavoretePlayersError);
-            this.Controls.Add(this.flowLayoutPanel2);
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.pnlFavourets);
+            this.Controls.Add(this.pnlPlayers);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "PlayerSelection";
-            this.Text = "Player";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Players";
             this.Load += new System.EventHandler(this.PlayerSelection_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -126,8 +128,8 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.FlowLayoutPanel pnlPlayers;
+        private System.Windows.Forms.FlowLayoutPanel pnlFavourets;
         private System.Windows.Forms.Label lblFavoretePlayersError;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnBack;

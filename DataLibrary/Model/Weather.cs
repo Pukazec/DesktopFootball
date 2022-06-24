@@ -1,15 +1,22 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Newtonsoft.Json.Converters;
+using System.Runtime.Serialization;
 
 namespace DataLibrary.Model
 {
     public class Weather
     {
-        public enum DescriptionE { ClearNight, Cloudy, PartlyCloudy, PartlyCloudyNight, Sunny };
+        public enum DescriptionE
+        {
+            [EnumMember(Value = "Clear Night")]
+            ClearNight,
+            Cloudy,
+            [EnumMember(Value = "Prity Cloudy ")]
+            PartlyCloudy,
+            [EnumMember(Value = "Prity Cloudy Night")]
+            PartlyCloudyNight,
+            Sunny
+        };
 
 
         [JsonProperty("humidity")]
@@ -29,11 +36,7 @@ namespace DataLibrary.Model
         public long WindSpeed { get; set; }
 
         [JsonProperty("description")]
+        [JsonConverter(typeof(StringEnumConverter))]
         public DescriptionE Description { get; set; }
-        //public int Humidity { get; set; }
-        //public int TempCelsius { get; set; }
-        //public int TempFarenheit { get; set; }
-        //public int WindSpeed { get; set; }
-        //public string Description { get; set; }
     }
 }

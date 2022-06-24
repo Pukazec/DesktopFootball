@@ -1,5 +1,6 @@
 ﻿using DataLibrary;
 using DataLibrary.DAL;
+using DataLibrary.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,8 +15,11 @@ namespace DesktopFootball
 {
     public partial class PlayerSelection : Form
     {
-        public PlayerSelection()
+        public static IRepo repo;
+
+        public PlayerSelection(IRepo repository)
         {
+            repo = repository;
             InitializeComponent();
         }
 
@@ -30,16 +34,27 @@ namespace DesktopFootball
         {
             try
             {
-                IList<Team> teams = repo.LoadTeams();
+                IList<Player> players = repo.LoadPlayers();
+                foreach (Player player in players)
+                {
+                    PlayerSelectionUC playerSelectionUC = new PlayerSelectionUC(player.Name, player.ShirtNumber, player.Position, player.Captain);
+                    pnlPlayers.Container.Add(playerSelectionUC);
+                }
+                /*
                 teams.ToList().ForEach(t => ddlRepresentation.Items.Add(t.Country));
                 ddlRepresentation.SelectedIndex = 0;
-                lblFavoreteRepresentationError.Visible = false;
+                lblFavoreteRepresentationError.Visible = false;*/
             }
             catch (Exception ex)
             {
-                lblFavoreteRepresentationError.Text = ex.Message;
-                lblFavoreteRepresentationError.Show();
+                lblFavoretePlayersError.Text = ex.Message;
+                lblFavoretePlayersError.Show();
             }
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

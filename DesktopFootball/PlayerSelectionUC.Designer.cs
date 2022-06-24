@@ -31,10 +31,10 @@
             this.lblPlayerName = new System.Windows.Forms.Label();
             this.lblPlayerNumber = new System.Windows.Forms.Label();
             this.lblPlayerPosition = new System.Windows.Forms.Label();
-            this.lblCapetan = new System.Windows.Forms.Label();
+            this.lbl1 = new System.Windows.Forms.Label();
             this.lblPlayerFavorete = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblPlayerCapetana = new System.Windows.Forms.Label();
+            this.lbl2 = new System.Windows.Forms.Label();
+            this.lblPlayerCapetan = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -70,15 +70,15 @@
             this.lblPlayerPosition.TabIndex = 2;
             this.lblPlayerPosition.Text = "Position";
             // 
-            // lblCapetan
+            // lbl1
             // 
-            this.lblCapetan.AutoSize = true;
-            this.lblCapetan.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCapetan.Location = new System.Drawing.Point(7, 185);
-            this.lblCapetan.Name = "lblCapetan";
-            this.lblCapetan.Size = new System.Drawing.Size(80, 24);
-            this.lblCapetan.TabIndex = 3;
-            this.lblCapetan.Text = "Capetan";
+            this.lbl1.AutoSize = true;
+            this.lbl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl1.Location = new System.Drawing.Point(7, 185);
+            this.lbl1.Name = "lbl1";
+            this.lbl1.Size = new System.Drawing.Size(80, 24);
+            this.lbl1.TabIndex = 3;
+            this.lbl1.Text = "Capetan";
             // 
             // lblPlayerFavorete
             // 
@@ -90,25 +90,25 @@
             this.lblPlayerFavorete.TabIndex = 4;
             this.lblPlayerFavorete.Text = "*";
             // 
-            // label1
+            // lbl2
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(7, 221);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(140, 24);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Favorete player";
+            this.lbl2.AutoSize = true;
+            this.lbl2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl2.Location = new System.Drawing.Point(7, 221);
+            this.lbl2.Name = "lbl2";
+            this.lbl2.Size = new System.Drawing.Size(140, 24);
+            this.lbl2.TabIndex = 5;
+            this.lbl2.Text = "Favorete player";
             // 
-            // lblPlayerCapetana
+            // lblPlayerCapetan
             // 
-            this.lblPlayerCapetana.AutoSize = true;
-            this.lblPlayerCapetana.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlayerCapetana.Location = new System.Drawing.Point(177, 185);
-            this.lblPlayerCapetana.Name = "lblPlayerCapetana";
-            this.lblPlayerCapetana.Size = new System.Drawing.Size(35, 24);
-            this.lblPlayerCapetana.TabIndex = 6;
-            this.lblPlayerCapetana.Text = "No";
+            this.lblPlayerCapetan.AutoSize = true;
+            this.lblPlayerCapetan.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPlayerCapetan.Location = new System.Drawing.Point(177, 185);
+            this.lblPlayerCapetan.Name = "lblPlayerCapetan";
+            this.lblPlayerCapetan.Size = new System.Drawing.Size(35, 24);
+            this.lblPlayerCapetan.TabIndex = 6;
+            this.lblPlayerCapetan.Text = "No";
             // 
             // pictureBox1
             // 
@@ -118,19 +118,19 @@
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
             // 
-            // PlayerUC
+            // PlayerSelectionUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.lblPlayerCapetana);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblPlayerCapetan);
+            this.Controls.Add(this.lbl2);
             this.Controls.Add(this.lblPlayerFavorete);
-            this.Controls.Add(this.lblCapetan);
+            this.Controls.Add(this.lbl1);
             this.Controls.Add(this.lblPlayerPosition);
             this.Controls.Add(this.lblPlayerNumber);
             this.Controls.Add(this.lblPlayerName);
-            this.Name = "PlayerUC";
+            this.Name = "PlayerSelectionUC";
             this.Size = new System.Drawing.Size(363, 261);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -143,10 +143,10 @@
         private System.Windows.Forms.Label lblPlayerName;
         private System.Windows.Forms.Label lblPlayerNumber;
         private System.Windows.Forms.Label lblPlayerPosition;
-        private System.Windows.Forms.Label lblCapetan;
+        private System.Windows.Forms.Label lbl1;
         private System.Windows.Forms.Label lblPlayerFavorete;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lblPlayerCapetana;
+        private System.Windows.Forms.Label lbl2;
+        private System.Windows.Forms.Label lblPlayerCapetan;
         private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

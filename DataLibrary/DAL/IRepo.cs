@@ -17,6 +17,5 @@ namespace DataLibrary
         IList<Player> LoadPlayers();
         IList<TeamEvent> LoadTeamEvents();
         IList<TeamStatistics> LoadTeamStatistics();
-        void SaveSettings();
     }
 }

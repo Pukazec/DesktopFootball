@@ -15,6 +15,7 @@ namespace DesktopFootball
 {
     public partial class Representation : Form
     {
+        public static IRepo repo;
         public Representation()
         {
             InitializeComponent();
@@ -22,7 +23,7 @@ namespace DesktopFootball
 
         private void Representation_Load(object sender, EventArgs e)
         {
-            IRepo repo = RepoFactory.GetRepo();
+            repo = RepoFactory.GetRepo();
             lblFavoreteRepresentationError.Text = "Loading data...";
             PrepareData(repo);
         }
@@ -45,9 +46,14 @@ namespace DesktopFootball
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            PlayerSelection playerSelection = new PlayerSelection();
+            PlayerSelection playerSelection = new PlayerSelection(repo);
             playerSelection.Show();
             this.Hide();
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
