@@ -59,6 +59,7 @@
             // 
             // pnlPlayers
             // 
+            this.pnlPlayers.AutoScroll = true;
             this.pnlPlayers.Location = new System.Drawing.Point(12, 36);
             this.pnlPlayers.Name = "pnlPlayers";
             this.pnlPlayers.Size = new System.Drawing.Size(363, 500);
@@ -66,6 +67,7 @@
             // 
             // pnlFavourets
             // 
+            this.pnlFavourets.AutoScroll = true;
             this.pnlFavourets.Location = new System.Drawing.Point(409, 36);
             this.pnlFavourets.Name = "pnlFavourets";
             this.pnlFavourets.Size = new System.Drawing.Size(363, 500);

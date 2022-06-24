@@ -11,19 +11,18 @@ namespace DataLibrary.Model
 {
     public class Match
     {
-        [System.Text.Json.Serialization.JsonConverter(typeof(JsonStringEnumConverterWithAttributeSupport))]
         public enum StageNameE 
         {
             Final,
-            [EnumMember(Value = "Final Stage")]
+            [EnumMember(Value = "First Stage")]
             FirstStage, 
-            [EnumMember(Value = "Play Off For Third Place")]
+            [EnumMember(Value = "Play-Off For Third Place")]
             PlayOffForThirdPlace, 
-            [EnumMember(Value = "Quarter Finals")]
+            [EnumMember(Value = "Quarter-Finals")]
             QuarterFinals, 
             [EnumMember(Value = "Round Of 16")]
             RoundOf16, 
-            [EnumMember(Value = "Semi Finals")]
+            [EnumMember(Value = "Semi-Finals")]
             SemiFinals 
         };
 
@@ -95,25 +94,5 @@ namespace DataLibrary.Model
 
         [JsonProperty("last_score_update_at")]
         public DateTimeOffset? LastScoreUpdateAt { get; set; }
-        //public MatchLocation Location { get; set; }
-        //public string Status { get; set; }
-        //public string Time { get; set; }
-        //public long FifaId { get; set; }
-        //public Weather Weather { get; set; }
-        //public int Attendance { get; set; }
-        //public IList<String> Officials { get; set; }
-        //public string StageName { get; set; }
-        //public Team HomeTeamCountry { get; set; }
-        //public Team AwayTeamCountry { get; set; }
-        //public DateTime DateTime { get; set; }
-        //public Team Winner { get; set; }
-        //public TeamEvents HomeTeamEvents { get; set; }
-        //public TeamEvents AwayTeamEvents { get; set; }
-        //public TeamStatistics HomeTeamStatistics { get; set; }
-        //public TeamStatistics AwayTeamStatistics { get; set; }
-        //public IList<Player> StartingEleven { get; set; }
-        //public IList<Player> Substitutes { get; set; }
-        //public DateTime LastEventUpdate { get; set; }
-        //public DateTime LastScoreUpdate { get; set; }
     }
 }

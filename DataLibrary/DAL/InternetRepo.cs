@@ -30,8 +30,25 @@ namespace DataLibrary
         {
             IList<Match> matches = new List<Match>();
             IList<Player> players = new List<Player>();
+            IList<TeamStatistics> teams = new List<TeamStatistics>();
             RestResponse<IList<Match>> restResponse = GetData<IList<Match>>("https://world-cup-json-2018.herokuapp.com/matches");
             matches = (IList<Match>)DeserializeTeams<IList<Match>>(restResponse);
+            foreach (Match match in matches)
+            {
+                teams.Add(match.AwayTeamStatistics);
+                teams.Add(match.HomeTeamStatistics);
+            }
+            foreach(TeamStatistics team in teams)
+            {
+                foreach (Player player in team.StartingEleven)
+                {
+                    players.Add(player);
+                }
+                foreach (Player player in team.Substitutes)
+                {
+                    players.Add(player);
+                }
+            }
             return players;
         }
 

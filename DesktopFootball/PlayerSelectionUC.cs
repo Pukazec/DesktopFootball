@@ -18,15 +18,16 @@ namespace DesktopFootball
             InitializeComponent();
         }
 
-        public PlayerSelectionUC(string lblPlayerName, long lblPlayerNumber, Player.PositionE lblPlayerPosition, bool isCapetan)
+        public void LoadData(string name, long number, Player.PositionE position, bool isCapetan)
         {
-            this.lblPlayerName.Text = lblPlayerName;
-            this.lblPlayerNumber.Text = lblPlayerNumber.ToString();
-            this.lblPlayerPosition.Text = lblPlayerPosition.ToString();
+            lblPlayerName.Text = name;
+            lblPlayerNumber.Text = number.ToString();
+            lblPlayerPosition.Text = position.ToString();
             if (isCapetan)
             {
                 lblPlayerCapetan.Text = "Yes";
-            } else
+            }
+            else
             {
                 lblPlayerCapetan.Text = "No";
             }

@@ -37,13 +37,12 @@ namespace DesktopFootball
                 IList<Player> players = repo.LoadPlayers();
                 foreach (Player player in players)
                 {
-                    PlayerSelectionUC playerSelectionUC = new PlayerSelectionUC(player.Name, player.ShirtNumber, player.Position, player.Captain);
-                    pnlPlayers.Container.Add(playerSelectionUC);
+                    PlayerSelectionUC playerSelectionUC = new PlayerSelectionUC();
+                    playerSelectionUC.LoadData(player.Name, player.ShirtNumber, player.Position, player.Captain);
+                    pnlPlayers.Controls.Add(playerSelectionUC);
                 }
-                /*
-                teams.ToList().ForEach(t => ddlRepresentation.Items.Add(t.Country));
-                ddlRepresentation.SelectedIndex = 0;
-                lblFavoreteRepresentationError.Visible = false;*/
+
+                int a = 1;
             }
             catch (Exception ex)
             {

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,7 +10,24 @@ namespace DataLibrary.Model
 {
     public class TeamEvent
     {
-        public enum TypeOfEventE { Goal, GoalOwn, GoalPenalty, RedCard, SubstitutionIn, SubstitutionOut, YellowCard, YellowCardSecond };
+        public enum TypeOfEventE 
+        {
+            Goal,
+            [EnumMember(Value = "Goal-Own")]
+            GoalOwn,
+            [EnumMember(Value = "Goal-Penalty")]
+            GoalPenalty,
+            [EnumMember(Value = "Red-Card")]
+            RedCard,
+            [EnumMember(Value = "substitution-in")]
+            SubstitutionIn,
+            [EnumMember(Value = "substitution-out")]
+            SubstitutionOut,
+            [EnumMember(Value = "Yellow-Card")]
+            YellowCard,
+            [EnumMember(Value = "Yellow-Card-Second")]
+            YellowCardSecond 
+        };
 
         [JsonProperty("id")]
         public long Id { get; set; }
