@@ -140,6 +140,7 @@
             this.Name = "SettingsDefault";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main settings";
+            this.Load += new System.EventHandler(this.SettingsDefault_Load);
             this.gbChampionship.ResumeLayout(false);
             this.gbChampionship.PerformLayout();
             this.ResumeLayout(false);

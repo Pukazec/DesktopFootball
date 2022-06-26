@@ -11,16 +11,6 @@ namespace DataLibrary.Model
     {
         private static readonly char DEL = '|';
 
-        //public Team(string fifaCode)
-        //{
-        //    LoadTeam(fifaCode);
-        //}
-
-        //private void LoadTeam(string fifaCode)
-        //{
-            
-        //}
-
         public int CompareTo(Team other)
         {
             return Country.CompareTo(other.Country);
@@ -75,5 +65,15 @@ namespace DataLibrary.Model
         public long Penalties { get; set; }
 
         internal string ParseForFileLine() => $"{Country}{DEL}{FifaCode}";
+        internal static Team ParseFromFile(string line)
+        {
+            Team team = new Team
+            {
+                Country = line.Split(DEL).First(),
+                FifaCode = line.Split(DEL).Last()
+            };
+
+            return team;
+        }
     }
 }

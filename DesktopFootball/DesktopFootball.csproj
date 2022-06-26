@@ -86,17 +86,17 @@
     <Compile Include="FavoretePlayers.Designer.cs">
       <DependentUpon>FavoretePlayers.cs</DependentUpon>
     </Compile>
+    <Compile Include="MatchRangUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MatchRangUC.Designer.cs">
+      <DependentUpon>MatchRangUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="PlayerRangUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PlayerRangUC.Designer.cs">
       <DependentUpon>PlayerRangUC.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PlayerSelection.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PlayerSelection.Designer.cs">
-      <DependentUpon>PlayerSelection.cs</DependentUpon>
     </Compile>
     <Compile Include="PlayerSelectionUC.cs">
       <SubType>UserControl</SubType>
@@ -127,11 +127,11 @@
     <EmbeddedResource Include="FavoretePlayers.resx">
       <DependentUpon>FavoretePlayers.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MatchRangUC.resx">
+      <DependentUpon>MatchRangUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PlayerRangUC.resx">
       <DependentUpon>PlayerRangUC.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PlayerSelection.resx">
-      <DependentUpon>PlayerSelection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PlayerSelectionUC.resx">
       <DependentUpon>PlayerSelectionUC.cs</DependentUpon>

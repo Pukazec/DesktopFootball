@@ -32,32 +32,30 @@ namespace DataLibrary.DAL
         {
             Settings settings = new Settings();
             string[] lines = File.ReadAllLines(PATH);
+            IList<Player> players = new List<Player>();
+            settings.FavoretePlayers = new List<Player>();
 
-            settings.Language = (LanguageE)Enum.Parse(typeof(LanguageE), lines[0]);
-            settings.Championship = (ChampionshipE)Enum.Parse(typeof(ChampionshipE), lines[1]);
+            settings.Championship = (ChampionshipE)Enum.Parse(typeof(ChampionshipE), lines[0]);
+            settings.Language = (LanguageE)Enum.Parse(typeof(LanguageE), lines[1]);
 
-
-            //settings.FavoreteRepresentationId = int.Parse(lines[2]);
-            //settings.FavoretePlayer = lines[3] != null ? lines[3] : 
+            settings.FavoreteRepresentation = Team.ParseFromFile(lines[2]);
+            for (int i = 3; i < lines.Length; i++)
+            {
+                players.Add(Player.ParseFromFileLine(lines[i]));
+            }
+            players.ToList().ForEach(p =>settings.FavoretePlayers.Add(p));
             
             return settings;
         }
 
-        public void SaveMainSettings(Settings settings)
+        public void SaveSettings(Settings settings)
         {
-            //Settings lastSettings = LoadSettings();
-            IList<string> lines = new List<string>();
-            lines.Add(settings.Championship.ToString());
-            lines.Add(settings.Language.ToString());
-            File.WriteAllLines(PATH, lines.ToArray());
-        }
-
-        public void SavePlayers(Settings settings)
-        {
-            IList<string> lines = new List<string>();
-            lines.Add(settings.Championship.ToString());
-            lines.Add(settings.Language.ToString());
-            lines.Add(settings.FavoreteRepresentation.ParseForFileLine());
+            IList<string> lines = new List<string>
+            {
+                settings.Championship.ToString(),
+                settings.Language.ToString(),
+                settings.FavoreteRepresentation.ParseForFileLine()
+            };
             foreach (Player player in settings.FavoretePlayers)
             {
                 lines.Add(player.ParseForFileLine());
@@ -65,13 +63,16 @@ namespace DataLibrary.DAL
             File.WriteAllLines(PATH, lines.ToArray());
         }
 
-        public void SaveRepresentation(Settings settings)
+        public bool ExistingSettings()
         {
-            IList<string> lines = new List<string>();
-            lines.Add(settings.Championship.ToString());
-            lines.Add(settings.Language.ToString());
-            lines.Add(settings.FavoreteRepresentation.ParseForFileLine());
-            File.WriteAllLines(PATH, lines.ToArray());
+            string[] lines = File.ReadAllLines(PATH);
+
+            if (lines.Length >= 6)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

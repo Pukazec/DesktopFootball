@@ -25,25 +25,33 @@ namespace DataLibrary.Model
         }
 
         public ChampionshipE Championship { get; set; }
-        
+
+        public bool Exists()
+        {
+            settingsRepo = RepoFactory.GetSettingsRepo();
+            bool existingSettings = settingsRepo.ExistingSettings();
+
+            if (existingSettings)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public Settings Load()
+        {
+            return settingsRepo.LoadSettings();            
+        }
+
         public LanguageE Language { get; set; }
         public Team FavoreteRepresentation { get; set; }
         public IList<Player> FavoretePlayers { get; set; }
 
+
         public void Save(Settings settings)
         {
-            settingsRepo = RepoFactory.GetSettingsRepo();
-            settingsRepo.SaveMainSettings(settings);
-        }
-
-        public void SaveRepresentation(Settings settings)
-        {
-            settingsRepo.SaveRepresentation(settings);
-        }
-
-        public void SavePlayers(Settings settings)
-        {
-            settingsRepo.SavePlayers(settings);
+            settingsRepo.SaveSettings(settings);
         }
     }
 }

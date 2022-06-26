@@ -13,19 +13,28 @@ namespace DataLibrary
     {
         public string REPRESENTATION;
         public string URL;
-        public IList<Team> LoadGroupResults()
+
+        private RestResponse<T> GetData<T>(string source)
         {
-            throw new NotImplementedException();
+            RestClient restClient = new RestClient(source);
+            return restClient.Execute<T>(new RestRequest());
         }
 
-        public IList<Group> LoadGroups()
+        private T DeserializeTeams<T>(RestResponse<T> restResponse)
         {
-            throw new NotImplementedException();
+            return JsonConvert.DeserializeObject<T>(restResponse.Content);
         }
 
-        public IList<Match> LoadMatches()
+        public void Settings(Settings settings)
         {
-            throw new NotImplementedException();
+            if (settings.Championship == Model.Settings.ChampionshipE.Women)
+            {
+                REPRESENTATION = settings.Female;
+            }
+            if (settings.Championship == Model.Settings.ChampionshipE.Men)
+            {
+                REPRESENTATION = settings.Male;
+            }
         }
 
         public IList<Player> LoadPlayers(string path)
@@ -67,16 +76,6 @@ namespace DataLibrary
             return players;
         }
 
-        public IList<Team> LoadResults()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IList<TeamEvent> LoadTeamEvents()
-        {
-            throw new NotImplementedException();
-        }
-
         public IList<Team> LoadTeams(string path)
         {
             URL = REPRESENTATION + path;
@@ -86,32 +85,13 @@ namespace DataLibrary
             return teams;
         }
 
-        public IList<TeamStatistics> LoadTeamStatistics()
+        public IList<Match> LoadTeamRankings(string fifaCode)
         {
-            throw new NotImplementedException();
-        }
-
-        private RestResponse<T> GetData<T>(string source)
-        {
-            RestClient restClient = new RestClient(source);
-            return restClient.Execute<T>(new RestRequest());
-        }
-
-        private T DeserializeTeams<T>(RestResponse<T> restResponse)
-        {
-            return JsonConvert.DeserializeObject<T>(restResponse.Content);
-        }
-
-        public void Settings(Settings settings)
-        {
-            if (settings.Championship == Model.Settings.ChampionshipE.Women)
-            {
-                REPRESENTATION = settings.Female;
-            }
-            if (settings.Championship == Model.Settings.ChampionshipE.Men)
-            {
-                REPRESENTATION = settings.Male;
-            }
+            URL = REPRESENTATION + "/matches/country?fifa_code=" + fifaCode;
+            IList<Match> matches = new List<Match>();
+            RestResponse<IList<Match>> restResponse = GetData<IList<Match>>(URL);
+            matches = (IList<Match>)DeserializeTeams<IList<Match>>(restResponse);
+            return matches;
         }
     }
 }

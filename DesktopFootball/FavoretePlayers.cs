@@ -60,7 +60,7 @@ namespace DesktopFootball
             players.ToList().ForEach(p => lbAllPlayers.Items.Add(p));
         }
 
-        private void txtSearch_KeyUp(object sender, KeyEventArgs e)
+        private void TxtSearch_KeyUp(object sender, KeyEventArgs e)
         {
             filtered.Clear();
             if (txtSearch.Text == "")
@@ -152,8 +152,6 @@ namespace DesktopFootball
                 favoretes.Add(favorete);
             }
             settings.FavoretePlayers = favoretes;
-
-            settings.SavePlayers(settings);
 
             OpenNextForm(settings);
         }

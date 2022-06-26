@@ -23,10 +23,6 @@ namespace DesktopFootball
             InitializeComponent();
         }
 
-        private void Representation_Load(object sender, EventArgs e)
-        {
-        }
-
         private void PrepareData()
         {
             try
@@ -49,8 +45,6 @@ namespace DesktopFootball
             Team selectedTeam = teams.FirstOrDefault(t => t.Country == ddlRepresentation.SelectedItem.ToString());
             settings.FavoreteRepresentation = selectedTeam;
 
-            settings.SaveRepresentation(settings);
-
             OpenNextForm(settings);
         }
 
@@ -65,7 +59,6 @@ namespace DesktopFootball
 
         public void Settings(Settings mainSettings)
         {
-            repo = RepoFactory.GetRepo();
             settings = mainSettings;
             repo.Settings(settings);
             PrepareData();

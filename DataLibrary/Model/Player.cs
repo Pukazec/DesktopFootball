@@ -28,6 +28,19 @@ namespace DataLibrary.Model
 
         public override string ToString() => $"{Name} ( {ShirtNumber} )";
 
-        internal string ParseForFileLine() => $"{Name}{DEL}{Captain}{DEL}{ShirtNumber}{DEL}{Position}{DEL}";
+        internal string ParseForFileLine() => $"{Name}{DEL}{Captain}{DEL}{ShirtNumber}{DEL}{Position}";
+
+        internal static Player ParseFromFileLine(string line)
+        {
+            Player player = new Player();
+
+            List<string> data = line.Split(DEL).ToList();
+            player.Name = data[0];
+            player.Captain = bool.Parse(data[1]);
+            player.ShirtNumber = long.Parse(data[2]);
+            player.Position = (PositionE)Enum.Parse(typeof(PositionE), data[3]);
+
+            return player;
+        }
     }
 }

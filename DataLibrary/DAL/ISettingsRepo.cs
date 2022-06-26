@@ -10,8 +10,7 @@ namespace DataLibrary.DAL
     public interface ISettingsRepo
     {
         Settings LoadSettings();
-        void SaveMainSettings(Settings settings);
-        void SaveRepresentation(Settings settings);
-        void SavePlayers(Settings settings);
+        void SaveSettings(Settings settings);
+        bool ExistingSettings();
     }
 }

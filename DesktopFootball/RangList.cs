@@ -16,16 +16,41 @@ namespace DesktopFootball
     {
         private static IRepo repo;
         private static Settings settings;
+        private IList<Match> matches;
 
-        public RangList(IRepo repo)
+        public RangList(IRepo repository)
         {
+            repo = repository;
             InitializeComponent();
         }
 
         internal void Settings(Settings mainSettings)
         {
             settings = mainSettings;
-            //PrepareData();
+            PrepareData();
+        }
+
+        private void PrepareData()
+        {
+            matches = repo.LoadTeamRankings(settings.FavoreteRepresentation.FifaCode);
+            foreach (Match match in matches)
+            {
+                MatchRangUC matchRang = new MatchRangUC();
+                matchRang.LoadData(match.Location, match.Attendance, match.HomeTeamCountry, match.AwayTeamCountry);
+                pnlMatches.Controls.Add(matchRang);
+            }
+        }
+
+        private void RangList_Closing(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Do you want to save settings?", "Save settings", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                settings.Save(settings);
+            }
+            else
+            {
+                Application.Exit();
+            }
         }
     }
 }

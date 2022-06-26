@@ -28,68 +28,73 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RangList));
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.printDialog1 = new System.Windows.Forms.PrintDialog();
-            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
-            this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.tabPlayers = new System.Windows.Forms.TabPage();
+            this.tabMatches = new System.Windows.Forms.TabPage();
+            this.pnlMatches = new System.Windows.Forms.FlowLayoutPanel();
+            this.tabControl.SuspendLayout();
+            this.tabMatches.SuspendLayout();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // tabControl
             // 
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            this.tabControl.Controls.Add(this.tabPlayers);
+            this.tabControl.Controls.Add(this.tabMatches);
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.Location = new System.Drawing.Point(0, 0);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(384, 561);
+            this.tabControl.TabIndex = 0;
             // 
-            // statusStrip1
+            // tabPlayers
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 428);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(800, 22);
-            this.statusStrip1.TabIndex = 1;
-            this.statusStrip1.Text = "statusStrip1";
+            this.tabPlayers.Location = new System.Drawing.Point(4, 22);
+            this.tabPlayers.Name = "tabPlayers";
+            this.tabPlayers.Size = new System.Drawing.Size(792, 424);
+            this.tabPlayers.TabIndex = 0;
+            this.tabPlayers.Text = "Player rankings";
+            this.tabPlayers.UseVisualStyleBackColor = true;
             // 
-            // printDialog1
+            // tabMatches
             // 
-            this.printDialog1.UseEXDialog = true;
+            this.tabMatches.Controls.Add(this.pnlMatches);
+            this.tabMatches.Location = new System.Drawing.Point(4, 22);
+            this.tabMatches.Name = "tabMatches";
+            this.tabMatches.Size = new System.Drawing.Size(376, 535);
+            this.tabMatches.TabIndex = 0;
+            this.tabMatches.Text = "Match rankings";
+            this.tabMatches.UseVisualStyleBackColor = true;
             // 
-            // printPreviewDialog1
+            // pnlMatches
             // 
-            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
-            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
-            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
-            this.printPreviewDialog1.Enabled = true;
-            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
-            this.printPreviewDialog1.Name = "printPreviewDialog1";
-            this.printPreviewDialog1.Visible = false;
+            this.pnlMatches.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlMatches.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.pnlMatches.Location = new System.Drawing.Point(0, 80);
+            this.pnlMatches.Name = "pnlMatches";
+            this.pnlMatches.Size = new System.Drawing.Size(376, 455);
+            this.pnlMatches.TabIndex = 0;
             // 
             // RangList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.ClientSize = new System.Drawing.Size(384, 561);
+            this.Controls.Add(this.tabControl);
             this.Name = "RangList";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rang lists";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.tabControl.ResumeLayout(false);
+            this.tabMatches.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.PrintDialog printDialog1;
-        private System.Drawing.Printing.PrintDocument printDocument1;
-        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
-        private System.Windows.Forms.PageSetupDialog pageSetupDialog1;
+        private System.Windows.Forms.TabControl tabControl;
+        private System.Windows.Forms.TabPage tabPlayers;
+        private System.Windows.Forms.TabPage tabMatches;
+        private System.Windows.Forms.FlowLayoutPanel pnlMatches;
     }
 }
