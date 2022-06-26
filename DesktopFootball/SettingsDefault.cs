@@ -28,20 +28,22 @@ namespace DesktopFootball
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            /*Settings settings = new Settings();
+            Settings settings = new Settings();
 
-            if (rbWomen.Checked)
-            {
-                settings.Championship = Settings.ChampionshipE.Women;
-            }
-            else
-            {
-                settings.Championship = Settings.ChampionshipE.Men;
-            }
+            RadioButton selected = gbChampionship.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
 
-            settings.Language = Settings.LanguageE.English;// Enum.Parse(ddlLanguage.Text);
-            */
+            settings.Championship = (Settings.ChampionshipE)Enum.Parse(typeof(Settings.ChampionshipE), selected.Text.ToString());
+            settings.Language = (Settings.LanguageE)Enum.Parse(typeof(Settings.LanguageE), ddlLanguage.SelectedItem.ToString());
+
+            settings.Save(settings);
+
+            OpenNextForm(settings);
+        }
+
+        private void OpenNextForm(Settings settings)
+        {
             Representation representation = new Representation();
+            representation.Settings(settings);
             representation.Show();
             this.Hide();
         }

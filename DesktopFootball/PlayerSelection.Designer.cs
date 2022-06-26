@@ -74,13 +74,16 @@
             this.pnlFavourets.Name = "pnlFavourets";
             this.pnlFavourets.Size = new System.Drawing.Size(363, 468);
             this.pnlFavourets.TabIndex = 3;
+            this.pnlFavourets.DragDrop += new System.Windows.Forms.DragEventHandler(this.pnlFavourets_DragDrop);
+            this.pnlFavourets.DragEnter += new System.Windows.Forms.DragEventHandler(this.pnlFavourets_DragEnter);
+            this.pnlFavourets.DragLeave += new System.EventHandler(this.pnlFavourets_DragLeave);
             // 
             // lblFavoretePlayersError
             // 
             this.lblFavoretePlayersError.AutoSize = true;
             this.lblFavoretePlayersError.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFavoretePlayersError.ForeColor = System.Drawing.Color.Red;
-            this.lblFavoretePlayersError.Location = new System.Drawing.Point(198, 550);
+            this.lblFavoretePlayersError.Location = new System.Drawing.Point(433, 550);
             this.lblFavoretePlayersError.Name = "lblFavoretePlayersError";
             this.lblFavoretePlayersError.Size = new System.Drawing.Size(246, 24);
             this.lblFavoretePlayersError.TabIndex = 13;
@@ -89,7 +92,7 @@
             // btnNext
             // 
             this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNext.Location = new System.Drawing.Point(105, 542);
+            this.btnNext.Location = new System.Drawing.Point(685, 542);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(87, 40);
             this.btnNext.TabIndex = 14;

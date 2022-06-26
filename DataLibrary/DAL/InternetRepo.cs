@@ -11,6 +11,8 @@ namespace DataLibrary
 {
     public class InternetRepo : IRepo
     {
+        public string REPRESENTATION;
+        public string URL;
         public IList<Team> LoadGroupResults()
         {
             throw new NotImplementedException();
@@ -26,12 +28,13 @@ namespace DataLibrary
             throw new NotImplementedException();
         }
 
-        public IList<Player> LoadPlayers()
+        public IList<Player> LoadPlayers(string path)
         {
+            URL = REPRESENTATION + path;
             IList<Match> matches = new List<Match>();
             IList<Player> players = new List<Player>();
             IList<TeamStatistics> teams = new List<TeamStatistics>();
-            RestResponse<IList<Match>> restResponse = GetData<IList<Match>>("https://world-cup-json-2018.herokuapp.com/matches");
+            RestResponse<IList<Match>> restResponse = GetData<IList<Match>>(URL);
             matches = (IList<Match>)DeserializeTeams<IList<Match>>(restResponse);
             foreach (Match match in matches)
             {
@@ -74,10 +77,11 @@ namespace DataLibrary
             throw new NotImplementedException();
         }
 
-        public IList<Team> LoadTeams()
+        public IList<Team> LoadTeams(string path)
         {
+            URL = REPRESENTATION + path;
             IList<Team> teams = new List<Team>();
-            RestResponse<IList<Team>> restResponse = GetData<IList<Team>>("https://world-cup-json-2018.herokuapp.com/teams/results");
+            RestResponse<IList<Team>> restResponse = GetData<IList<Team>>(URL);
             teams = (IList<Team>)DeserializeTeams<IList<Team>>(restResponse);
             return teams;
         }
@@ -96,6 +100,18 @@ namespace DataLibrary
         private T DeserializeTeams<T>(RestResponse<T> restResponse)
         {
             return JsonConvert.DeserializeObject<T>(restResponse.Content);
+        }
+
+        public void Settings(Settings settings)
+        {
+            if (settings.Championship == Model.Settings.ChampionshipE.Women)
+            {
+                REPRESENTATION = settings.Female;
+            }
+            if (settings.Championship == Model.Settings.ChampionshipE.Men)
+            {
+                REPRESENTATION = settings.Male;
+            }
         }
     }
 }

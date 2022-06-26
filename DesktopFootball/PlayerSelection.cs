@@ -15,9 +15,11 @@ namespace DesktopFootball
 {
     public partial class PlayerSelection : Form
     {
-        public static IRepo repo;
-        IList<Player> players;
-        IList<Player> filtered = new List<Player>();
+        private static IRepo repo;
+        private IList<Player> allPlayers;
+        private IList<Player> filtered = new List<Player>();
+        private Control controlStartedDnD;
+        private bool succesDnD;
 
 
         public PlayerSelection(IRepo repository)
@@ -31,14 +33,15 @@ namespace DesktopFootball
             IRepo repo = RepoFactory.GetRepo();
             lblFavoretePlayersError.Text = "Loading data...";
             PrepareData(repo);
+            lblFavoretePlayersError.Hide();
         }
 
         private void PrepareData(IRepo repo)
         {
             try
             {
-                players = repo.LoadPlayers();
-                ShowUsers(players);
+                allPlayers = repo.LoadPlayers("/matches");
+                ShowUsers(allPlayers);
             }
             catch (Exception ex)
             {
@@ -54,8 +57,34 @@ namespace DesktopFootball
             {
                 PlayerSelectionUC playerSelectionUC = new PlayerSelectionUC();
                 playerSelectionUC.LoadData(player.Name, player.ShirtNumber, player.Position, player.Captain);
+                playerSelectionUC.DragDrop += Player_DragDrop;
+                playerSelectionUC.DragEnter += Player_DragEnter;
+                playerSelectionUC.DragLeave += Player_DragLeave;
+                playerSelectionUC.MouseDown += Player_MouseDown;
                 pnlPlayers.Controls.Add(playerSelectionUC);
             }
+        }
+
+        private void Player_MouseDown(object sender, MouseEventArgs e)
+        {
+            Player selected = sender as Player;
+
+        }
+
+
+        private void Player_DragLeave(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Player_DragEnter(object sender, DragEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Player_DragDrop(object sender, DragEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -65,28 +94,15 @@ namespace DesktopFootball
 
         private void txtSearch_KeyUp(object sender, KeyEventArgs e)
         {
-            IList<Player> temp;
             if (txtSearch.Text == "")
             {
-                ShowUsers(players);
                 filtered.Clear();
-            }
-            if (txtSearch.Text.Length == 1)
-            {
-                foreach (Player player in players)
-                {
-                    if (player.Name.ToUpper().StartsWith(txtSearch.Text.ToUpper()))
-                    {
-                        filtered.Add(player);
-                    }
-                }
+                ShowUsers(allPlayers);
             }
             else
             {
-                temp = new List<Player>();
-                filtered.ToList().ForEach(player => temp.Add(player));
                 filtered.Clear();
-                foreach (Player player in temp)
+                foreach (Player player in allPlayers)
                 {
                     if (player.Name.ToUpper().StartsWith(txtSearch.Text.ToUpper()))
                     {
@@ -95,6 +111,39 @@ namespace DesktopFootball
                 }
             }
             ShowUsers(filtered);
+        }
+
+        private void pnlFavourets_DragDrop(object sender, DragEventArgs e)
+        {
+            Panel favoretes = sender as Panel;
+            Panel allPlayers = e.Data.GetData(typeof(Panel)) as Panel;
+
+        }
+
+        private void pnlFavourets_DragEnter(object sender, DragEventArgs e)
+        {
+            PlayerSelectionUC player = sender as PlayerSelectionUC;
+
+            if (player == controlStartedDnD)
+            {
+                return;
+            }
+
+            e.Effect = DragDropEffects.Move;
+
+            lblFavoretePlayersError.Text = "Drop allowed...";
+        }
+
+        private void pnlFavourets_DragLeave(object sender, EventArgs e)
+        {
+            PlayerSelectionUC player = sender as PlayerSelectionUC;
+
+            if (player == controlStartedDnD)
+            {
+                return;
+            }
+
+            lblFavoretePlayersError.Text = "Drop not allowed...";
         }
     }
 }

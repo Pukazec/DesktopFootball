@@ -12,10 +12,11 @@ namespace DataLibrary
         IList<Match> LoadMatches();
         IList<Team> LoadResults();
         IList<Team> LoadGroupResults();
-        IList<Team> LoadTeams();
+        IList<Team> LoadTeams(string path);
         IList<Group> LoadGroups();
-        IList<Player> LoadPlayers();
+        IList<Player> LoadPlayers(string path);
         IList<TeamEvent> LoadTeamEvents();
         IList<TeamStatistics> LoadTeamStatistics();
+        void Settings(Settings settings);
     }
 }

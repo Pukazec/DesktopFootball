@@ -9,6 +9,6 @@ namespace DataLibrary.DAL
     public static class RepoFactory
     {
         public static IRepo GetRepo() => new InternetRepo();
-        //public static ISettingsRepo GetSettingsRepo() => new FileSettingsRepo();
+        public static ISettingsRepo GetSettingsRepo() => new FileSettingsRepo();
     }
 }

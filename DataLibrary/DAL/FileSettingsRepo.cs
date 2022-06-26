@@ -11,9 +11,8 @@ namespace DataLibrary.DAL
 {
     public class FileSettingsRepo : ISettingsRepo
     {
-        private static readonly string PATH = "~/settings.txt";
-        private static readonly char DEL = '|';
-
+        private static readonly string DIR = "C:/temp";
+        private static readonly string PATH = DIR + "/settings.txt";
 
         public FileSettingsRepo()
         {
@@ -22,6 +21,7 @@ namespace DataLibrary.DAL
 
         private void CreateFilesIfNonExistent()
         {
+            Directory.CreateDirectory(DIR);
             if (!File.Exists(PATH))
             {
                 File.Create(PATH).Close();
@@ -37,27 +37,33 @@ namespace DataLibrary.DAL
             settings.Championship = (ChampionshipE)Enum.Parse(typeof(ChampionshipE), lines[1]);
 
 
-            settings.FavoreteRepresentationId = int.Parse(lines[2]);
+            //settings.FavoreteRepresentationId = int.Parse(lines[2]);
             //settings.FavoretePlayer = lines[3] != null ? lines[3] : 
             
             return settings;
         }
 
-        public void SaveMainSettings()
+        public void SaveMainSettings(Settings settings)
         {
-            Settings settings = LoadSettings();
-            //settings.MainSettingsUpdate();
-            //File.WriteAllLines(PATH, settings);
+            //Settings lastSettings = LoadSettings();
+            IList<string> lines = new List<string>();
+            lines.Add(settings.Championship.ToString());
+            lines.Add(settings.Language.ToString());
+            File.WriteAllLines(PATH, lines.ToArray());
         }
 
-        public void SavePlayers()
+        public void SavePlayers(Settings settings)
         {
             
         }
 
-        public void SaveRepresentation()
+        public void SaveRepresentation(Settings settings)
         {
-            
+            IList<string> lines = new List<string>();
+            lines.Add(settings.Championship.ToString());
+            lines.Add(settings.Language.ToString());
+            lines.Add(settings.FavoreteRepresentation.ParseForFileLine());
+            File.WriteAllLines(PATH, lines.ToArray());
         }
     }
 }

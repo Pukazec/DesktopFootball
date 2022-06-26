@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace DesktopFootball
 {
-    public partial class PlayerSelectionUC : UserControl
+    public partial class PlayerSelectionUC : UserControl, IDisposable
     {
         public PlayerSelectionUC()
         {

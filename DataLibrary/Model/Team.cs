@@ -7,16 +7,23 @@ using System.Threading.Tasks;
 
 namespace DataLibrary.Model
 {
-    public class Team
+    public class Team : IComparable<Team>
     {
-        public Team(long id)
-        {
-            LoadTeam(id);
-        }
+        private static readonly char DEL = '|';
 
-        private void LoadTeam(long id)
-        {
+        //public Team(string fifaCode)
+        //{
+        //    LoadTeam(fifaCode);
+        //}
+
+        //private void LoadTeam(string fifaCode)
+        //{
             
+        //}
+
+        public int CompareTo(Team other)
+        {
+            return Country.CompareTo(other.Country);
         }
 
         [JsonProperty("id")]
@@ -66,5 +73,7 @@ namespace DataLibrary.Model
 
         [JsonProperty("penalties")]
         public long Penalties { get; set; }
+
+        internal string ParseForFileLine() => $"{Country}{DEL}{FifaCode}";
     }
 }

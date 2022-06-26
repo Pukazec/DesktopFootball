@@ -15,7 +15,9 @@ namespace DesktopFootball
 {
     public partial class Representation : Form
     {
-        public static IRepo repo;
+        private static IRepo repo;
+        private IList<Team> teams;
+        private static Settings settings;
         public Representation()
         {
             InitializeComponent();
@@ -23,16 +25,14 @@ namespace DesktopFootball
 
         private void Representation_Load(object sender, EventArgs e)
         {
-            repo = RepoFactory.GetRepo();
-            lblFavoreteRepresentationError.Text = "Loading data...";
-            PrepareData(repo);
         }
 
-        private void PrepareData(IRepo repo)
+        private void PrepareData()
         {
             try
             {
-                IList<Team> teams = repo.LoadTeams();
+                teams = repo.LoadTeams("/teams/results");
+                teams.ToList().Sort();
                 teams.ToList().ForEach(t => ddlRepresentation.Items.Add(t.Country));
                 ddlRepresentation.SelectedIndex = 0;
                 lblFavoreteRepresentationError.Visible = false;
@@ -46,13 +46,36 @@ namespace DesktopFootball
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            PlayerSelection playerSelection = new PlayerSelection(repo);
-            playerSelection.Show();
+            Team selectedTeam = teams.FirstOrDefault(t => t.Country == ddlRepresentation.SelectedItem.ToString());
+            settings.FavoreteRepresentation = selectedTeam;
+
+            settings.SaveRepresentation(settings);
+
+            OpenNextForm(settings);
+        }
+
+
+        private void OpenNextForm(Settings settings)
+        {
+            //PlayerSelection playerSelection = new PlayerSelection(repo);
+            //playerSelection.Show();
+            FavoretePlayers favoretePlayers = new FavoretePlayers(repo);
+            favoretePlayers.Settings(settings);
+            favoretePlayers.Show();
             this.Hide();
+        }
+
+        public void Settings(Settings mainSettings)
+        {
+            repo = RepoFactory.GetRepo();
+            settings = mainSettings;
+            repo.Settings(settings);
+            PrepareData();
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
+            lblFavoreteRepresentationError.Text = "Loading data...";
             Application.Exit();
         }
     }

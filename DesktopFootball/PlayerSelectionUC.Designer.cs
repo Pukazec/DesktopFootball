@@ -72,7 +72,7 @@
             // 
             this.lbl1.AutoSize = true;
             this.lbl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl1.Location = new System.Drawing.Point(177, 40);
+            this.lbl1.Location = new System.Drawing.Point(139, 40);
             this.lbl1.Name = "lbl1";
             this.lbl1.Size = new System.Drawing.Size(80, 24);
             this.lbl1.TabIndex = 3;
@@ -82,7 +82,7 @@
             // 
             this.lblPlayerFavorete.AutoSize = true;
             this.lblPlayerFavorete.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlayerFavorete.Location = new System.Drawing.Point(332, 77);
+            this.lblPlayerFavorete.Location = new System.Drawing.Point(285, 77);
             this.lblPlayerFavorete.Name = "lblPlayerFavorete";
             this.lblPlayerFavorete.Size = new System.Drawing.Size(25, 31);
             this.lblPlayerFavorete.TabIndex = 4;
@@ -92,7 +92,7 @@
             // 
             this.lbl2.AutoSize = true;
             this.lbl2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl2.Location = new System.Drawing.Point(177, 77);
+            this.lbl2.Location = new System.Drawing.Point(139, 77);
             this.lbl2.Name = "lbl2";
             this.lbl2.Size = new System.Drawing.Size(140, 24);
             this.lbl2.TabIndex = 5;
@@ -102,7 +102,7 @@
             // 
             this.lblPlayerCapetan.AutoSize = true;
             this.lblPlayerCapetan.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlayerCapetan.Location = new System.Drawing.Point(313, 40);
+            this.lblPlayerCapetan.Location = new System.Drawing.Point(268, 40);
             this.lblPlayerCapetan.Name = "lblPlayerCapetan";
             this.lblPlayerCapetan.Size = new System.Drawing.Size(42, 24);
             this.lblPlayerCapetan.TabIndex = 6;
@@ -112,6 +112,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.DarkGray;
             this.Controls.Add(this.lblPlayerCapetan);
             this.Controls.Add(this.lbl2);
             this.Controls.Add(this.lblPlayerFavorete);
@@ -120,7 +121,7 @@
             this.Controls.Add(this.lblPlayerNumber);
             this.Controls.Add(this.lblPlayerName);
             this.Name = "PlayerSelectionUC";
-            this.Size = new System.Drawing.Size(360, 111);
+            this.Size = new System.Drawing.Size(323, 111);
             this.ResumeLayout(false);
             this.PerformLayout();
 
