@@ -13,5 +13,6 @@ namespace DataLibrary
         IList<Team> LoadTeams(string path);
         IList<Player> LoadPlayers(string path);
         IList<Match> LoadTeamRankings(string fifaCode);
+        IList<Player> LoadPlayerRankings(string fifaCode);
     }
 }

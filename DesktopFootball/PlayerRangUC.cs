@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataLibrary.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,14 @@ namespace DesktopFootball
         public PlayerRangUC()
         {
             InitializeComponent();
+        }
+
+        internal void LoadData(string name, int apearences, int scored, int yellowCards, Settings settings)
+        {
+            lblName.Text = name;
+            lblApearences.Text = apearences.ToString();
+            lblGoalsScored.Text = scored.ToString();
+            lblYellowCard.Text = yellowCards.ToString();
         }
     }
 }

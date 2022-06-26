@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace DataLibrary.Model
@@ -27,6 +28,9 @@ namespace DataLibrary.Model
 
         [JsonProperty("fifa_code")]
         public string FifaCode { get; set; }
+
+        [JsonPropertyName("code")]
+        public string Code { get; set; }
 
         [JsonProperty("group_id")]
         public long GroupId { get; set; }

@@ -37,6 +37,7 @@
             this.rbMen = new System.Windows.Forms.RadioButton();
             this.rbWomen = new System.Windows.Forms.RadioButton();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.gbChampionship.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -159,6 +160,7 @@
         private System.Windows.Forms.RadioButton rbMen;
         private System.Windows.Forms.RadioButton rbWomen;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker2;
     }
 }
 

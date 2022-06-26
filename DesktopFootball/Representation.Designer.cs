@@ -52,6 +52,7 @@
             this.ddlRepresentation.Location = new System.Drawing.Point(234, 13);
             this.ddlRepresentation.Name = "ddlRepresentation";
             this.ddlRepresentation.Size = new System.Drawing.Size(328, 32);
+            this.ddlRepresentation.Sorted = true;
             this.ddlRepresentation.TabIndex = 1;
             // 
             // btnBack

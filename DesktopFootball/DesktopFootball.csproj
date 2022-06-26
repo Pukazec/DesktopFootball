@@ -92,6 +92,11 @@
     <Compile Include="MatchRangUC.Designer.cs">
       <DependentUpon>MatchRangUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="PictureResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PictureResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="PlayerRangUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -129,6 +134,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MatchRangUC.resx">
       <DependentUpon>MatchRangUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PictureResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PictureResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="PlayerRangUC.resx">
       <DependentUpon>PlayerRangUC.cs</DependentUpon>
@@ -173,6 +182,9 @@
       <Project>{d36bd3f5-05da-4410-8f0f-7c21479df1a0}</Project>
       <Name>DataLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NoIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Text.Json.6.0.5\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.5\build\System.Text.Json.targets')" />

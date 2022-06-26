@@ -25,6 +25,9 @@ namespace DataLibrary.Model
 
         [JsonProperty("position")]
         public PositionE Position { get; set; }
+        public int Apearences = 0;
+        public int Scored = 0;
+        public int YellowCards = 0;
 
         public override string ToString() => $"{Name} ( {ShirtNumber} )";
 
