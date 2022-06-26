@@ -57,8 +57,6 @@ namespace DesktopFootball
 
         private void OpenNextForm(Settings settings)
         {
-            //PlayerSelection playerSelection = new PlayerSelection(repo);
-            //playerSelection.Show();
             FavoretePlayers favoretePlayers = new FavoretePlayers(repo);
             favoretePlayers.Settings(settings);
             favoretePlayers.Show();

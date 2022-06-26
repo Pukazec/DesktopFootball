@@ -129,16 +129,41 @@ namespace DesktopFootball
         private void lbAllPlayers_DragDrop(object sender, DragEventArgs e)
         {
             ListBox finish = sender as ListBox;
-            //IList<Player> start = e.Data.GetData(typeof(IList<Player>)) as IList<Player>;
             ListBox start = e.Data.GetData(typeof(ListBox)) as ListBox;
 
-            //start.ToList().ForEach(player => finish.Items.Add(player));
             foreach (Player player in start.SelectedItems)
             {
                 finish.Items.Add(player);
             }
 
             succesDnD = true;
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            if (lbFavoretePlayers.Items.Count < 3)
+            {
+                lblFavoretePlayersError.Text = "Select more players";
+                return;
+            }
+            IList<Player> favoretes = new List<Player>();
+            foreach (Player favorete in lbFavoretePlayers.Items)
+            {
+                favoretes.Add(favorete);
+            }
+            settings.FavoretePlayers = favoretes;
+
+            settings.SavePlayers(settings);
+
+            OpenNextForm(settings);
+        }
+
+        private void OpenNextForm(Settings settings)
+        {
+            RangList rangList = new RangList(repo);
+            rangList.Settings(settings);
+            rangList.Show();
+            this.Hide();
         }
     }
 }

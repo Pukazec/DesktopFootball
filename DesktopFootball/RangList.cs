@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DataLibrary;
+using DataLibrary.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +14,18 @@ namespace DesktopFootball
 {
     public partial class RangList : Form
     {
-        public RangList()
+        private static IRepo repo;
+        private static Settings settings;
+
+        public RangList(IRepo repo)
         {
             InitializeComponent();
+        }
+
+        internal void Settings(Settings mainSettings)
+        {
+            settings = mainSettings;
+            //PrepareData();
         }
     }
 }

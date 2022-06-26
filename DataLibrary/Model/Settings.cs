@@ -28,7 +28,7 @@ namespace DataLibrary.Model
         
         public LanguageE Language { get; set; }
         public Team FavoreteRepresentation { get; set; }
-        public IList<Player> FavoretePlayer { get; set; }
+        public IList<Player> FavoretePlayers { get; set; }
 
         public void Save(Settings settings)
         {
@@ -39,6 +39,11 @@ namespace DataLibrary.Model
         public void SaveRepresentation(Settings settings)
         {
             settingsRepo.SaveRepresentation(settings);
+        }
+
+        public void SavePlayers(Settings settings)
+        {
+            settingsRepo.SavePlayers(settings);
         }
     }
 }

@@ -36,7 +36,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lbAllPlayers = new System.Windows.Forms.ListBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.lbFavoretePlayers = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // txtSearch
@@ -77,6 +77,7 @@
             this.btnNext.TabIndex = 23;
             this.btnNext.Text = "Next";
             this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // lblFavoretePlayersError
             // 
@@ -124,27 +125,27 @@
             this.lbAllPlayers.DragEnter += new System.Windows.Forms.DragEventHandler(this.lbAllPlayers_DragEnter);
             this.lbAllPlayers.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListBox_MouseDown);
             // 
-            // listBox1
+            // lbFavoretePlayers
             // 
-            this.listBox1.AllowDrop = true;
-            this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 18;
-            this.listBox1.Location = new System.Drawing.Point(419, 72);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listBox1.Size = new System.Drawing.Size(359, 454);
-            this.listBox1.TabIndex = 28;
-            this.listBox1.DragDrop += new System.Windows.Forms.DragEventHandler(this.lbAllPlayers_DragDrop);
-            this.listBox1.DragEnter += new System.Windows.Forms.DragEventHandler(this.lbAllPlayers_DragEnter);
-            this.listBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListBox_MouseDown);
+            this.lbFavoretePlayers.AllowDrop = true;
+            this.lbFavoretePlayers.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFavoretePlayers.FormattingEnabled = true;
+            this.lbFavoretePlayers.ItemHeight = 18;
+            this.lbFavoretePlayers.Location = new System.Drawing.Point(419, 72);
+            this.lbFavoretePlayers.Name = "lbFavoretePlayers";
+            this.lbFavoretePlayers.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.lbFavoretePlayers.Size = new System.Drawing.Size(359, 454);
+            this.lbFavoretePlayers.TabIndex = 28;
+            this.lbFavoretePlayers.DragDrop += new System.Windows.Forms.DragEventHandler(this.lbAllPlayers_DragDrop);
+            this.lbFavoretePlayers.DragEnter += new System.Windows.Forms.DragEventHandler(this.lbAllPlayers_DragEnter);
+            this.lbFavoretePlayers.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListBox_MouseDown);
             // 
             // FavoretePlayers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 596);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.lbFavoretePlayers);
             this.Controls.Add(this.lbAllPlayers);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.label3);
@@ -172,6 +173,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox lbAllPlayers;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox lbFavoretePlayers;
     }
 }

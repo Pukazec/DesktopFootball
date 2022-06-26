@@ -9,6 +9,8 @@ namespace DataLibrary.Model
 {
     public class Player
     {
+        private static readonly char DEL = '|';
+
         public enum PositionE { Defender, Forward, Goalie, Midfield };
 
 
@@ -25,5 +27,7 @@ namespace DataLibrary.Model
         public PositionE Position { get; set; }
 
         public override string ToString() => $"{Name} ( {ShirtNumber} )";
+
+        internal string ParseForFileLine() => $"{Name}{DEL}{Captain}{DEL}{ShirtNumber}{DEL}{Position}{DEL}";
     }
 }

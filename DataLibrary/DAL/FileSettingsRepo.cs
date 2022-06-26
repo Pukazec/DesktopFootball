@@ -54,7 +54,15 @@ namespace DataLibrary.DAL
 
         public void SavePlayers(Settings settings)
         {
-            
+            IList<string> lines = new List<string>();
+            lines.Add(settings.Championship.ToString());
+            lines.Add(settings.Language.ToString());
+            lines.Add(settings.FavoreteRepresentation.ParseForFileLine());
+            foreach (Player player in settings.FavoretePlayers)
+            {
+                lines.Add(player.ParseForFileLine());
+            }
+            File.WriteAllLines(PATH, lines.ToArray());
         }
 
         public void SaveRepresentation(Settings settings)
