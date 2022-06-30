@@ -18,8 +18,9 @@ namespace DesktopFootball
         private static IRepo repo;
         private IList<Team> teams;
         private static Settings settings;
-        public Representation()
+        public Representation(IRepo repository)
         {
+            repo = repository;
             InitializeComponent();
         }
 
@@ -66,8 +67,8 @@ namespace DesktopFootball
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            lblFavoreteRepresentationError.Text = "Loading data...";
-            Application.Exit();
+            Parent.Show();
+            this.Close();
         }
     }
 }

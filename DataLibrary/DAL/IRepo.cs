@@ -11,6 +11,7 @@ namespace DataLibrary
     {
         void Settings(Settings settings);
         IList<Team> LoadTeams(string path);
+        IList<Match> LoadMatches(string path);
         IList<Player> LoadPlayers(string path);
         IList<Match> LoadTeamRankings(string fifaCode);
         IList<Player> LoadPlayerRankings(string fifaCode);

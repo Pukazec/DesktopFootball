@@ -94,6 +94,15 @@ namespace DataLibrary
             return matches;
         }
 
+        public IList<Match> LoadMatches(string path)
+        {
+            URL= REPRESENTATION + path;
+            IList<Match> matches = new List<Match>();
+            RestResponse<IList<Match>> restResponse = GetData<IList<Match>>(URL);
+            matches = (IList<Match>)Desserialize<IList<Match>>(restResponse);
+            return matches;
+        }
+
         public IList<Player> LoadPlayerRankings(string fifaCode)
         {
             URL = REPRESENTATION + "/matches/country?fifa_code=" + fifaCode;
@@ -131,7 +140,12 @@ namespace DataLibrary
                 {
                     if (players.FirstOrDefault(e => e.Name == player.Name) == null)
                     {
+                        player.Apearences = 1;
                         players.Add(player);
+                    }
+                    else
+                    {
+                        players.FirstOrDefault(p => p.Name == player.Name).Apearences++;
                     }
                 }
                 foreach (Player player in team.Substitutes)
@@ -148,16 +162,19 @@ namespace DataLibrary
                 switch (happening.TypeOfEvent)
                 {
                     case TeamEvent.TypeOfEventE.Goal:
-                        players.FirstOrDefault(p => happening.Player == p.Name).Scored += 1;
+                        players.FirstOrDefault(p => happening.Player == p.Name).Scored++;
                         break;
                     case TeamEvent.TypeOfEventE.GoalPenalty:
-                        players.FirstOrDefault(p => happening.Player == p.Name).Scored += 1;
+                        players.FirstOrDefault(p => happening.Player == p.Name).Scored++;
                         break;
                     case TeamEvent.TypeOfEventE.YellowCard:
-                        players.FirstOrDefault(p => happening.Player == p.Name).YellowCards += 1;
+                        players.FirstOrDefault(p => happening.Player == p.Name).YellowCards++;
                         break;
                     case TeamEvent.TypeOfEventE.YellowCardSecond:
-                        players.FirstOrDefault(p => happening.Player == p.Name).YellowCards += 1;
+                        players.FirstOrDefault(p => happening.Player == p.Name).YellowCards++;
+                        break;
+                    case TeamEvent.TypeOfEventE.SubstitutionIn:
+                        players.FirstOrDefault(p => happening.Player == p.Name).Apearences++;
                         break;
                 }
             }

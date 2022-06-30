@@ -36,8 +36,6 @@
             this.gbChampionship = new System.Windows.Forms.GroupBox();
             this.rbMen = new System.Windows.Forms.RadioButton();
             this.rbWomen = new System.Windows.Forms.RadioButton();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.gbChampionship.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -141,7 +139,6 @@
             this.Name = "SettingsDefault";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main settings";
-            this.Load += new System.EventHandler(this.SettingsDefault_Load);
             this.gbChampionship.ResumeLayout(false);
             this.gbChampionship.PerformLayout();
             this.ResumeLayout(false);
@@ -159,8 +156,6 @@
         private System.Windows.Forms.GroupBox gbChampionship;
         private System.Windows.Forms.RadioButton rbMen;
         private System.Windows.Forms.RadioButton rbWomen;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.ComponentModel.BackgroundWorker backgroundWorker2;
     }
 }
 

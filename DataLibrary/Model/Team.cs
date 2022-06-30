@@ -79,5 +79,18 @@ namespace DataLibrary.Model
 
             return team;
         }
+
+        public override string ToString() => $"{Country} ({FifaCode})";
+
+        public override bool Equals(object obj)
+        {
+            Team other = obj as Team;
+            if (FifaCode == null)
+            {
+                FifaCode = Code;
+            }           
+
+            return FifaCode.Equals(other.FifaCode != null ? other.FifaCode : other.Code);
+        }
     }
 }

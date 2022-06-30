@@ -76,9 +76,9 @@ namespace DesktopFootball
                         filtered.Add(player);
                     }
                 }
+                ShowUsers(filtered);
             }
 
-            ShowUsers(filtered);
         }
 
         internal void Settings(Settings mainSettings)
@@ -89,7 +89,8 @@ namespace DesktopFootball
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Parent.Show();
+            this.Close();
         }
 
         private void ListBox_MouseDown(object sender, MouseEventArgs e)

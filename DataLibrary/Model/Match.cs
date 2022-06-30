@@ -94,5 +94,19 @@ namespace DataLibrary.Model
 
         [JsonProperty("last_score_update_at")]
         public DateTimeOffset? LastScoreUpdateAt { get; set; }
+
+        public string FormatForPrint() => $"{Venue}\t{Location}\t({Attendance}):\t{Winner}:{Loser(Winner)}";
+
+        private string Loser(string winner)
+        {
+            if (winner == HomeTeamCountry)
+            {
+                return AwayTeamCountry;
+            }
+            else
+            {
+                return HomeTeamCountry;
+            }
+        }
     }
 }

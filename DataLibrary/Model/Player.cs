@@ -25,6 +25,9 @@ namespace DataLibrary.Model
 
         [JsonProperty("position")]
         public PositionE Position { get; set; }
+
+        public string ImgUrl { get; set; }
+
         public int Apearences = 0;
         public int Scored = 0;
         public int YellowCards = 0;
@@ -45,5 +48,7 @@ namespace DataLibrary.Model
 
             return player;
         }
+
+        public string FormatForPrint() => $"{Name} ({ShirtNumber}):\t{Position}\t\t{Scored}\t{YellowCards}\t{Apearences}";
     }
 }

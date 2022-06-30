@@ -24,6 +24,13 @@ namespace DataLibrary.Model
             English
         }
 
+        public enum WindowSizeE
+        {
+            Small,
+            Midium,
+            Maximize
+        }
+
         public ChampionshipE Championship { get; set; }
 
         public bool Exists()
@@ -45,12 +52,14 @@ namespace DataLibrary.Model
         }
 
         public LanguageE Language { get; set; }
+        public WindowSizeE Size { get; set; }
         public Team FavoreteRepresentation { get; set; }
         public IList<Player> FavoretePlayers { get; set; }
 
 
         public void Save(Settings settings)
         {
+            settingsRepo = RepoFactory.GetSettingsRepo();
             settingsRepo.SaveSettings(settings);
         }
     }

@@ -17,9 +17,17 @@ namespace DesktopFootball
     {
         private static IRepo repo;
         private static Settings settings;
-        public SettingsDefault()
+
+        public SettingsDefault(IRepo repository)
         {
+            repo = repository;
             InitializeComponent();
+        }
+
+        internal void SettingsLoad(Settings mainSettings)
+        {
+            settings = mainSettings;
+            repo.Settings(settings);
             LoadLanguages();
         }
 
@@ -42,7 +50,7 @@ namespace DesktopFootball
 
         private void OpenNextForm(Settings settings)
         {
-            Representation representation = new Representation();
+            Representation representation = new Representation(repo);
             representation.Settings(settings);
             representation.Show();
             this.Hide();
@@ -51,21 +59,6 @@ namespace DesktopFootball
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Application.Exit();
-        }
-
-        private void SettingsDefault_Load(object sender, EventArgs e)
-        {
-            repo = RepoFactory.GetRepo();
-            settings = new Settings();
-            if (settings.Exists())
-            {
-                settings = settings.Load();
-                RangList rangList = new RangList(repo);
-                repo.Settings(settings);
-                rangList.Settings(settings);
-                rangList.Show();
-                this.Hide();
-            }
         }
     }
 }
