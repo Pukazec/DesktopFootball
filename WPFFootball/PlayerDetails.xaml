@@ -5,8 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFFootball"
         mc:Ignorable="d"
-        Title="PlayerDetails" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Title="PlayerDetails" Height="250" Width="300">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label x:Name="lblName" Content="Luka Modric"/>
+        <Label Grid.Column="1" x:Name="lblNumber" Content="10"/>
+        <Image Grid.Column="2" Grid.RowSpan="4" Source="/NoIcon.png" Height="150"/>
+        <Label Grid.Row="1" x:Name="lblCapetan" Content="Capetan"/>
+        <Label Grid.Row="1" Grid.Column="1" x:Name="lblIsCapetan" Content="Capetan"/>
+        <Label Grid.Row="2" x:Name="lblGoal" Content="Goals:"/>
+        <Label Grid.Row="2" Grid.Column="1" x:Name="lblGoals" Content="10"/>
+        <Label Grid.Row="3" x:Name="lblYellows" Content="Yellow cards:"/>
+        <Label Grid.Row="3" Grid.Column="1" x:Name="lblYellowCards" Content="10"/>
+        <Button Grid.Row="5" Content="Close" Click="Button_Click" Margin="5"/>
     </Grid>
 </Window>

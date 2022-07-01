@@ -5,9 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFFootball"
         xmlns:data="clr-namespace:DataLibrary;assembly=DataLibrary"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Game" MinHeight="450" MinWidth="570">
+        Closing="Window_Closing"
+        Title="Game" MinHeight="450" MinWidth="570"
+        Height="450" Width="570">
     <Window.Resources>
         <Style TargetType="{x:Type Label}">
             <Setter Property="Margin" Value="3"/>
@@ -47,14 +50,16 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
             <Label Content="Home team"/>
             <Label Grid.Column="1" Content="Away team" />
             <Label Grid.Column="2" Content="Result" />
+            <Button Grid.Column="3" Content="Settings" Click="Settings_Click" />
 
             <ComboBox Grid.Row="1" x:Name="ddlHomeTeam" SelectionChanged="ddlHomeTeam_IndexChanged"></ComboBox>
             <ComboBox Grid.Row="1" Grid.Column="1" x:Name="ddlAgainstTeam" SelectionChanged="ddlAwayTeam_IndexChanged"></ComboBox>
@@ -62,7 +67,10 @@
 
             <Button Grid.Row="2" x:Name="btnHomeTeamDetails" Content="Open home team" Click="OpenHomeTeam_Click"/>
             <Button Grid.Row="2" Grid.Column="1" x:Name="btnAwayTeamDetails" Content="Open home team" Click="AwayHomeTeam_Click"/>
-            <Label Grid.Row="2" Grid.Column="2" x:Name="lblError" Foreground="Red" />
+            <StackPanel Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" >
+                <Label x:Name="lblError" Foreground="Red" />
+                <fa:ImageAwesome x:Name="sPError" Icon="Cog" Spin="True" SpinDuration="2" Height="20" Visibility="Collapsed"/>
+            </StackPanel>
 
         </Grid>
 

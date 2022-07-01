@@ -27,6 +27,7 @@ namespace WPFFootball
         private IList<Match> homeTeamMatches = new List<Match>();
         private static Settings settings;
         private Match match;
+        private SettingsDefault settingsDefault;
 
         public Game(IRepo repository)
         {
@@ -34,8 +35,9 @@ namespace WPFFootball
             InitializeComponent();
         }
 
-        public void Settings(Settings mainSettings)
+        public void Settings(Settings mainSettings, SettingsDefault defaultSettings)
         {
+            settingsDefault = defaultSettings;
             settings = mainSettings;
             repo.Settings(settings);
             PrepareData();
@@ -45,13 +47,23 @@ namespace WPFFootball
         {
             lblError.Content = "Loading data...";
             lblError.Visibility = Visibility.Visible;
-            matches = await repo.LoadMatches("/matches");
-            teams = await repo.LoadTeams("/teams/results");
+            sPError.Visibility = Visibility.Visible;
+            try
+            {
+                matches = await repo.LoadMatches("/matches");
+                teams = await repo.LoadTeams("/teams/results");
+            }
+            catch (Exception)
+            {
+                lblError.Content = "Conntect costumer support.\nKontaktiraj korisničku službu.";
+                lblError.Visibility = Visibility.Visible;
+            }
             teams.ToList().Sort();
             teams.ToList().ForEach(t => ddlHomeTeam.Items.Add(t));
 
             ddlHomeTeam.SelectedItem = settings.FavoreteRepresentation;
             lblError.Visibility = Visibility.Hidden;
+            sPError.Visibility = Visibility.Hidden;
         }
 
         private void LoadDdlAwayTeam()
@@ -206,6 +218,17 @@ namespace WPFFootball
         private void LoadGoals(Team homeTeam, Team awayTeam)
         {
             lblResult.Content = $"{homeTeam.Goals} : {awayTeam.Goals}";
+        }
+
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+            settingsDefault.Show();
+            this.Close();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
         }
     }
 }

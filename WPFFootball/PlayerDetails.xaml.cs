@@ -27,7 +27,47 @@ namespace WPFFootball
 
         internal void LoadData(Player player, Match match)
         {
+            int goals = 0;
+            int cards = 0;
+            lblName.Content = player.Name;
+            lblNumber.Content = player.ShirtNumber;
+            if (player.Captain)
+            {
+                lblIsCapetan.Content = "Yes";
+            }
+            else
+            {
+                lblIsCapetan.Content = "No";
+            }
+            foreach (TeamEvent events in match.HomeTeamEvents)
+            {
+                if (events.Player == player.Name && events.TypeOfEvent == TeamEvent.TypeOfEventE.Goal)
+                {
+                    goals++;
+                }
+                if (events.Player == player.Name && events.TypeOfEvent == TeamEvent.TypeOfEventE.YellowCard)
+                {
+                    goals++;
+                }
+            }
+            foreach (TeamEvent events in match.AwayTeamEvents)
+            {
+                if (events.Player == player.Name && events.TypeOfEvent == TeamEvent.TypeOfEventE.Goal)
+                {
+                    goals++;
+                }
+                if (events.Player == player.Name && events.TypeOfEvent == TeamEvent.TypeOfEventE.YellowCard)
+                {
+                    goals++;
+                }
+            }
+            lblGoals.Content = goals;
+            lblYellowCards.Content = cards;
+        }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

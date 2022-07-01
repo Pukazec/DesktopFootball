@@ -28,6 +28,14 @@ namespace WPFFootball
 
         public SettingsDefault()
         {
+            repo = RepoFactory.GetRepo();
+            settings = new Settings();
+            if (settings.Exists() && !edit)
+            {
+                settings = settings.Load();
+                repo.Settings(settings);
+                OpenNextForm(settings);
+            }
             InitializeComponent();
             LoadLanguages();
         }
@@ -50,18 +58,6 @@ namespace WPFFootball
             LoadLanguages();
         }
 
-        private void SettingsDefault_Loaded(object sender, RoutedEventArgs e)
-        {
-            repo = RepoFactory.GetRepo();
-            settings = new Settings();
-            if (settings.Exists() && !edit)
-            {
-                settings = settings.Load();
-                repo.Settings(settings);
-                OpenNextForm(settings);
-            }
-        }
-
         private void BtnExit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
@@ -81,9 +77,9 @@ namespace WPFFootball
         private void OpenNextForm(Settings settings)
         {
             Game game = new Game(repo);
-            game.Settings(settings);
+            game.Settings(settings, this);
             game.Show();
-            this.Close();
+            this.Hide();
         }
     }
 }
