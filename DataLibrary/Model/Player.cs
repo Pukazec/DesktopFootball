@@ -25,6 +25,7 @@ namespace DataLibrary.Model
 
         [JsonProperty("position")]
         public PositionE Position { get; set; }
+        public bool Favorete { get; set; }
 
         public string ImgUrl { get; set; }
 

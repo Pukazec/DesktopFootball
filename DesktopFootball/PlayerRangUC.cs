@@ -19,7 +19,7 @@ namespace DesktopFootball
             InitializeComponent();
         }
 
-        internal void LoadData(string name, int apearences, int scored, int yellowCards, string imgUrl, Settings settings)
+        internal void LoadData(string name, int apearences, int scored, int yellowCards, string imgUrl, bool favorete, Settings settings)
         {
             lblName.Text = name;
             lblApearences.Text = apearences.ToString();
@@ -28,6 +28,10 @@ namespace DesktopFootball
             if (imgUrl != null)
             {
                 imgPlayer.ImageLocation = imgUrl;
+            }
+            if (favorete)
+            {
+                BackColor = Color.DarkGoldenrod;
             }
         }
 

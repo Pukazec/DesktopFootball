@@ -31,7 +31,27 @@ namespace DesktopFootball
             {
                 lblPlayerCapetan.Text = "No";
             }
-            lblPlayerFavorete.Text = "";
+        }
+
+        public Player GetPlayer()
+        {
+            Player player = new Player
+            {
+                Name = lblPlayerName.Text,
+                ShirtNumber = int.Parse(lblPlayerNumber.Text),
+                Position = (Player.PositionE)Enum.Parse(typeof(Player.PositionE), lblPlayerPosition.Text),
+            };
+
+            if (lblPlayerCapetan.Text == "Yes")
+            {
+                player.Captain = true;
+            }
+            else
+            {
+                player.Captain = false;
+            }
+
+            return player;
         }
     }
 }

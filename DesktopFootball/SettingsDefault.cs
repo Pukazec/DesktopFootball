@@ -52,6 +52,7 @@ namespace DesktopFootball
         {
             Representation representation = new Representation(repo);
             representation.Settings(settings);
+            representation.Parent(this);
             representation.Show();
             this.Hide();
         }

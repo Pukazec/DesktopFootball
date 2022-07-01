@@ -18,6 +18,7 @@ namespace DesktopFootball
         private static IRepo repo;
         private IList<Team> teams;
         private static Settings settings;
+        private static SettingsDefault settingsDefault;
         public Representation(IRepo repository)
         {
             repo = repository;
@@ -36,13 +37,19 @@ namespace DesktopFootball
             }
             catch (Exception ex)
             {
-                lblFavoreteRepresentationError.Text = ex.Message;
+                lblFavoreteRepresentationError.Text = "Conntect costumer support.\nKontaktiraj korisničku službu.";
+                btnNext.Enabled = false;
                 lblFavoreteRepresentationError.Show();
             }
         }
 
         private void btnNext_Click(object sender, EventArgs e)
         {
+            if (ddlRepresentation.SelectedItem == null)
+            {
+                lblFavoreteRepresentationError.Text = "Representation must be selected";
+                return;
+            }
             Team selectedTeam = teams.FirstOrDefault(t => t.Country == ddlRepresentation.SelectedItem.ToString());
             settings.FavoreteRepresentation = selectedTeam;
 
@@ -58,6 +65,11 @@ namespace DesktopFootball
             this.Hide();
         }
 
+        internal void Parent(SettingsDefault defaultSettings)
+        {
+            settingsDefault = defaultSettings;
+        }
+
         public void Settings(Settings mainSettings)
         {
             settings = mainSettings;
@@ -67,8 +79,13 @@ namespace DesktopFootball
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            Parent.Show();
+            settingsDefault.Show();
             this.Close();
+        }
+
+        private void Representation_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

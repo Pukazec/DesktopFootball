@@ -37,9 +37,10 @@ namespace DataLibrary.DAL
 
             settings.Championship = (ChampionshipE)Enum.Parse(typeof(ChampionshipE), lines[0]);
             settings.Language = (LanguageE)Enum.Parse(typeof(LanguageE), lines[1]);
+            settings.Size = (WindowSizeE)Enum.Parse(typeof(WindowSizeE), lines[2]);
 
-            settings.FavoreteRepresentation = Team.ParseFromFile(lines[2]);
-            for (int i = 3; i < lines.Length; i++)
+            settings.FavoreteRepresentation = Team.ParseFromFile(lines[3]);
+            for (int i = 4; i < lines.Length; i++)
             {
                 players.Add(Player.ParseFromFileLine(lines[i]));
             }
@@ -54,6 +55,7 @@ namespace DataLibrary.DAL
             {
                 settings.Championship.ToString(),
                 settings.Language.ToString(),
+                settings.Size.ToString(),
                 settings.FavoreteRepresentation.ParseForFileLine()
             };
             foreach (Player player in settings.FavoretePlayers)
@@ -67,7 +69,7 @@ namespace DataLibrary.DAL
         {
             string[] lines = File.ReadAllLines(PATH);
 
-            if (lines.Length >= 6)
+            if (lines.Length >= 7)
             {
                 return true;
             }

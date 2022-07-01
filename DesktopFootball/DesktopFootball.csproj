@@ -92,6 +92,12 @@
     <Compile Include="MatchRangUC.Designer.cs">
       <DependentUpon>MatchRangUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="MyMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyMessage.Designer.cs">
+      <DependentUpon>MyMessage.cs</DependentUpon>
+    </Compile>
     <Compile Include="PictureResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -134,6 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MatchRangUC.resx">
       <DependentUpon>MatchRangUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyMessage.resx">
+      <DependentUpon>MyMessage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PictureResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

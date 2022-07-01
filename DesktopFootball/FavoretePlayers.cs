@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,8 +20,8 @@ namespace DesktopFootball
         private static Settings settings;
         private IList<Player> allPlayers;
         private IList<Player> filtered = new List<Player>();
-        private Control controlStartedDnD;
-        private bool succesDnD;
+        private IList<PlayerSelectionUC> selectedPlayers = new List<PlayerSelectionUC>();
+        private FlowLayoutPanel parent;
 
         public FavoretePlayers(IRepo repository)
         {
@@ -28,19 +29,13 @@ namespace DesktopFootball
             InitializeComponent();
         }
 
-        private void FavoretePlayers_Load(object sender, EventArgs e)
-        {
-            IRepo repo = RepoFactory.GetRepo();
-            lblFavoretePlayersError.Text = "Loading data...";
-            PrepareData();
-            lblFavoretePlayersError.Hide();
-        }
+        //*************************************************************************************************** Data load ********************************************************************//
 
         private void PrepareData()
         {
             try
             {
-                allPlayers = repo.LoadPlayers("/matches");
+                allPlayers = repo.LoadPlayers(settings.FavoreteRepresentation.FifaCode);
                 ShowUsers(allPlayers);
             }
             catch (Exception ex)
@@ -52,13 +47,26 @@ namespace DesktopFootball
 
         private void ShowUsers(IList<Player> players)
         {
-            lbAllPlayers.Items.Clear();
+            pnlAllPlayers.Controls.Clear();
             foreach (Player player in players)
             {
-                lbAllPlayers.Items.Add(player);
+                PlayerSelectionUC playerSelection = new PlayerSelectionUC();
+                playerSelection.Name = player.Name;
+                playerSelection.ContextMenuStrip = playerContextMenuStrip;
+                playerSelection.LoadData(player.Name, player.ShirtNumber, player.Position, player.Captain);
+                playerSelection.MouseDown += PlayerSelection_MouseDown;
+
+                pnlAllPlayers.Controls.Add(playerSelection);
             }
-            players.ToList().ForEach(p => lbAllPlayers.Items.Add(p));
         }
+
+        internal void Settings(Settings mainSettings)
+        {
+            settings = mainSettings;
+            PrepareData();
+        }
+              
+        //*************************************************************************************************** Data search ********************************************************************//
 
         private void TxtSearch_KeyUp(object sender, KeyEventArgs e)
         {
@@ -81,76 +89,27 @@ namespace DesktopFootball
 
         }
 
-        internal void Settings(Settings mainSettings)
-        {
-            settings = mainSettings;
-            PrepareData();
-        }
+        //*************************************************************************************************** Button clicks ********************************************************************//
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            Parent.Show();
+            Representation representation = new Representation(repo);
+            representation.Settings(settings);
+            representation.Show();
             this.Close();
-        }
-
-        private void ListBox_MouseDown(object sender, MouseEventArgs e)
-        {
-            ListBox selected = sender as ListBox;
-            IList<Player> move = new List<Player>();
-            
-            foreach (Player player in selected.SelectedItems)
-            {
-                move.Add(player);
-            }
-
-            controlStartedDnD = selected;
-            if(move.Count < 1) { return; }
-            selected.DoDragDrop(selected, DragDropEffects.Move);
-
-            if (succesDnD)
-            {
-                selected.SelectedItems.Clear();
-                controlStartedDnD = null;
-                succesDnD = false;
-            }
-        }
-
-        private void lbAllPlayers_DragEnter(object sender, DragEventArgs e)
-        {
-            ListBox starter = sender as ListBox;
-
-            if (starter == controlStartedDnD)
-            {
-                return;
-            }
-
-            e.Effect = DragDropEffects.Move;
-        }
-
-        private void lbAllPlayers_DragDrop(object sender, DragEventArgs e)
-        {
-            ListBox finish = sender as ListBox;
-            ListBox start = e.Data.GetData(typeof(ListBox)) as ListBox;
-
-            foreach (Player player in start.SelectedItems)
-            {
-                finish.Items.Add(player);
-            }
-
-            succesDnD = true;
         }
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            if (lbFavoretePlayers.Items.Count < 3)
+            if (pnlFavoretePlayers.Controls.Count < 3)
             {
                 lblFavoretePlayersError.Text = "Select more players";
                 return;
             }
             IList<Player> favoretes = new List<Player>();
-            foreach (Player favorete in lbFavoretePlayers.Items)
+            foreach (PlayerSelectionUC favourete in pnlFavoretePlayers.Controls)
             {
-                favoretes.Add(favorete);
+                favoretes.Add(favourete.GetPlayer());
             }
             settings.FavoretePlayers = favoretes;
 
@@ -163,6 +122,77 @@ namespace DesktopFootball
             rangList.Settings(settings);
             rangList.Show();
             this.Hide();
+        }
+
+        //*************************************************************************************************** Data move ********************************************************************//
+
+        private void PlayerSelection_MouseDown(object sender, MouseEventArgs e)
+        {
+            PlayerSelectionUC selectedPlayer = sender as PlayerSelectionUC;
+            selectedPlayer.BackColor = Color.LightGray;
+            selectedPlayers.Add(selectedPlayer);
+
+            parent = (FlowLayoutPanel)selectedPlayer.Parent;
+            if (selectedPlayers.Count < 1) { return; }
+            selectedPlayer.DoDragDrop(selectedPlayer, DragDropEffects.Move);
+        }
+
+        private void pnlPlayers_DragEnter(object sender, DragEventArgs e)
+        {
+            FlowLayoutPanel starter = sender as FlowLayoutPanel;
+
+            if (starter == parent)
+            {
+                return;
+            }
+
+            e.Effect = DragDropEffects.Move;
+        }
+
+        private void pnlPlayers_DragDrop(object sender, DragEventArgs e)
+        {
+            MovePlayers();
+        }
+
+        private void playerContextMenuStrip_Opened(object sender, EventArgs e)
+        {
+            ContextMenuStrip contextMenu = sender as ContextMenuStrip;
+            PlayerSelectionUC playerSelectionUC = contextMenu.SourceControl as PlayerSelectionUC;
+            if (playerSelectionUC == null)
+            {
+                return;
+            }
+
+            parent = (FlowLayoutPanel)playerSelectionUC.Parent;
+            playerSelectionUC.BackColor = Color.LightGray;
+            selectedPlayers.Add(playerSelectionUC);
+        }
+
+        private void moveToOtherList_Click(object sender, EventArgs e)
+        {
+            MovePlayers();
+        }
+
+        private void MovePlayers()
+        {
+            if (parent == pnlAllPlayers)
+            {
+                selectedPlayers.ToList().ForEach(player => pnlFavoretePlayers.Controls.Add(player));
+                selectedPlayers.ToList().ForEach(player => pnlAllPlayers.Controls.Remove(player));
+            }
+            if (parent == pnlFavoretePlayers)
+            {
+
+                selectedPlayers.ToList().ForEach(player => pnlAllPlayers.Controls.Add(player));
+                selectedPlayers.ToList().ForEach(player => pnlFavoretePlayers.Controls.Remove(player));
+            }
+            selectedPlayers.ToList().ForEach(player => player.BackColor = Color.DarkGray);
+            selectedPlayers.Clear();
+        }
+
+        private void FavoretePlayers_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

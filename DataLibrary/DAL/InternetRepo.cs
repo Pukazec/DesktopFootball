@@ -37,9 +37,9 @@ namespace DataLibrary
             }
         }
 
-        public IList<Player> LoadPlayers(string path)
+        public IList<Player> LoadPlayers(string fifaCode)
         {
-            URL = REPRESENTATION + path;
+            URL = REPRESENTATION + "/matches/country?fifa_code=" + fifaCode;
             IList<Match> matches = new List<Match>();
             IList<Player> players = new List<Player>();
             IList<TeamStatistics> teams = new List<TeamStatistics>();
@@ -47,13 +47,13 @@ namespace DataLibrary
             matches = (IList<Match>)Desserialize<IList<Match>>(restResponse);
             foreach (Match match in matches)
             {
-                if (teams.FirstOrDefault(e => e.Country == match.AwayTeamCountry) == null)
-                {
-                    teams.Add(match.AwayTeamStatistics);
-                }
-                if (teams.FirstOrDefault(e => e.Country == match.HomeTeamCountry) == null)
+                if (match.HomeTeam.Code == fifaCode)
                 {
                     teams.Add(match.HomeTeamStatistics);
+                }
+                if (match.AwayTeam.Code == fifaCode)
+                {
+                    teams.Add(match.AwayTeamStatistics);
                 }
             }
             foreach(TeamStatistics team in teams)

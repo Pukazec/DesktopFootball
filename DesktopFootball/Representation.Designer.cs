@@ -71,11 +71,11 @@
             this.lblFavoreteRepresentationError.AutoSize = true;
             this.lblFavoreteRepresentationError.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFavoreteRepresentationError.ForeColor = System.Drawing.Color.Red;
-            this.lblFavoreteRepresentationError.Location = new System.Drawing.Point(211, 75);
+            this.lblFavoreteRepresentationError.Location = new System.Drawing.Point(184, 67);
             this.lblFavoreteRepresentationError.Name = "lblFavoreteRepresentationError";
-            this.lblFavoreteRepresentationError.Size = new System.Drawing.Size(258, 24);
+            this.lblFavoreteRepresentationError.Size = new System.Drawing.Size(285, 24);
             this.lblFavoreteRepresentationError.TabIndex = 14;
-            this.lblFavoreteRepresentationError.Text = "Select favorete representation";
+            this.lblFavoreteRepresentationError.Text = "Representation must be selected";
             // 
             // btnNext
             // 
@@ -92,7 +92,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(583, 119);
+            this.ClientSize = new System.Drawing.Size(583, 115);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.lblFavoreteRepresentationError);
             this.Controls.Add(this.btnBack);
@@ -101,6 +101,7 @@
             this.Name = "Representation";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Representation";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Representation_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -22,6 +22,7 @@ namespace DesktopFootball
         private IList<Player> players;
         private IList<Player> sortedPlayers;
         private PlayerRangUC selectedPlayer;
+        private bool editing;
 
         public RangList(IRepo repository)
         {
@@ -35,6 +36,13 @@ namespace DesktopFootball
             string fifaCode = settings.FavoreteRepresentation.FifaCode;
             matches = repo.LoadTeamRankings(fifaCode);
             players = repo.LoadPlayerRankings(fifaCode);
+            foreach (Player player in players)
+            {
+                if (settings.FavoretePlayers.FirstOrDefault(p => player.Name == p.Name) != null)
+                {
+                    player.Favorete = true;
+                }
+            }
         }
 
         private void RangList_Load(object sender, EventArgs e)
@@ -113,20 +121,8 @@ namespace DesktopFootball
             foreach (Player player in sortedPlayers)
             {
                 PlayerRangUC playerRang = new PlayerRangUC();
-                playerRang.LoadData(player.Name, player.Apearences, player.Scored, player.YellowCards, player.ImgUrl, settings);
+                playerRang.LoadData(player.Name, player.Apearences, player.Scored, player.YellowCards, player.ImgUrl, player.Favorete, settings);
                 pnlPlayers.Controls.Add(playerRang);
-            }
-        }
-
-        private void saveSettingsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Do you want to save settings?", "Save settings", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                settings.Save(settings);
-            }
-            else
-            {
-                Application.Exit();
             }
         }
 
@@ -179,8 +175,10 @@ namespace DesktopFootball
 
         private void editSettings_Click(object sender, EventArgs e)
         {
-            SettingsDefault settingsDefault = new SettingsDefault(true);
-            settingsDefault.Show();
+            SettingsDefault settingsDefault = new SettingsDefault(repo);
+            settingsDefault.SettingsLoad(settings);
+            Application.Run(settingsDefault);
+            editing = true;
             this.Close();
         }
 
@@ -209,9 +207,27 @@ namespace DesktopFootball
             }
         }
 
+        private void saveSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MyMessage myMessage = new MyMessage();
+            myMessage.ShowDialog();
+            if (myMessage.Save)
+            {
+                settings.Save(settings);
+            }
+        }
+
         private void RangList_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            if (!editing)
+            {
+                MyMessage myMessage = new MyMessage();
+                myMessage.ShowDialog();
+                if (myMessage.Save)
+                {
+                    settings.Save(settings);
+                }
+            }
         }
     }
 }

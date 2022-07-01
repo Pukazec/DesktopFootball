@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnBack = new System.Windows.Forms.Button();
@@ -35,13 +36,16 @@
             this.lblFavoretePlayersError = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.lbAllPlayers = new System.Windows.Forms.ListBox();
-            this.lbFavoretePlayers = new System.Windows.Forms.ListBox();
+            this.pnlAllPlayers = new System.Windows.Forms.FlowLayoutPanel();
+            this.playerContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.moveToFavouretesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pnlFavoretePlayers = new System.Windows.Forms.FlowLayoutPanel();
+            this.playerContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(111, 47);
+            this.txtSearch.Location = new System.Drawing.Point(88, 47);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(270, 20);
             this.txtSearch.TabIndex = 26;
@@ -51,7 +55,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(18, 44);
+            this.label3.Location = new System.Drawing.Point(12, 42);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(70, 24);
             this.label3.TabIndex = 25;
@@ -60,7 +64,7 @@
             // btnBack
             // 
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBack.Location = new System.Drawing.Point(18, 545);
+            this.btnBack.Location = new System.Drawing.Point(16, 759);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(87, 40);
             this.btnBack.TabIndex = 24;
@@ -71,7 +75,7 @@
             // btnNext
             // 
             this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNext.Location = new System.Drawing.Point(691, 545);
+            this.btnNext.Location = new System.Drawing.Point(991, 759);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(87, 40);
             this.btnNext.TabIndex = 23;
@@ -84,11 +88,12 @@
             this.lblFavoretePlayersError.AutoSize = true;
             this.lblFavoretePlayersError.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFavoretePlayersError.ForeColor = System.Drawing.Color.Red;
-            this.lblFavoretePlayersError.Location = new System.Drawing.Point(439, 553);
+            this.lblFavoretePlayersError.Location = new System.Drawing.Point(739, 767);
             this.lblFavoretePlayersError.Name = "lblFavoretePlayersError";
             this.lblFavoretePlayersError.Size = new System.Drawing.Size(246, 24);
             this.lblFavoretePlayersError.TabIndex = 22;
             this.lblFavoretePlayersError.Text = "Not enough favorete players";
+            this.lblFavoretePlayersError.Visible = false;
             // 
             // label2
             // 
@@ -104,49 +109,57 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(18, 12);
+            this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(96, 24);
             this.label1.TabIndex = 18;
             this.label1.Text = "All players";
             // 
-            // lbAllPlayers
+            // pnlAllPlayers
             // 
-            this.lbAllPlayers.AllowDrop = true;
-            this.lbAllPlayers.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbAllPlayers.FormattingEnabled = true;
-            this.lbAllPlayers.ItemHeight = 18;
-            this.lbAllPlayers.Location = new System.Drawing.Point(22, 72);
-            this.lbAllPlayers.Name = "lbAllPlayers";
-            this.lbAllPlayers.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.lbAllPlayers.Size = new System.Drawing.Size(359, 454);
-            this.lbAllPlayers.TabIndex = 27;
-            this.lbAllPlayers.DragDrop += new System.Windows.Forms.DragEventHandler(this.lbAllPlayers_DragDrop);
-            this.lbAllPlayers.DragEnter += new System.Windows.Forms.DragEventHandler(this.lbAllPlayers_DragEnter);
-            this.lbAllPlayers.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListBox_MouseDown);
+            this.pnlAllPlayers.AllowDrop = true;
+            this.pnlAllPlayers.AutoScroll = true;
+            this.pnlAllPlayers.ContextMenuStrip = this.playerContextMenuStrip;
+            this.pnlAllPlayers.Location = new System.Drawing.Point(16, 73);
+            this.pnlAllPlayers.Name = "pnlAllPlayers";
+            this.pnlAllPlayers.Size = new System.Drawing.Size(525, 681);
+            this.pnlAllPlayers.TabIndex = 29;
+            this.pnlAllPlayers.DragDrop += new System.Windows.Forms.DragEventHandler(this.pnlPlayers_DragDrop);
+            this.pnlAllPlayers.DragEnter += new System.Windows.Forms.DragEventHandler(this.pnlPlayers_DragEnter);
             // 
-            // lbFavoretePlayers
+            // playerContextMenuStrip
             // 
-            this.lbFavoretePlayers.AllowDrop = true;
-            this.lbFavoretePlayers.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFavoretePlayers.FormattingEnabled = true;
-            this.lbFavoretePlayers.ItemHeight = 18;
-            this.lbFavoretePlayers.Location = new System.Drawing.Point(419, 72);
-            this.lbFavoretePlayers.Name = "lbFavoretePlayers";
-            this.lbFavoretePlayers.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.lbFavoretePlayers.Size = new System.Drawing.Size(359, 454);
-            this.lbFavoretePlayers.TabIndex = 28;
-            this.lbFavoretePlayers.DragDrop += new System.Windows.Forms.DragEventHandler(this.lbAllPlayers_DragDrop);
-            this.lbFavoretePlayers.DragEnter += new System.Windows.Forms.DragEventHandler(this.lbAllPlayers_DragEnter);
-            this.lbFavoretePlayers.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListBox_MouseDown);
+            this.playerContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.moveToFavouretesToolStripMenuItem});
+            this.playerContextMenuStrip.Name = "playerContextMenuStrip";
+            this.playerContextMenuStrip.Size = new System.Drawing.Size(168, 26);
+            this.playerContextMenuStrip.Opened += new System.EventHandler(this.playerContextMenuStrip_Opened);
+            // 
+            // moveToFavouretesToolStripMenuItem
+            // 
+            this.moveToFavouretesToolStripMenuItem.Name = "moveToFavouretesToolStripMenuItem";
+            this.moveToFavouretesToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.moveToFavouretesToolStripMenuItem.Text = "Move to other list";
+            this.moveToFavouretesToolStripMenuItem.Click += new System.EventHandler(this.moveToOtherList_Click);
+            // 
+            // pnlFavoretePlayers
+            // 
+            this.pnlFavoretePlayers.AllowDrop = true;
+            this.pnlFavoretePlayers.ContextMenuStrip = this.playerContextMenuStrip;
+            this.pnlFavoretePlayers.Location = new System.Drawing.Point(553, 72);
+            this.pnlFavoretePlayers.Name = "pnlFavoretePlayers";
+            this.pnlFavoretePlayers.Size = new System.Drawing.Size(525, 681);
+            this.pnlFavoretePlayers.TabIndex = 30;
+            this.pnlFavoretePlayers.DragDrop += new System.Windows.Forms.DragEventHandler(this.pnlPlayers_DragDrop);
+            this.pnlFavoretePlayers.DragEnter += new System.Windows.Forms.DragEventHandler(this.pnlPlayers_DragEnter);
             // 
             // FavoretePlayers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 596);
-            this.Controls.Add(this.lbFavoretePlayers);
-            this.Controls.Add(this.lbAllPlayers);
+            this.ClientSize = new System.Drawing.Size(1093, 811);
+            this.Controls.Add(this.pnlFavoretePlayers);
+            this.Controls.Add(this.pnlAllPlayers);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnBack);
@@ -157,7 +170,8 @@
             this.Name = "FavoretePlayers";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FavoretePlayers";
-            this.Load += new System.EventHandler(this.FavoretePlayers_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FavoretePlayers_FormClosing);
+            this.playerContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -172,7 +186,9 @@
         private System.Windows.Forms.Label lblFavoretePlayersError;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox lbAllPlayers;
-        private System.Windows.Forms.ListBox lbFavoretePlayers;
+        private System.Windows.Forms.FlowLayoutPanel pnlAllPlayers;
+        private System.Windows.Forms.FlowLayoutPanel pnlFavoretePlayers;
+        private System.Windows.Forms.ContextMenuStrip playerContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem moveToFavouretesToolStripMenuItem;
     }
 }
