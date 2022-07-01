@@ -14,10 +14,10 @@ namespace DataLibrary
         public string REPRESENTATION;
         public string URL;
 
-        private RestResponse<T> GetData<T>(string source)
+        private Task<RestResponse<T>> GetData<T>(string source)
         {
             RestClient restClient = new RestClient(source);
-            return restClient.Execute<T>(new RestRequest());
+            return restClient.ExecuteAsync<T>(new RestRequest());
         }
 
         private T Desserialize<T>(RestResponse<T> restResponse)
@@ -37,13 +37,13 @@ namespace DataLibrary
             }
         }
 
-        public IList<Player> LoadPlayers(string fifaCode)
+        public async Task<IList<Player>> LoadPlayers(string fifaCode)
         {
             URL = REPRESENTATION + "/matches/country?fifa_code=" + fifaCode;
             IList<Match> matches = new List<Match>();
             IList<Player> players = new List<Player>();
             IList<TeamStatistics> teams = new List<TeamStatistics>();
-            RestResponse<IList<Match>> restResponse = GetData<IList<Match>>(URL);
+            RestResponse<IList<Match>> restResponse = await  GetData<IList<Match>>(URL);
             matches = (IList<Match>)Desserialize<IList<Match>>(restResponse);
             foreach (Match match in matches)
             {
@@ -76,41 +76,52 @@ namespace DataLibrary
             return players;
         }
 
-        public IList<Team> LoadTeams(string path)
+        public async Task<IList<Team>> LoadTeams(string path)
         {
             URL = REPRESENTATION + path;
             IList<Team> teams = new List<Team>();
-            RestResponse<IList<Team>> restResponse = GetData<IList<Team>>(URL);
+            RestResponse<IList<Team>> restResponse = await GetData<IList<Team>>(URL);
             teams = (IList<Team>)Desserialize<IList<Team>>(restResponse);
             return teams;
         }
 
-        public IList<Match> LoadTeamRankings(string fifaCode)
+        public async Task<Team> LoadTeam(string fifaCode)
+        {
+            URL = REPRESENTATION + "/teams/results";
+            Team team = new Team();
+            IList<Team> teams = new List<Team>();
+            RestResponse<IList<Team>> restResponse = await GetData<IList<Team>>(URL);
+            teams = (IList<Team>)Desserialize<IList<Team>>(restResponse);
+            team = teams.FirstOrDefault(t => t.FifaCode == fifaCode);
+            return team;
+        }
+
+        public async Task<IList<Match>> LoadTeamRankings(string fifaCode)
         {
             URL = REPRESENTATION + "/matches/country?fifa_code=" + fifaCode;
             IList<Match> matches = new List<Match>();
-            RestResponse<IList<Match>> restResponse = GetData<IList<Match>>(URL);
+            RestResponse<IList<Match>> restResponse = await GetData<IList<Match>>(URL);
             matches = (IList<Match>)Desserialize<IList<Match>>(restResponse);
             return matches;
         }
 
-        public IList<Match> LoadMatches(string path)
+        public async Task<IList<Match>> LoadMatches(string path)
         {
             URL= REPRESENTATION + path;
             IList<Match> matches = new List<Match>();
-            RestResponse<IList<Match>> restResponse = GetData<IList<Match>>(URL);
+            RestResponse<IList<Match>> restResponse = await GetData<IList<Match>>(URL);
             matches = (IList<Match>)Desserialize<IList<Match>>(restResponse);
             return matches;
         }
 
-        public IList<Player> LoadPlayerRankings(string fifaCode)
+        public async Task<IList<Player>> LoadPlayerRankings(string fifaCode)
         {
             URL = REPRESENTATION + "/matches/country?fifa_code=" + fifaCode;
             IList<Match> matches = new List<Match>();
             IList<Player> players = new List<Player>(); 
             IList<TeamStatistics> teams = new List<TeamStatistics>();
             IList<TeamEvent> happenings = new List<TeamEvent>();
-            RestResponse<IList<Match>> restResponse = GetData<IList<Match>>(URL);
+            RestResponse<IList<Match>> restResponse = await GetData<IList<Match>>(URL);
             matches = (IList<Match>)Desserialize<IList<Match>>(restResponse);
 
 

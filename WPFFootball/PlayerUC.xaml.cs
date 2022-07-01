@@ -11,23 +11,32 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace WPFFootball
 {
     /// <summary>
-    /// Interaction logic for PlayerDetails.xaml
+    /// Interaction logic for PlayerUC.xaml
     /// </summary>
-    public partial class PlayerDetails : Window
+    public partial class PlayerUC : UserControl
     {
-        public PlayerDetails()
+        public Player Player { get; set; }
+        public PlayerUC()
         {
             InitializeComponent();
         }
 
-        internal void LoadData(Player player, Match match)
+        internal void LoadData(Player player)
         {
+            lblName.Content = player.Name;
+            lblNumber.Content = player.ShirtNumber;
+            Player = player;
+        }
 
+        internal Player GetData()
+        {
+            return Player;
         }
     }
 }

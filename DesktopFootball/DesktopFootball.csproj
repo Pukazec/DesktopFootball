@@ -98,11 +98,6 @@
     <Compile Include="MyMessage.Designer.cs">
       <DependentUpon>MyMessage.cs</DependentUpon>
     </Compile>
-    <Compile Include="PictureResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PictureResources.resx</DependentUpon>
-    </Compile>
     <Compile Include="PlayerRangUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -144,10 +139,6 @@
     <EmbeddedResource Include="MyMessage.resx">
       <DependentUpon>MyMessage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PictureResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>PictureResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="PlayerRangUC.resx">
       <DependentUpon>PlayerRangUC.cs</DependentUpon>
     </EmbeddedResource>
@@ -162,6 +153,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="RangList.resx">
       <DependentUpon>RangList.cs</DependentUpon>

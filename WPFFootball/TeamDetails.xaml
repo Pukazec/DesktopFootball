@@ -5,8 +5,71 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFFootball"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="TeamDetails" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="FontSize" Value="25" />
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+            <Setter Property="Margin" Value="3" />
+            <Setter Property="Padding" Value="10, 5" />
+            <Setter Property="FontSize" Value="20" />
+        </Style>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Horizontal">
+            <Label x:Name="lblTeamName" FontSize="40" Content="Team name"/>
+            <Label x:Name="lblFifaCode" FontSize="40" FontWeight="Bold" Content="Fifa code"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Label Content="Games played: "/>
+            <Label x:Name="lblGamesPlayed" Content="Games"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Wins: "/>
+                <Label x:Name="lblGameWins" Content="Wins"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Losses: "/>
+                <Label x:Name="lblGameLosses" Content="Loses"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Draws: "/>
+                <Label x:Name="lblGameDraws" Content="Equals"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <Label Content="Goals diferentitial: "/>
+            <Label x:Name="lblGoalsDifferential" Content="Goal diferential"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Given: "/>
+                <Label x:Name="lblGoalsFor" Content="Goals given"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Taken: "/>
+                <Label x:Name="lblGoalsAgainst" Content="Goals taken"/>
+            </StackPanel>
+        </StackPanel>
+
+        <Button Grid.Row="3" Click="Button_Click" Content="Back"/>
     </Grid>
 </Window>

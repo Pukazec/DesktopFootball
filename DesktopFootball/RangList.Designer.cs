@@ -58,6 +58,7 @@
             this.pageSetupDialog = new System.Windows.Forms.PageSetupDialog();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblError = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabPlayers.SuspendLayout();
             this.tabMatches.SuspendLayout();
@@ -78,6 +79,7 @@
             // 
             // tabPlayers
             // 
+            this.tabPlayers.Controls.Add(this.lblError);
             this.tabPlayers.Controls.Add(this.label6);
             this.tabPlayers.Controls.Add(this.label5);
             this.tabPlayers.Controls.Add(this.label4);
@@ -319,6 +321,17 @@
             this.addImageToolStripMenuItem.Text = "Add image";
             this.addImageToolStripMenuItem.Click += new System.EventHandler(this.addImageToolStripMenuItem_Click);
             // 
+            // lblError
+            // 
+            this.lblError.AutoSize = true;
+            this.lblError.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblError.ForeColor = System.Drawing.Color.Red;
+            this.lblError.Location = new System.Drawing.Point(72, 4);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(114, 20);
+            this.lblError.TabIndex = 9;
+            this.lblError.Text = "Loading data...";
+            // 
             // RangList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -331,7 +344,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rang lists";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RangList_FormClosing);
-            this.Load += new System.EventHandler(this.RangList_Load);
             this.tabControl.ResumeLayout(false);
             this.tabPlayers.ResumeLayout(false);
             this.tabPlayers.PerformLayout();
@@ -375,5 +387,6 @@
         private System.Windows.Forms.PageSetupDialog pageSetupDialog;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem addImageToolStripMenuItem;
+        private System.Windows.Forms.Label lblError;
     }
 }

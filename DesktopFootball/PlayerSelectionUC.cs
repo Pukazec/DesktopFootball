@@ -53,5 +53,15 @@ namespace DesktopFootball
 
             return player;
         }
+
+        public void SetFav()
+        {
+            lblFavorete.Visible = true;
+        }
+
+        public void SetNotFav()
+        {
+            lblFavorete.Visible = false;
+        }
     }
 }

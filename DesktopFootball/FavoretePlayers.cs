@@ -22,6 +22,7 @@ namespace DesktopFootball
         private IList<Player> filtered = new List<Player>();
         private IList<PlayerSelectionUC> selectedPlayers = new List<PlayerSelectionUC>();
         private FlowLayoutPanel parent;
+        private Representation parentForm;
 
         public FavoretePlayers(IRepo repository)
         {
@@ -31,18 +32,21 @@ namespace DesktopFootball
 
         //*************************************************************************************************** Data load ********************************************************************//
 
-        private void PrepareData()
+        private async void PrepareData()
         {
+            lblFavoretePlayersError.Text = "Loading data...";
+            lblFavoretePlayersError.Visible = true;
             try
             {
-                allPlayers = repo.LoadPlayers(settings.FavoreteRepresentation.FifaCode);
+                allPlayers = await repo.LoadPlayers(settings.FavoreteRepresentation.FifaCode);
                 ShowUsers(allPlayers);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                lblFavoretePlayersError.Text = ex.Message;
+                lblFavoretePlayersError.Text = "Conntect costumer support.\nKontaktiraj korisničku službu.";
                 lblFavoretePlayersError.Show();
             }
+            lblFavoretePlayersError.Visible = false;
         }
 
         private void ShowUsers(IList<Player> players)
@@ -65,7 +69,12 @@ namespace DesktopFootball
             settings = mainSettings;
             PrepareData();
         }
-              
+
+        internal void Parent(Representation representation)
+        {
+            parentForm = representation;
+        }
+
         //*************************************************************************************************** Data search ********************************************************************//
 
         private void TxtSearch_KeyUp(object sender, KeyEventArgs e)
@@ -93,9 +102,6 @@ namespace DesktopFootball
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            Representation representation = new Representation(repo);
-            representation.Settings(settings);
-            representation.Show();
             this.Close();
         }
 
@@ -104,6 +110,7 @@ namespace DesktopFootball
             if (pnlFavoretePlayers.Controls.Count < 3)
             {
                 lblFavoretePlayersError.Text = "Select more players";
+                lblFavoretePlayersError.Visible = true;
                 return;
             }
             IList<Player> favoretes = new List<Player>();
@@ -177,12 +184,13 @@ namespace DesktopFootball
         {
             if (parent == pnlAllPlayers)
             {
+                selectedPlayers.ToList().ForEach(player => player.SetFav());
                 selectedPlayers.ToList().ForEach(player => pnlFavoretePlayers.Controls.Add(player));
                 selectedPlayers.ToList().ForEach(player => pnlAllPlayers.Controls.Remove(player));
             }
             if (parent == pnlFavoretePlayers)
             {
-
+                selectedPlayers.ToList().ForEach(player => player.SetNotFav());
                 selectedPlayers.ToList().ForEach(player => pnlAllPlayers.Controls.Add(player));
                 selectedPlayers.ToList().ForEach(player => pnlFavoretePlayers.Controls.Remove(player));
             }

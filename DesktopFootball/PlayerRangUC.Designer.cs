@@ -38,7 +38,7 @@
             // 
             // imgPlayer
             // 
-            this.imgPlayer.Image = global::DesktopFootball.PictureResources.NoIcon;
+            this.imgPlayer.Image = global::DataLibrary.PictureResources.NoIcon;
             this.imgPlayer.Location = new System.Drawing.Point(0, 0);
             this.imgPlayer.Name = "imgPlayer";
             this.imgPlayer.Size = new System.Drawing.Size(35, 35);

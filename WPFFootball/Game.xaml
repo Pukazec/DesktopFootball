@@ -4,8 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFFootball"
+        xmlns:data="clr-namespace:DataLibrary;assembly=DataLibrary"
         mc:Ignorable="d"
-        Title="Game" MinHeight="450" MinWidth="550">
+        WindowStartupLocation="CenterScreen"
+        Title="Game" MinHeight="450" MinWidth="570">
     <Window.Resources>
         <Style TargetType="{x:Type Label}">
             <Setter Property="Margin" Value="3"/>
@@ -27,6 +29,9 @@
             <Setter Property="Margin" Value="3" />
             <Setter Property="Padding" Value="10, 5" />
             <Setter Property="FontSize" Value="20" />
+        </Style>
+        <Style TargetType="{x:Type local:PlayerUC}">
+            <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
     </Window.Resources>
     <Grid>
@@ -53,21 +58,49 @@
 
             <ComboBox Grid.Row="1" x:Name="ddlHomeTeam" SelectionChanged="ddlHomeTeam_IndexChanged"></ComboBox>
             <ComboBox Grid.Row="1" Grid.Column="1" x:Name="ddlAgainstTeam" SelectionChanged="ddlAwayTeam_IndexChanged"></ComboBox>
-            <Label Grid.Row="1" x:Name="lblResult" FontSize="25" FontWeight="Bold" Visibility="Hidden"/>
+            <Label Grid.Row="1" Grid.Column="2" x:Name="lblResult" FontSize="25" FontWeight="Bold" Visibility="Hidden"/>
 
             <Button Grid.Row="2" x:Name="btnHomeTeamDetails" Content="Open home team" Click="OpenHomeTeam_Click"/>
             <Button Grid.Row="2" Grid.Column="1" x:Name="btnAwayTeamDetails" Content="Open home team" Click="AwayHomeTeam_Click"/>
-            <Label Grid.Row="2" Grid.Column="2" x:Name="lblError" />
+            <Label Grid.Row="2" Grid.Column="2" x:Name="lblError" Foreground="Red" />
 
         </Grid>
 
+
         <Grid Grid.Row="1">
+            <Grid.Background>
+                <ImageBrush ImageSource="/Soccer_Field.png" />
+            </Grid.Background>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-
+            <Grid x:Name="HomeTeamField">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" x:Name="goalieColumn" Orientation="Vertical" VerticalAlignment="Center"/>
+                <StackPanel Grid.Column="1" x:Name="defendersColumn" Orientation="Vertical" VerticalAlignment="Center"/>
+                <StackPanel Grid.Column="2" x:Name="midfieldColumn" Orientation="Vertical" VerticalAlignment="Center"/>
+                <StackPanel Grid.Column="3" x:Name="forwardColumn" Orientation="Vertical" VerticalAlignment="Center"/>
+            </Grid>
+            
+            <Grid Grid.Column="1" x:Name="AwayTeamField">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" x:Name="awayForwardColumn" Orientation="Vertical" VerticalAlignment="Center"/>
+                <StackPanel Grid.Column="1" x:Name="awayMidfieldColumn" Orientation="Vertical" VerticalAlignment="Center"/>
+                <StackPanel Grid.Column="2" x:Name="awayDefendersColumn" Orientation="Vertical" VerticalAlignment="Center"/>
+                <StackPanel Grid.Column="3" x:Name="awayGoalieColumn" Orientation="Vertical" VerticalAlignment="Center"/>
+            </Grid>
         </Grid>
 
     </Grid>

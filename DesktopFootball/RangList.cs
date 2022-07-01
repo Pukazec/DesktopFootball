@@ -30,12 +30,22 @@ namespace DesktopFootball
             InitializeComponent();
         }
 
-        internal void Settings(Settings mainSettings)
+        internal async Task Settings(Settings mainSettings)
         {
+            lblError.Text = "Loadin data...";
+            lblError.Visible = true;
             settings = mainSettings;
             string fifaCode = settings.FavoreteRepresentation.FifaCode;
-            matches = repo.LoadTeamRankings(fifaCode);
-            players = repo.LoadPlayerRankings(fifaCode);
+            try
+            {
+                matches = await repo.LoadTeamRankings(fifaCode);
+                players = await repo.LoadPlayerRankings(fifaCode);
+            }
+            catch (Exception)
+            {
+                lblError.Text = "Conntect costumer support.\nKontaktiraj korisničku službu.";
+                lblError.Visible = true;
+            }
             foreach (Player player in players)
             {
                 if (settings.FavoretePlayers.FirstOrDefault(p => player.Name == p.Name) != null)
@@ -43,9 +53,11 @@ namespace DesktopFootball
                     player.Favorete = true;
                 }
             }
+            LoadDdls();
+            lblError.Visible = false;
         }
 
-        private void RangList_Load(object sender, EventArgs e)
+        private void LoadDdls()
         {
             ddlMatchSorter.Items.Add("Attendance asc");
             ddlMatchSorter.Items.Add("Attendance desc");
@@ -68,6 +80,7 @@ namespace DesktopFootball
 
             if (ddlMatchSorter.SelectedIndex == 0)
             {
+
                 sortedMatches = matches.OrderBy(match => match.Attendance).ToList();
             }
             if (ddlMatchSorter.SelectedIndex == 1)
@@ -177,9 +190,9 @@ namespace DesktopFootball
         {
             SettingsDefault settingsDefault = new SettingsDefault(repo);
             settingsDefault.SettingsLoad(settings);
-            Application.Run(settingsDefault);
+            settingsDefault.Show();
             editing = true;
-            this.Close();
+            this.Hide();
         }
 
         private void contextMenuStrip_Opened(object sender, EventArgs e)

@@ -100,6 +100,11 @@
     <Compile Include="Model\TeamEvent.cs" />
     <Compile Include="Model\TeamStatistics.cs" />
     <Compile Include="Model\Weather.cs" />
+    <Compile Include="PictureResources.Designer.cs">
+      <DependentUpon>PictureResources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -113,6 +118,19 @@
     <None Include="worldcup.sfg.io\women\matches.json" />
     <None Include="worldcup.sfg.io\women\results.json" />
     <None Include="worldcup.sfg.io\women\teams.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PictureResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PictureResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NoIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Soccer_Field.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Text.Json.6.0.5\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.5\build\System.Text.Json.targets')" />

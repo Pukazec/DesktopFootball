@@ -25,11 +25,13 @@ namespace DesktopFootball
             InitializeComponent();
         }
 
-        private void PrepareData()
+        private async Task PrepareData()
         {
+            lblFavoreteRepresentationError.Text = "Loading data...";
+            lblFavoreteRepresentationError.Visible = true;
             try
             {
-                teams = repo.LoadTeams("/teams/results");
+                teams = await repo.LoadTeams("/teams/results");
                 teams.ToList().Sort();
                 teams.ToList().ForEach(t => ddlRepresentation.Items.Add(t.Country));
                 ddlRepresentation.SelectedIndex = 0;
@@ -41,6 +43,7 @@ namespace DesktopFootball
                 btnNext.Enabled = false;
                 lblFavoreteRepresentationError.Show();
             }
+            lblFavoreteRepresentationError.Visible = false;
         }
 
         private void btnNext_Click(object sender, EventArgs e)
@@ -61,6 +64,7 @@ namespace DesktopFootball
         {
             FavoretePlayers favoretePlayers = new FavoretePlayers(repo);
             favoretePlayers.Settings(settings);
+            favoretePlayers.Parent(this);
             favoretePlayers.Show();
             this.Hide();
         }

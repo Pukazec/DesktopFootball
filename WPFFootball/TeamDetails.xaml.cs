@@ -1,4 +1,5 @@
-﻿using DataLibrary.Model;
+﻿using DataLibrary;
+using DataLibrary.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,14 +21,31 @@ namespace WPFFootball
     /// </summary>
     public partial class TeamDetails : Window
     {
-        public TeamDetails()
+        private static IRepo repo;
+        private Team team;
+        public TeamDetails(IRepo repository)
         {
+            repo = repository;
             InitializeComponent();
         }
 
-        internal void LoadData(Team selectedTeam)
+        internal async Task LoadData(Team selectedTeam)
         {
-            throw new NotImplementedException();
+            team = await repo.LoadTeam(selectedTeam.FifaCode);
+            lblTeamName.Content = team.Country;
+            lblFifaCode.Content = $"({team.FifaCode})";
+            lblGamesPlayed.Content = team.GamesPlayed;
+            lblGameWins.Content = team.Wins;
+            lblGameLosses.Content = team.Losses;
+            lblGameDraws.Content = team.Draws;
+            lblGoalsDifferential.Content = team.GoalDifferential;
+            lblGoalsFor.Content = team.GoalsFor;
+            lblGoalsAgainst.Content = team.GoalsAgainst;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

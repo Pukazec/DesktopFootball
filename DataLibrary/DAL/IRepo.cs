@@ -10,10 +10,11 @@ namespace DataLibrary
     public interface IRepo
     {
         void Settings(Settings settings);
-        IList<Team> LoadTeams(string path);
-        IList<Match> LoadMatches(string path);
-        IList<Player> LoadPlayers(string path);
-        IList<Match> LoadTeamRankings(string fifaCode);
-        IList<Player> LoadPlayerRankings(string fifaCode);
+        Task<IList<Team>> LoadTeams(string path);
+        Task<IList<Match>> LoadMatches(string path);
+        Task<IList<Player>> LoadPlayers(string path);
+        Task<IList<Match>> LoadTeamRankings(string fifaCode);
+        Task<IList<Player>> LoadPlayerRankings(string fifaCode);
+        Task<Team> LoadTeam(string fifaCode);
     }
 }

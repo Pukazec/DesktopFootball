@@ -34,6 +34,7 @@
             this.lbl1 = new System.Windows.Forms.Label();
             this.lblPlayerCapetan = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblFavorete = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,9 +55,9 @@
             this.lblPlayerNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 35F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPlayerNumber.Location = new System.Drawing.Point(3, 33);
             this.lblPlayerNumber.Name = "lblPlayerNumber";
-            this.lblPlayerNumber.Size = new System.Drawing.Size(122, 54);
+            this.lblPlayerNumber.Size = new System.Drawing.Size(83, 54);
             this.lblPlayerNumber.TabIndex = 1;
-            this.lblPlayerNumber.Text = "Num";
+            this.lblPlayerNumber.Text = "Nu";
             // 
             // lblPlayerPosition
             // 
@@ -90,7 +91,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::DesktopFootball.PictureResources.NoIcon;
+            this.pictureBox1.Image = global::DesktopFootball.Properties.Resources.NoIcon;
             this.pictureBox1.Location = new System.Drawing.Point(137, 33);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(100, 102);
@@ -98,11 +99,23 @@
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
             // 
+            // lblFavorete
+            // 
+            this.lblFavorete.AutoSize = true;
+            this.lblFavorete.Font = new System.Drawing.Font("Microsoft Sans Serif", 35F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFavorete.Location = new System.Drawing.Point(87, 33);
+            this.lblFavorete.Name = "lblFavorete";
+            this.lblFavorete.Size = new System.Drawing.Size(41, 54);
+            this.lblFavorete.TabIndex = 9;
+            this.lblFavorete.Text = "*";
+            this.lblFavorete.Visible = false;
+            // 
             // PlayerSelectionUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
+            this.Controls.Add(this.lblFavorete);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblPlayerCapetan);
             this.Controls.Add(this.lbl1);
@@ -125,5 +138,6 @@
         private System.Windows.Forms.Label lbl1;
         private System.Windows.Forms.Label lblPlayerCapetan;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lblFavorete;
     }
 }

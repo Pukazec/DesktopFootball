@@ -61,6 +61,9 @@
     <Compile Include="PlayerDetails.xaml.cs">
       <DependentUpon>PlayerDetails.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PlayerUC.xaml.cs">
+      <DependentUpon>PlayerUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SettingsDefault.xaml.cs">
       <DependentUpon>SettingsDefault.xaml</DependentUpon>
     </Compile>
@@ -76,6 +79,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PlayerDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PlayerUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -119,6 +126,12 @@
       <Project>{d36bd3f5-05da-4410-8f0f-7c21479df1a0}</Project>
       <Name>DataLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Soccer_Field.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="NoIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
