@@ -76,9 +76,9 @@ namespace DataLibrary
             return players;
         }
 
-        public async Task<IList<Team>> LoadTeams(string path)
+        public async Task<IList<Team>> LoadTeams()
         {
-            URL = REPRESENTATION + path;
+            URL = REPRESENTATION + "/teams/results";
             IList<Team> teams = new List<Team>();
             RestResponse<IList<Team>> restResponse = await GetData<IList<Team>>(URL);
             teams = (IList<Team>)Desserialize<IList<Team>>(restResponse);
@@ -105,9 +105,9 @@ namespace DataLibrary
             return matches;
         }
 
-        public async Task<IList<Match>> LoadMatches(string path)
+        public async Task<IList<Match>> LoadMatches()
         {
-            URL= REPRESENTATION + path;
+            URL= REPRESENTATION + "/matches";
             IList<Match> matches = new List<Match>();
             RestResponse<IList<Match>> restResponse = await GetData<IList<Match>>(URL);
             matches = (IList<Match>)Desserialize<IList<Match>>(restResponse);

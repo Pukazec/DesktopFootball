@@ -31,7 +31,7 @@ namespace DesktopFootball
             lblFavoreteRepresentationError.Visible = true;
             try
             {
-                teams = await repo.LoadTeams("/teams/results");
+                teams = await repo.LoadTeams();
                 teams.ToList().Sort();
                 teams.ToList().ForEach(t => ddlRepresentation.Items.Add(t.Country));
                 ddlRepresentation.SelectedIndex = 0;

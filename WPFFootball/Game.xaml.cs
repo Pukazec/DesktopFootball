@@ -68,8 +68,8 @@ namespace WPFFootball
             btnHomeTeamDetails.IsEnabled = false;
             try
             {
-                matches = await repo.LoadMatches("/matches");
-                teams = await repo.LoadTeams("/teams/results");
+                matches = await repo.LoadMatches();
+                teams = await repo.LoadTeams();
             }
             catch (Exception)
             {
