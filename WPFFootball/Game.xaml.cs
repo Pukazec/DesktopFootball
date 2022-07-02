@@ -83,7 +83,7 @@ namespace WPFFootball
             teams.ToList().Sort();
             teams.ToList().ForEach(t => ddlHomeTeam.Items.Add(t));
 
-            if ((ddlHomeTeam.SelectedItem = settings.FavoreteRepresentation) == null)
+            if (settings.FavoreteRepresentation != null ||(ddlHomeTeam.SelectedItem = settings.FavoreteRepresentation) == null)
             {
                 ddlHomeTeam.SelectedItem = settings.FavoreteRepresentation;
             }

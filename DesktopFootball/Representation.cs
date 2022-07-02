@@ -34,7 +34,7 @@ namespace DesktopFootball
             {
                 teams = await repo.LoadTeams();
                 teams.ToList().Sort();
-                teams.ToList().ForEach(t => ddlRepresentation.Items.Add(t.Country));
+                teams.ToList().ForEach(t => ddlRepresentation.Items.Add(t.ToString()));
                 ddlRepresentation.SelectedIndex = 0;
                 lblFavoreteRepresentationError.Visible = false;
             }
@@ -54,7 +54,7 @@ namespace DesktopFootball
                 lblFavoreteRepresentationError.Text = "Representation must be selected";
                 return;
             }
-            Team selectedTeam = teams.FirstOrDefault(t => t.Country == ddlRepresentation.SelectedItem.ToString());
+            Team selectedTeam = teams.FirstOrDefault(t => t.Country == ddlRepresentation.SelectedItem.ToString().Split(' ').First());
             settings.FavoreteRepresentation = selectedTeam;
 
             OpenNextForm(settings);
