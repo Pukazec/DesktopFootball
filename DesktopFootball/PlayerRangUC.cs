@@ -1,4 +1,5 @@
 ﻿using DataLibrary;
+using DataLibrary.DAL;
 using DataLibrary.Model;
 using System;
 using System.Collections.Generic;
@@ -14,8 +15,11 @@ namespace DesktopFootball
 {
     public partial class PlayerRangUC : UserControl
     {
-        public PlayerRangUC()
+        private static IImageRepo images;
+
+        public PlayerRangUC(IImageRepo imagesRepo)
         {
+            images = imagesRepo;
             InitializeComponent();
         }
 
@@ -32,6 +36,10 @@ namespace DesktopFootball
             if (favorete)
             {
                 BackColor = Color.DarkGoldenrod;
+            }
+            if (images.LoadImage(name) != null)
+            {
+                imgPlayer.ImageLocation = images.LoadImage(name);
             }
         }
 

@@ -8,7 +8,8 @@ namespace DataLibrary.DAL
 {
     public static class RepoFactory
     {
-        public static IRepo GetRepo() => new InternetRepo();
+        public static IRepo GetRepo() => new FileRepo();
         public static ISettingsRepo GetSettingsRepo() => new FileSettingsRepo();
+        public static IImageRepo GetImageRepo() => new FileImageRepo();
     }
 }

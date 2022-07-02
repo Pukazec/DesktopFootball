@@ -1,4 +1,5 @@
-﻿using DataLibrary.Model;
+﻿using DataLibrary.DAL;
+using DataLibrary.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +21,11 @@ namespace WPFFootball
     /// </summary>
     public partial class PlayerDetails : Window
     {
-        public PlayerDetails()
+        private static IImageRepo images;
+
+        public PlayerDetails(IImageRepo imagesRepo)
         {
+            images = imagesRepo;
             InitializeComponent();
         }
 
@@ -63,6 +67,10 @@ namespace WPFFootball
             }
             lblGoals.Content = goals;
             lblYellowCards.Content = cards;
+            if (images.LoadImage(player.Name) != null)
+            {
+                imgPlayer.Source = new BitmapImage(new Uri(images.LoadImage(player.Name)));
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

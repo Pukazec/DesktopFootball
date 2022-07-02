@@ -7,15 +7,11 @@ using System.Threading.Tasks;
 
 namespace DataLibrary.DAL
 {
-    public class FileImageRepo
+    public class FileImageRepo : IImageRepo
     {
         private static readonly string DIR = "C:/temp";
         private static readonly string PATH = DIR + "/images.txt";
-
-        public FileImageRepo()
-        {
-            CreateFilesIfNonExistent();
-        }
+        private static readonly char DEL = '|';
 
         private void CreateFilesIfNonExistent()
         {
@@ -24,6 +20,35 @@ namespace DataLibrary.DAL
             {
                 File.Create(PATH).Close();
             }
+        }
+
+        public FileImageRepo()
+        {
+            CreateFilesIfNonExistent();
+        }
+
+        public string LoadImage(string name)
+        {
+            string[] lines = File.ReadAllLines(PATH);
+            foreach (string line in lines)
+            {
+                if (line.Split(DEL).First() == name)
+                {
+                    return line.Split(DEL).Last();
+                }
+            }
+
+            return null;
+        }
+
+        public void SaveImage(string name, string file)
+        {
+            IList<string> lines = new List<string>();
+            string[] fileLines = File.ReadAllLines(PATH);
+            fileLines.ToList().ForEach(l => lines.Add(l));
+            string line = name + DEL + file;
+            lines.Add(line);
+            File.WriteAllLines(PATH, lines);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using DataLibrary.Model;
+﻿using DataLibrary.DAL;
+using DataLibrary.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,8 +14,11 @@ namespace DesktopFootball
 {
     public partial class PlayerSelectionUC : UserControl, IDisposable
     {
-        public PlayerSelectionUC()
+        private static IImageRepo images;
+     
+        public PlayerSelectionUC(IImageRepo imagesRepo)
         {
+            images = imagesRepo;
             InitializeComponent();
         }
 
@@ -30,6 +34,10 @@ namespace DesktopFootball
             else
             {
                 lblPlayerCapetan.Text = "No";
+            }
+            if (images.LoadImage(name) != null)
+            {
+                imgPlayer.ImageLocation =  images.LoadImage(name);
             }
         }
 
@@ -62,6 +70,20 @@ namespace DesktopFootball
         public void SetNotFav()
         {
             lblFavorete.Visible = false;
+        }
+
+        private void imgPlayer_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog
+            {
+                Filter = "Pictures|*.jpg;*.jpeg;*.bmp;*.png|All files|*.*",
+                InitialDirectory = Application.StartupPath
+            };
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                imgPlayer.ImageLocation = ofd.FileName;
+                images.SaveImage(lblPlayerName.Text, ofd.FileName);
+            }
         }
     }
 }

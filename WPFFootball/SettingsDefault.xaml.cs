@@ -24,12 +24,14 @@ namespace WPFFootball
     {
         private static IRepo repo;
         private static Settings settings;
+        private static IImageRepo images;
         private static bool edit;
 
         public SettingsDefault()
         {
             repo = RepoFactory.GetRepo();
             settings = new Settings();
+            images = RepoFactory.GetImageRepo();
             if (settings.Exists() && !edit)
             {
                 settings = settings.Load();
@@ -78,7 +80,7 @@ namespace WPFFootball
         private void OpenNextForm(Settings settings)
         {
             Game game = new Game(repo, settings);
-            game.Settings(this);
+            game.Settings(this, images);
             game.Show();
             this.Hide();
         }

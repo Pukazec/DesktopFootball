@@ -34,7 +34,7 @@
         </Grid.Triggers>
         <Label x:Name="lblName" Content="Luka Modric"/>
         <Label Grid.Column="1" x:Name="lblNumber" Content="10"/>
-        <Image Grid.Column="2" Grid.RowSpan="6" Source="/NoIcon.png" Height="150"/>
+        <Image x:Name="imgPlayer" Grid.Column="2" Grid.RowSpan="6" Source="/NoIcon.png" Height="150"/>
         <Label Grid.Row="1" x:Name="lblCapetan" Content="Capetan"/>
         <Label Grid.Row="1" Grid.Column="1" x:Name="lblIsCapetan" Content="Capetan"/>
         <Label Grid.Row="2" x:Name="lblGoal" Content="Goals:"/>

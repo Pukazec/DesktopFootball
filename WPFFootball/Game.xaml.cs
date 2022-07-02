@@ -1,4 +1,5 @@
 ﻿using DataLibrary;
+using DataLibrary.DAL;
 using DataLibrary.Model;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace WPFFootball
     public partial class Game : Window
     {
         private static IRepo repo;
+        private static IImageRepo images;
         private IList<Team> teams;
         private IList<Match> matches;
         private IList<Match> homeTeamMatches = new List<Match>();
@@ -53,8 +55,9 @@ namespace WPFFootball
             InitializeComponent();
         }
 
-        public void Settings(SettingsDefault defaultSettings)
+        public void Settings(SettingsDefault defaultSettings, IImageRepo imagesRepo)
         {
+            images = imagesRepo;
             settingsDefault = defaultSettings;
             PrepareData();
         }
@@ -183,7 +186,7 @@ namespace WPFFootball
 
         private void LoadField(List<Player> startingPlayers, string team)
         {
-            PlayerUC goalie = new PlayerUC();
+            PlayerUC goalie = new PlayerUC(images);
             goalie.LoadData(startingPlayers.Find(p => p.Position == Player.PositionE.Goalie));
             goalie.MouseDoubleClick += player_MouseDoubleClick;
 
@@ -228,7 +231,7 @@ namespace WPFFootball
             ColumnDefinition defendersColumn = new ColumnDefinition();
             foreach (Player player in players)
             {
-                PlayerUC playerUC = new PlayerUC();
+                PlayerUC playerUC = new PlayerUC(images);
                 playerUC.LoadData(player);
                 playerUC.MouseDoubleClick += player_MouseDoubleClick;
                 column.Children.Add(playerUC);
@@ -238,7 +241,7 @@ namespace WPFFootball
         private void player_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             PlayerUC playerUC = sender as PlayerUC;
-            PlayerDetails playerDetails = new PlayerDetails();
+            PlayerDetails playerDetails = new PlayerDetails(images);
 
             playerDetails.LoadData(playerUC.GetData(), match);
             playerDetails.ShowDialog();

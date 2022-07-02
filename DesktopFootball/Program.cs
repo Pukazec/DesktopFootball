@@ -13,6 +13,7 @@ namespace DesktopFootball
     {
         private static IRepo repo;
         private static Settings settings;
+        private static IImageRepo images;
 
         /// <summary>
         /// The main entry point for the application.
@@ -25,19 +26,20 @@ namespace DesktopFootball
             Application.SetCompatibleTextRenderingDefault(false);
             repo = RepoFactory.GetRepo();
             settings = new Settings();
+            images = RepoFactory.GetImageRepo();
             if (settings.Exists())
             {
                 settings = settings.Load();
                 RangList rangList = new RangList(repo);
                 repo.Settings(settings);
-                rangList.Settings(settings);
+                rangList.Settings(settings, images);
                 rangList.Show();
                 Application.Run(rangList);
             }
             else
             {
                 SettingsDefault settingsDefault = new SettingsDefault(repo);
-                settingsDefault.SettingsLoad(settings);
+                settingsDefault.SettingsLoad(settings, images);
                 Application.Run(settingsDefault);
             }
         }

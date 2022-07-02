@@ -98,7 +98,6 @@
     <Compile Include="Model\Match.cs" />
     <Compile Include="Model\ParseStringConverter.cs" />
     <Compile Include="Model\Player.cs" />
-    <Compile Include="Model\PlayerImage.cs" />
     <Compile Include="Model\Settings.cs" />
     <Compile Include="Model\Team.cs" />
     <Compile Include="Model\TeamEvent.cs" />

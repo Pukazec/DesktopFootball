@@ -12,20 +12,15 @@ namespace DataLibrary.DAL
 {
     public class FileRepo : IRepo
     {
-        private string DIR = Directory.GetParent(Directory.GetCurrentDirectory().ToString()).ToString();// "../worldcup.sfg.io/";
+        private string DIR = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\worldcup.sfg.io";
         public string REPRESENTATION;
         public string PATH;
 
-        private Task<RestResponse<T>> GetData<T>(string source)
+        private T GetData<T>(string source)
         {
-            RestClient restClient = new RestClient(source);
-            Task<RestResponse<T>> task = restClient.ExecuteAsync<T>(new RestRequest());
-            return task;
-        }
-
-        private T Desserialize<T>(RestResponse<T> restResponse)
-        {
-            return JsonConvert.DeserializeObject<T>(restResponse.Content);
+            StreamReader reader = new StreamReader(source);
+            string json = reader.ReadToEnd().ToString();
+            return JsonConvert.DeserializeObject<T>(json);
         }
 
         public void Settings(Settings settings)
@@ -40,14 +35,18 @@ namespace DataLibrary.DAL
             }
         }
 
-        public async Task<IList<Player>> LoadPlayers(string fifaCode)
+        Task<IList<Player>> IRepo.LoadPlayers(string fifaCode)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IList<Player>> LoadPlayers(string fifaCode)
         {
             PATH = REPRESENTATION + @"\matches.json";
             IList<Match> matches = new List<Match>();
             IList<Player> players = new List<Player>();
             IList<TeamStatistics> teams = new List<TeamStatistics>();
-            RestResponse<IList<Match>> restResponse = await GetData<IList<Match>>(PATH);
-            matches = (IList<Match>)Desserialize<IList<Match>>(restResponse);
+            matches = GetData<IList<Match>>(PATH);
 
             foreach (Match match in matches)
             {
@@ -77,15 +76,14 @@ namespace DataLibrary.DAL
                     }
                 }
             }
-            return players;
+            return (Task<IList<Player>>)players;
         }
 
         public async Task<IList<Team>> LoadTeams()
         {
             PATH = REPRESENTATION + @"\results.json";
             IList<Team> teams = new List<Team>();
-            RestResponse<IList<Team>> restResponse = await GetData<IList<Team>>(PATH);
-            teams = (IList<Team>)Desserialize<IList<Team>>(restResponse);
+            teams = GetData<IList<Team>>(PATH);
             return teams;
         }
 
@@ -94,8 +92,7 @@ namespace DataLibrary.DAL
             PATH = REPRESENTATION + @"\results.json";
             Team team = new Team();
             IList<Team> teams = new List<Team>();
-            RestResponse<IList<Team>> restResponse = await GetData<IList<Team>>(PATH);
-            teams = (IList<Team>)Desserialize<IList<Team>>(restResponse);
+            teams = GetData<IList<Team>>(PATH);
             team = teams.FirstOrDefault(t => t.FifaCode == fifaCode);
             return team;
         }
@@ -105,8 +102,7 @@ namespace DataLibrary.DAL
             PATH = REPRESENTATION + @"\matches.json";
             IList<Match> matches = new List<Match>();
             IList<Match> wantedMatches = new List<Match>();
-            RestResponse<IList<Match>> restResponse = await GetData<IList<Match>>(PATH);
-            matches = (IList<Match>)Desserialize<IList<Match>>(restResponse);
+            matches = GetData<IList<Match>>(PATH);
             foreach (Match match in matches)
             {
                 if (match.HomeTeam.Code == fifaCode)
@@ -125,8 +121,7 @@ namespace DataLibrary.DAL
         {
             PATH = REPRESENTATION + @"\matches.json";
             IList<Match> matches = new List<Match>();
-            RestResponse<IList<Match>> restResponse = await GetData<IList<Match>>(PATH);
-            matches = (IList<Match>)Desserialize<IList<Match>>(restResponse);
+            matches = GetData<IList<Match>>(PATH);
             return matches;
         }
 
@@ -137,8 +132,7 @@ namespace DataLibrary.DAL
             IList<Player> players = new List<Player>();
             IList<TeamStatistics> teams = new List<TeamStatistics>();
             IList<TeamEvent> happenings = new List<TeamEvent>();
-            RestResponse<IList<Match>> restResponse = await GetData<IList<Match>>(PATH);
-            matches = (IList<Match>)Desserialize<IList<Match>>(restResponse);
+            matches = GetData<IList<Match>>(PATH);
 
             foreach (Match match in matches)
             {

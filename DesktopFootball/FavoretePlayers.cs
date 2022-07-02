@@ -18,6 +18,7 @@ namespace DesktopFootball
     {
         private static IRepo repo;
         private static Settings settings;
+        private static IImageRepo images;
         private IList<Player> allPlayers;
         private IList<Player> filtered = new List<Player>();
         private IList<PlayerSelectionUC> selectedPlayers = new List<PlayerSelectionUC>();
@@ -54,9 +55,11 @@ namespace DesktopFootball
             pnlAllPlayers.Controls.Clear();
             foreach (Player player in players)
             {
-                PlayerSelectionUC playerSelection = new PlayerSelectionUC();
-                playerSelection.Name = player.Name;
-                playerSelection.ContextMenuStrip = playerContextMenuStrip;
+                PlayerSelectionUC playerSelection = new PlayerSelectionUC(images)
+                {
+                    Name = player.Name,
+                    ContextMenuStrip = playerContextMenuStrip
+                };
                 playerSelection.LoadData(player.Name, player.ShirtNumber, player.Position, player.Captain);
                 playerSelection.MouseDown += PlayerSelection_MouseDown;
 
@@ -64,8 +67,9 @@ namespace DesktopFootball
             }
         }
 
-        internal void Settings(Settings mainSettings)
+        internal void Settings(Settings mainSettings, IImageRepo imagesRepo)
         {
+            images = imagesRepo;
             settings = mainSettings;
             PrepareData();
         }
@@ -126,7 +130,7 @@ namespace DesktopFootball
         private void OpenNextForm(Settings settings)
         {
             RangList rangList = new RangList(repo);
-            rangList.Settings(settings);
+            rangList.Settings(settings, images);
             rangList.Show();
             this.Hide();
         }

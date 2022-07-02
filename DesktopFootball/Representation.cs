@@ -19,6 +19,7 @@ namespace DesktopFootball
         private IList<Team> teams;
         private static Settings settings;
         private static SettingsDefault settingsDefault;
+        private static IImageRepo images;
         public Representation(IRepo repository)
         {
             repo = repository;
@@ -63,7 +64,7 @@ namespace DesktopFootball
         private void OpenNextForm(Settings settings)
         {
             FavoretePlayers favoretePlayers = new FavoretePlayers(repo);
-            favoretePlayers.Settings(settings);
+            favoretePlayers.Settings(settings, images);
             favoretePlayers.Parent(this);
             favoretePlayers.Show();
             this.Hide();
@@ -74,8 +75,9 @@ namespace DesktopFootball
             settingsDefault = defaultSettings;
         }
 
-        public void Settings(Settings mainSettings)
+        public void Settings(Settings mainSettings, IImageRepo imagesRepo)
         {
+            images = imagesRepo;
             settings = mainSettings;
             repo.Settings(settings);
             PrepareData();

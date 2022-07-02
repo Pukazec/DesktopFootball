@@ -1,4 +1,5 @@
 ﻿using DataLibrary;
+using DataLibrary.DAL;
 using DataLibrary.Model;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace DesktopFootball
         private IList<Player> players;
         private IList<Player> sortedPlayers;
         private PlayerRangUC selectedPlayer;
+        private static IImageRepo images;
         private bool editing;
 
         public RangList(IRepo repository)
@@ -30,8 +32,9 @@ namespace DesktopFootball
             InitializeComponent();
         }
 
-        internal async Task Settings(Settings mainSettings)
+        internal async Task Settings(Settings mainSettings, IImageRepo imagesRepo)
         {
+            images = imagesRepo;
             lblError.Text = "Loadin data...";
             lblError.Visible = true;
             settings = mainSettings;
@@ -40,21 +43,21 @@ namespace DesktopFootball
             {
                 matches = await repo.LoadTeamRankings(fifaCode);
                 players = await repo.LoadPlayerRankings(fifaCode);
+                foreach (Player player in players)
+                {
+                    if (settings.FavoretePlayers.FirstOrDefault(p => player.Name == p.Name) != null)
+                    {
+                        player.Favorete = true;
+                    }
+                }
+                LoadDdls();
+                lblError.Visible = false;
             }
             catch (Exception)
             {
                 lblError.Text = "Conntect costumer support.\nKontaktiraj korisničku službu.";
                 lblError.Visible = true;
             }
-            foreach (Player player in players)
-            {
-                if (settings.FavoretePlayers.FirstOrDefault(p => player.Name == p.Name) != null)
-                {
-                    player.Favorete = true;
-                }
-            }
-            LoadDdls();
-            lblError.Visible = false;
         }
 
         private void LoadDdls()
@@ -133,7 +136,7 @@ namespace DesktopFootball
         {
             foreach (Player player in sortedPlayers)
             {
-                PlayerRangUC playerRang = new PlayerRangUC();
+                PlayerRangUC playerRang = new PlayerRangUC(images);
                 playerRang.LoadData(player.Name, player.Apearences, player.Scored, player.YellowCards, player.ImgUrl, player.Favorete, settings);
                 pnlPlayers.Controls.Add(playerRang);
             }
@@ -189,7 +192,7 @@ namespace DesktopFootball
         private void editSettings_Click(object sender, EventArgs e)
         {
             SettingsDefault settingsDefault = new SettingsDefault(repo);
-            settingsDefault.SettingsLoad(settings);
+            settingsDefault.SettingsLoad(settings, images);
             settingsDefault.Show();
             editing = true;
             this.Hide();

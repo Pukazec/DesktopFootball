@@ -1,4 +1,5 @@
-﻿using DataLibrary.Model;
+﻿using DataLibrary.DAL;
+using DataLibrary.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +22,12 @@ namespace WPFFootball
     /// </summary>
     public partial class PlayerUC : UserControl
     {
+        private static IImageRepo images;
+
         public Player Player { get; set; }
-        public PlayerUC()
+        public PlayerUC(IImageRepo imagesRepo)
         {
+            images = imagesRepo;
             InitializeComponent();
         }
 
@@ -32,6 +36,10 @@ namespace WPFFootball
             lblName.Content = player.Name;
             lblNumber.Content = player.ShirtNumber;
             Player = player;
+            if (images.LoadImage(player.Name) != null)
+            {
+                imgPlayer.Source = new BitmapImage(new Uri(images.LoadImage(player.Name)));
+            }
         }
 
         internal Player GetData()

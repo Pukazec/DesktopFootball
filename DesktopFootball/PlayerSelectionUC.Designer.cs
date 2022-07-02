@@ -33,9 +33,9 @@
             this.lblPlayerPosition = new System.Windows.Forms.Label();
             this.lbl1 = new System.Windows.Forms.Label();
             this.lblPlayerCapetan = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblFavorete = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.imgPlayer = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.imgPlayer)).BeginInit();
             this.SuspendLayout();
             // 
             // lblPlayerName
@@ -89,16 +89,6 @@
             this.lblPlayerCapetan.TabIndex = 6;
             this.lblPlayerCapetan.Text = "Yes";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::DesktopFootball.Properties.Resources.NoIcon;
-            this.pictureBox1.Location = new System.Drawing.Point(137, 33);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 102);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.TabStop = false;
-            // 
             // lblFavorete
             // 
             this.lblFavorete.AutoSize = true;
@@ -110,13 +100,24 @@
             this.lblFavorete.Text = "*";
             this.lblFavorete.Visible = false;
             // 
+            // imgPlayer
+            // 
+            this.imgPlayer.Image = global::DesktopFootball.Properties.Resources.NoIcon;
+            this.imgPlayer.Location = new System.Drawing.Point(137, 33);
+            this.imgPlayer.Name = "imgPlayer";
+            this.imgPlayer.Size = new System.Drawing.Size(100, 102);
+            this.imgPlayer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgPlayer.TabIndex = 7;
+            this.imgPlayer.TabStop = false;
+            this.imgPlayer.Click += new System.EventHandler(this.imgPlayer_Click);
+            // 
             // PlayerSelectionUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.Controls.Add(this.lblFavorete);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.imgPlayer);
             this.Controls.Add(this.lblPlayerCapetan);
             this.Controls.Add(this.lbl1);
             this.Controls.Add(this.lblPlayerPosition);
@@ -124,7 +125,7 @@
             this.Controls.Add(this.lblPlayerName);
             this.Name = "PlayerSelectionUC";
             this.Size = new System.Drawing.Size(245, 141);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgPlayer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -137,7 +138,7 @@
         private System.Windows.Forms.Label lblPlayerPosition;
         private System.Windows.Forms.Label lbl1;
         private System.Windows.Forms.Label lblPlayerCapetan;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox imgPlayer;
         private System.Windows.Forms.Label lblFavorete;
     }
 }

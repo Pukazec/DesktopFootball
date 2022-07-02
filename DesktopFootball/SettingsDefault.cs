@@ -17,6 +17,7 @@ namespace DesktopFootball
     {
         private static IRepo repo;
         private static Settings settings;
+        private static IImageRepo images;
 
         public SettingsDefault(IRepo repository)
         {
@@ -24,8 +25,9 @@ namespace DesktopFootball
             InitializeComponent();
         }
 
-        internal void SettingsLoad(Settings mainSettings)
+        internal void SettingsLoad(Settings mainSettings, IImageRepo imagesRepo)
         {
+            images = imagesRepo;
             settings = mainSettings;
             repo.Settings(settings);
             LoadLanguages();
@@ -51,7 +53,7 @@ namespace DesktopFootball
         private void OpenNextForm(Settings settings)
         {
             Representation representation = new Representation(repo);
-            representation.Settings(settings);
+            representation.Settings(settings, images);
             representation.Parent(this);
             representation.Show();
             this.Hide();
