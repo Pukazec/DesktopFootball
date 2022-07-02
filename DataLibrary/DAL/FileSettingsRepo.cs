@@ -11,7 +11,7 @@ namespace DataLibrary.DAL
 {
     public class FileSettingsRepo : ISettingsRepo
     {
-        private static readonly string DIR = "C:/temp";
+        private static readonly string DIR = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"/temp";
         private static readonly string PATH = DIR + "/settings.txt";
 
         public FileSettingsRepo()
