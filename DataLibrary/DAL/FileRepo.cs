@@ -35,12 +35,7 @@ namespace DataLibrary.DAL
             }
         }
 
-        Task<IList<Player>> IRepo.LoadPlayers(string fifaCode)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IList<Player>> LoadPlayers(string fifaCode)
+        public async Task<IList<Player>> LoadPlayers(string fifaCode)
         {
             PATH = REPRESENTATION + @"\matches.json";
             IList<Match> matches = new List<Match>();
@@ -76,7 +71,7 @@ namespace DataLibrary.DAL
                     }
                 }
             }
-            return (Task<IList<Player>>)players;
+            return players;
         }
 
         public async Task<IList<Team>> LoadTeams()

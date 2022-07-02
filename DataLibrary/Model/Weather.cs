@@ -15,6 +15,8 @@ namespace DataLibrary.Model
             PartlyCloudy,
             [EnumMember(Value = "Partly Cloudy Night")]
             PartlyCloudyNight,
+            [EnumMember(Value = "Cloudy Night")]
+            CloudyNight,
             Sunny
         };
 

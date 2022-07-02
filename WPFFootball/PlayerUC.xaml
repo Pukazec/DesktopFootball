@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPFFootball"
              mc:Ignorable="d" 
-             Height="85" Width="80">
+             Height="85" MinWidth="80">
     <UserControl.Resources>
         <Style TargetType="{x:Type Label}">
             <Setter Property="Margin" Value="0"/>

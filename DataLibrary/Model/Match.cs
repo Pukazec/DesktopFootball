@@ -11,7 +11,7 @@ namespace DataLibrary.Model
 {
     public class Match
     {
-        public enum StageNameE 
+        /*public enum StageNameE 
         {
             Final,
             [EnumMember(Value = "First Stage")]
@@ -24,7 +24,7 @@ namespace DataLibrary.Model
             RoundOf16, 
             [EnumMember(Value = "Semi-Finals")]
             SemiFinals 
-        };
+        };*/
 
 
         [JsonProperty("venue")]
@@ -53,8 +53,8 @@ namespace DataLibrary.Model
         [JsonProperty("officials")]
         public List<string> Officials { get; set; }
 
-        [JsonProperty("stage_name")]
-        public StageNameE StageName { get; set; }
+//        [JsonProperty("stage_name")]
+        //public StageNameE StageName { get; set; }
 
         [JsonProperty("home_team_country")]
         public string HomeTeamCountry { get; set; }
