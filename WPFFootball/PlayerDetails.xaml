@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFFootball"
         mc:Ignorable="d"
-        WindowStartupLocation="CenterScreen"
+        WindowStartupLocation="CenterScreen" Background="Purple"
         Title="PlayerDetails" Height="250" Width="300">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -21,9 +21,20 @@
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <Grid.Triggers>
+            <EventTrigger RoutedEvent="Grid.Loaded">
+                <EventTrigger.Actions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.5"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger.Actions>
+            </EventTrigger>
+        </Grid.Triggers>
         <Label x:Name="lblName" Content="Luka Modric"/>
         <Label Grid.Column="1" x:Name="lblNumber" Content="10"/>
-        <Image Grid.Column="2" Grid.RowSpan="4" Source="/NoIcon.png" Height="150"/>
+        <Image Grid.Column="2" Grid.RowSpan="6" Source="/NoIcon.png" Height="150"/>
         <Label Grid.Row="1" x:Name="lblCapetan" Content="Capetan"/>
         <Label Grid.Row="1" Grid.Column="1" x:Name="lblIsCapetan" Content="Capetan"/>
         <Label Grid.Row="2" x:Name="lblGoal" Content="Goals:"/>

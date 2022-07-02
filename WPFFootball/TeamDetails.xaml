@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:WPFFootball"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="TeamDetails" Height="450" Width="800">
+        Title="TeamDetails" Height="450" Width="800" MinHeight="450" MinWidth="800"
+        Background="Gray">
     <Window.Resources>
         <Style TargetType="{x:Type Label}">
             <Setter Property="Margin" Value="3"/>
@@ -30,8 +31,20 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        <Grid.Triggers>
+            <EventTrigger RoutedEvent="Grid.Loaded">
+                <EventTrigger.Actions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Width" From="0" To="800" Duration="0:0:1"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger.Actions>
+            </EventTrigger>
+        </Grid.Triggers>
 
-        <StackPanel Orientation="Horizontal">
+
+        <StackPanel Orientation="Horizontal" >
             <Label x:Name="lblTeamName" FontSize="40" Content="Team name"/>
             <Label x:Name="lblFifaCode" FontSize="40" FontWeight="Bold" Content="Fifa code"/>
         </StackPanel>
@@ -43,30 +56,30 @@
         <StackPanel Grid.Row="1" Grid.Column="1">
             <StackPanel Orientation="Horizontal">
                 <Label Content="Wins: "/>
-                <Label x:Name="lblGameWins" Content="Wins"/>
+                <Label x:Name="lblGameWins"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Losses: "/>
-                <Label x:Name="lblGameLosses" Content="Loses"/>
+                <Label x:Name="lblGameLosses"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Draws: "/>
-                <Label x:Name="lblGameDraws" Content="Equals"/>
+                <Label x:Name="lblGameDraws"/>
             </StackPanel>
         </StackPanel>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal">
             <Label Content="Goals diferentitial: "/>
-            <Label x:Name="lblGoalsDifferential" Content="Goal diferential"/>
+            <Label x:Name="lblGoalsDifferential"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1">
             <StackPanel Orientation="Horizontal">
                 <Label Content="Given: "/>
-                <Label x:Name="lblGoalsFor" Content="Goals given"/>
+                <Label x:Name="lblGoalsFor"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Taken: "/>
-                <Label x:Name="lblGoalsAgainst" Content="Goals taken"/>
+                <Label x:Name="lblGoalsAgainst"/>
             </StackPanel>
         </StackPanel>
 

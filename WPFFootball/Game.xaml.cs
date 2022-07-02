@@ -28,18 +28,34 @@ namespace WPFFootball
         private static Settings settings;
         private Match match;
         private SettingsDefault settingsDefault;
+        private bool editing;
 
-        public Game(IRepo repository)
+        public Game(IRepo repository, Settings mainSettings)
         {
             repo = repository;
+            settings = mainSettings;
+            repo.Settings(settings);
+            if (settings.Size == DataLibrary.Model.Settings.WindowSizeE.Small)
+            {
+                this.Height = this.MinHeight;
+                this.Width = this.MinWidth;
+            }
+            if (settings.Size == DataLibrary.Model.Settings.WindowSizeE.Midium)
+            {
+                this.Height = 800;
+                this.Width = 1200;
+            }
+            if (settings.Size == DataLibrary.Model.Settings.WindowSizeE.Maximize)
+            {
+                this.WindowState = WindowState.Maximized;
+            }
+
             InitializeComponent();
         }
 
-        public void Settings(Settings mainSettings, SettingsDefault defaultSettings)
+        public void Settings(SettingsDefault defaultSettings)
         {
             settingsDefault = defaultSettings;
-            settings = mainSettings;
-            repo.Settings(settings);
             PrepareData();
         }
 
@@ -48,6 +64,8 @@ namespace WPFFootball
             lblError.Content = "Loading data...";
             lblError.Visibility = Visibility.Visible;
             sPError.Visibility = Visibility.Visible;
+            btnAwayTeamDetails.IsEnabled = false;
+            btnHomeTeamDetails.IsEnabled = false;
             try
             {
                 matches = await repo.LoadMatches("/matches");
@@ -57,13 +75,24 @@ namespace WPFFootball
             {
                 lblError.Content = "Conntect costumer support.\nKontaktiraj korisničku službu.";
                 lblError.Visibility = Visibility.Visible;
+                sPError.Visibility = Visibility.Hidden;
             }
             teams.ToList().Sort();
             teams.ToList().ForEach(t => ddlHomeTeam.Items.Add(t));
 
-            ddlHomeTeam.SelectedItem = settings.FavoreteRepresentation;
+            if (settings.FavoreteRepresentation != null)
+            {
+                ddlHomeTeam.SelectedItem = settings.FavoreteRepresentation;
+            }
+            else
+            {
+                ddlHomeTeam.SelectedIndex = 0;
+            }
+
             lblError.Visibility = Visibility.Hidden;
             sPError.Visibility = Visibility.Hidden;
+            btnAwayTeamDetails.IsEnabled = true;
+            btnHomeTeamDetails.IsEnabled = true;
         }
 
         private void LoadDdlAwayTeam()
@@ -222,13 +251,32 @@ namespace WPFFootball
 
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
-            settingsDefault.Show();
-            this.Close();
+            MyMessage myMessage = new MyMessage("Are you shure you want to edit settings?");
+            myMessage.ShowDialog();
+            if (myMessage.Save)
+            {
+                editing = true;
+                settingsDefault.Show();
+                this.Close();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (!editing)
+            {
+                MyMessage myMessage = new MyMessage("Save settings?");
+                myMessage.ShowDialog();
+                if (myMessage.Save)
+                {
+                    settings.Save(settings);
+                }
+                settingsDefault.Close();
+            }
         }
     }
 }

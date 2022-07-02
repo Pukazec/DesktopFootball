@@ -31,16 +31,23 @@ namespace WPFFootball
 
         internal async Task LoadData(Team selectedTeam)
         {
-            team = await repo.LoadTeam(selectedTeam.FifaCode);
-            lblTeamName.Content = team.Country;
-            lblFifaCode.Content = $"({team.FifaCode})";
-            lblGamesPlayed.Content = team.GamesPlayed;
-            lblGameWins.Content = team.Wins;
-            lblGameLosses.Content = team.Losses;
-            lblGameDraws.Content = team.Draws;
-            lblGoalsDifferential.Content = team.GoalDifferential;
-            lblGoalsFor.Content = team.GoalsFor;
-            lblGoalsAgainst.Content = team.GoalsAgainst;
+            try
+            {
+                team = await repo.LoadTeam(selectedTeam.FifaCode);
+                lblTeamName.Content = team.Country;
+                lblFifaCode.Content = $"({team.FifaCode})";
+                lblGamesPlayed.Content = team.GamesPlayed;
+                lblGameWins.Content = team.Wins;
+                lblGameLosses.Content = team.Losses;
+                lblGameDraws.Content = team.Draws;
+                lblGoalsDifferential.Content = team.GoalDifferential;
+                lblGoalsFor.Content = team.GoalsFor;
+                lblGoalsAgainst.Content = team.GoalsAgainst;
+            }
+            catch (Exception)
+            {
+                lblTeamName.Content = "Error";
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

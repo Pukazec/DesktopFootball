@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:WPFFootball"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="SettingsDefault" Height="300" Width="500">
+        Title="SettingsDefault" Height="300" Width="500"
+        Background="Gray">
     <Window.Resources>
         <Style TargetType="{x:Type Label}">
             <Setter Property="HorizontalAlignment" Value="Right" />
@@ -44,12 +45,7 @@
         </Grid.ColumnDefinitions>
 
         <Label>Football championship:</Label>
-        <GroupBox Grid.Column="1" x:Name="gbChampionship">
-            <StackPanel>
-                <RadioButton x:Name="rbWomen" Content="Women" Grid.Column="1" VerticalAlignment="Center"></RadioButton>
-                <RadioButton x:Name="rbMen" Content="Men" Grid.Column="1" VerticalAlignment="Center"></RadioButton>
-            </StackPanel>
-        </GroupBox>
+        <ComboBox Grid.Column="1" x:Name="ddlChampionship"></ComboBox>
         
         <Label Grid.Row="2">Language:</Label>
         <ComboBox Grid.Column="1" Grid.Row="2" x:Name="ddlLanguage"></ComboBox>

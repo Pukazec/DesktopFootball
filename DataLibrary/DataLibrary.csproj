@@ -86,6 +86,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\FileRepo.cs" />
     <Compile Include="DAL\FileSettingsRepo.cs" />
     <Compile Include="DAL\InternetRepo.cs" />
     <Compile Include="DAL\IRepo.cs" />

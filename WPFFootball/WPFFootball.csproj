@@ -61,6 +61,9 @@
     <Compile Include="Game.xaml.cs">
       <DependentUpon>Game.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MyMessage.xaml.cs">
+      <DependentUpon>MyMessage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PlayerDetails.xaml.cs">
       <DependentUpon>PlayerDetails.xaml</DependentUpon>
     </Compile>
@@ -78,6 +81,10 @@
       <DependentUpon>TeamDetails.xaml</DependentUpon>
     </Compile>
     <Page Include="Game.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyMessage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

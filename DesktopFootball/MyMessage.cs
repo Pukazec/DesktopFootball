@@ -20,7 +20,6 @@ namespace DesktopFootball
 
         private void MyMessage_KeyUp(object sender, KeyEventArgs e)
         {
-            Type type = sender.GetType();
             if (e.KeyCode == Keys.Enter)
             {
                 btnYes_Click(sender, e);

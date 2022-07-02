@@ -42,6 +42,9 @@ namespace WPFFootball
 
         private void LoadLanguages()
         {
+            ddlChampionship.Items.Add(Settings.ChampionshipE.Women);
+            ddlChampionship.Items.Add(Settings.ChampionshipE.Men);
+            ddlChampionship.SelectedIndex = 0;
             ddlLanguage.Items.Add(Settings.LanguageE.English);
             ddlLanguage.Items.Add(Settings.LanguageE.Croatian);
             ddlLanguage.SelectedIndex = 0;
@@ -65,9 +68,7 @@ namespace WPFFootball
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            //RadioButton selected = gbChampionship.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
-
-            //settings.Championship = (Settings.ChampionshipE)Enum.Parse(typeof(Settings.ChampionshipE), selected.Text.ToString());
+            settings.Championship = (Settings.ChampionshipE)Enum.Parse(typeof(Settings.ChampionshipE), ddlChampionship.SelectedItem.ToString());
             settings.Language = (Settings.LanguageE)Enum.Parse(typeof(Settings.LanguageE), ddlLanguage.SelectedItem.ToString());
             settings.Size = (Settings.WindowSizeE)Enum.Parse(typeof(Settings.WindowSizeE), ddlSize.SelectedItem.ToString());
 
@@ -76,8 +77,8 @@ namespace WPFFootball
 
         private void OpenNextForm(Settings settings)
         {
-            Game game = new Game(repo);
-            game.Settings(settings, this);
+            Game game = new Game(repo, settings);
+            game.Settings(this);
             game.Show();
             this.Hide();
         }
