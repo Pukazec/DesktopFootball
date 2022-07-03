@@ -20,8 +20,8 @@ namespace DataLibrary.Model
 
         public enum LanguageE
         {
-            Croatian,
-            English
+            hr,
+            en
         }
 
         public enum WindowSizeE

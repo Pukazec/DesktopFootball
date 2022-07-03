@@ -133,17 +133,29 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FavoretePlayers.hr.resx">
+      <DependentUpon>FavoretePlayers.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FavoretePlayers.resx">
       <DependentUpon>FavoretePlayers.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MatchRangUC.hr.resx">
+      <DependentUpon>MatchRangUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MatchRangUC.resx">
       <DependentUpon>MatchRangUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyMessage.hr.resx">
+      <DependentUpon>MyMessage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyMessage.resx">
       <DependentUpon>MyMessage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PlayerRangUC.resx">
       <DependentUpon>PlayerRangUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlayerSelectionUC.hr.resx">
+      <DependentUpon>PlayerSelectionUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PlayerSelectionUC.resx">
       <DependentUpon>PlayerSelectionUC.cs</DependentUpon>
@@ -158,11 +170,20 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="RangList.hr.resx">
+      <DependentUpon>RangList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RangList.resx">
       <DependentUpon>RangList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Representation.hr.resx">
+      <DependentUpon>Representation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Representation.resx">
       <DependentUpon>Representation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingsDefault.hr.resx">
+      <DependentUpon>SettingsDefault.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SettingsDefault.resx">
       <DependentUpon>SettingsDefault.cs</DependentUpon>

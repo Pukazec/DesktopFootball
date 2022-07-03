@@ -7,8 +7,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Globalization;
 using System.Linq;
+using System.Resources;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -18,26 +21,29 @@ namespace DesktopFootball
     {
         private static IRepo repo;
         private static Settings settings;
+        private static IImageRepo images;
         private IList<Match> matches;
         private IList<Match> sortedMatches;
         private IList<Player> players;
         private IList<Player> sortedPlayers;
         private PlayerRangUC selectedPlayer;
-        private static IImageRepo images;
         private bool editing;
 
-        public RangList(IRepo repository)
+        public RangList(IRepo repository, Settings mainSettings, IImageRepo imagesRepo)
         {
             repo = repository;
+            settings = mainSettings;
+            images = imagesRepo;
+            CultureInfo culture = new CultureInfo(settings.Language.ToString());
+            Thread.CurrentThread.CurrentUICulture = culture;
             InitializeComponent();
+            LoadData();
         }
 
-        internal async Task Settings(Settings mainSettings, IImageRepo imagesRepo)
+        internal async Task LoadData()
         {
-            images = imagesRepo;
             lblError.Text = "Loadin data...";
             lblError.Visible = true;
-            settings = mainSettings;
             string fifaCode = settings.FavoreteRepresentation.FifaCode;
             try
             {
@@ -62,13 +68,25 @@ namespace DesktopFootball
 
         private void LoadDdls()
         {
-            ddlMatchSorter.Items.Add("Attendance asc");
-            ddlMatchSorter.Items.Add("Attendance desc");
+            if (settings.Language.ToString() == "en")
+            {
+                ddlMatchSorter.Items.Add("Attendance asc");
+                ddlMatchSorter.Items.Add("Attendance desc");
+                ddlPlayersSort.Items.Add("Goals scored asc");
+                ddlPlayersSort.Items.Add("Goals scored desc");
+                ddlPlayersSort.Items.Add("Yellow cards asc");
+                ddlPlayersSort.Items.Add("Yellow cards desc");
+            }
+            else
+            {
+                ddlMatchSorter.Items.Add("Dolaznost uzlazno");
+                ddlMatchSorter.Items.Add("Dolaznost silazno");
+                ddlPlayersSort.Items.Add("Golovi uzlazno");
+                ddlPlayersSort.Items.Add("Golovi silazno");
+                ddlPlayersSort.Items.Add("Žuti kartoni uzlazno");
+                ddlPlayersSort.Items.Add("Žuti kartoni silazno");
+            }
             ddlMatchSorter.SelectedIndex = 0;
-            ddlPlayersSort.Items.Add("Goals scored asc");
-            ddlPlayersSort.Items.Add("Goals scored desc");
-            ddlPlayersSort.Items.Add("Yellow cards asc");
-            ddlPlayersSort.Items.Add("Yellow cards desc");
             ddlPlayersSort.SelectedIndex = 0;
         }
 
@@ -225,7 +243,7 @@ namespace DesktopFootball
 
         private void saveSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MyMessage myMessage = new MyMessage();
+            MyMessage myMessage = new MyMessage(settings.Language);
             myMessage.ShowDialog();
             if (myMessage.Save)
             {
@@ -237,7 +255,7 @@ namespace DesktopFootball
         {
             if (!editing)
             {
-                MyMessage myMessage = new MyMessage();
+                MyMessage myMessage = new MyMessage(settings.Language);
                 myMessage.ShowDialog();
                 if (myMessage.Save)
                 {

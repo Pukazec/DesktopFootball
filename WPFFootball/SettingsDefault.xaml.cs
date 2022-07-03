@@ -47,8 +47,8 @@ namespace WPFFootball
             ddlChampionship.Items.Add(Settings.ChampionshipE.Women);
             ddlChampionship.Items.Add(Settings.ChampionshipE.Men);
             ddlChampionship.SelectedIndex = 0;
-            ddlLanguage.Items.Add(Settings.LanguageE.English);
-            ddlLanguage.Items.Add(Settings.LanguageE.Croatian);
+            ddlLanguage.Items.Add(Settings.LanguageE.en);
+            ddlLanguage.Items.Add(Settings.LanguageE.hr);
             ddlLanguage.SelectedIndex = 0;
             ddlSize.Items.Add(Settings.WindowSizeE.Small);
             ddlSize.Items.Add(Settings.WindowSizeE.Midium);

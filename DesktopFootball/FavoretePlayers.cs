@@ -7,8 +7,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -20,15 +22,22 @@ namespace DesktopFootball
         private static Settings settings;
         private static IImageRepo images;
         private IList<Player> allPlayers;
+        private Representation parentForm;
         private IList<Player> filtered = new List<Player>();
         private IList<PlayerSelectionUC> selectedPlayers = new List<PlayerSelectionUC>();
         private FlowLayoutPanel parent;
-        private Representation parentForm;
 
-        public FavoretePlayers(IRepo repository)
+        public FavoretePlayers(IRepo repository, Settings mainSettings, IImageRepo imagesRepo, Representation representation)
         {
+
             repo = repository;
+            settings = mainSettings;
+            images = imagesRepo;
+            parentForm = representation;
+            CultureInfo culture = new CultureInfo(settings.Language.ToString());
+            Thread.CurrentThread.CurrentUICulture = culture;
             InitializeComponent();
+            PrepareData();
         }
 
         //*************************************************************************************************** Data load ********************************************************************//
@@ -65,18 +74,6 @@ namespace DesktopFootball
 
                 pnlAllPlayers.Controls.Add(playerSelection);
             }
-        }
-
-        internal void Settings(Settings mainSettings, IImageRepo imagesRepo)
-        {
-            images = imagesRepo;
-            settings = mainSettings;
-            PrepareData();
-        }
-
-        internal void Parent(Representation representation)
-        {
-            parentForm = representation;
         }
 
         //*************************************************************************************************** Data search ********************************************************************//
@@ -129,8 +126,7 @@ namespace DesktopFootball
 
         private void OpenNextForm(Settings settings)
         {
-            RangList rangList = new RangList(repo);
-            rangList.Settings(settings, images);
+            RangList rangList = new RangList(repo, settings, images);
             rangList.Show();
             this.Hide();
         }

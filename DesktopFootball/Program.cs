@@ -30,9 +30,8 @@ namespace DesktopFootball
             if (settings.Exists())
             {
                 settings = settings.Load();
-                RangList rangList = new RangList(repo);
                 repo.Settings(settings);
-                rangList.Settings(settings, images);
+                RangList rangList = new RangList(repo, settings, images);
                 rangList.Show();
                 Application.Run(rangList);
             }

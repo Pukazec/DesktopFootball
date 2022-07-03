@@ -1,0 +1,7 @@
+Men
+hr
+Small
+Croatia|CRO
+Danijel SUBASIC|False|23|Goalie
+Mario MANDZUKIC|False|17|Forward
+Luka MODRIC|True|10|Midfield

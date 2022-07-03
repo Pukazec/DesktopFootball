@@ -6,8 +6,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,14 +18,21 @@ namespace DesktopFootball
     public partial class Representation : Form
     {
         private static IRepo repo;
-        private IList<Team> teams;
+        private static IImageRepo images;
         private static Settings settings;
         private static SettingsDefault settingsDefault;
-        private static IImageRepo images;
-        public Representation(IRepo repository)
+        private IList<Team> teams;
+        public Representation(IRepo repository, Settings mainSettings, IImageRepo imagesRepo, SettingsDefault defaultSettings)
         {
             repo = repository;
+            images = imagesRepo;
+            settings = mainSettings;
+            settingsDefault = defaultSettings;
+            repo.Settings(settings);
+            CultureInfo culture = new CultureInfo(settings.Language.ToString());
+            Thread.CurrentThread.CurrentUICulture = culture;
             InitializeComponent();
+            PrepareData();
         }
 
         private async Task PrepareData()
@@ -63,24 +72,9 @@ namespace DesktopFootball
 
         private void OpenNextForm(Settings settings)
         {
-            FavoretePlayers favoretePlayers = new FavoretePlayers(repo);
-            favoretePlayers.Settings(settings, images);
-            favoretePlayers.Parent(this);
+            FavoretePlayers favoretePlayers = new FavoretePlayers(repo, settings, images, this);
             favoretePlayers.Show();
             this.Hide();
-        }
-
-        internal void Parent(SettingsDefault defaultSettings)
-        {
-            settingsDefault = defaultSettings;
-        }
-
-        public void Settings(Settings mainSettings, IImageRepo imagesRepo)
-        {
-            images = imagesRepo;
-            settings = mainSettings;
-            repo.Settings(settings);
-            PrepareData();
         }
 
         private void btnBack_Click(object sender, EventArgs e)
