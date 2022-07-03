@@ -9,7 +9,7 @@ namespace DataLibrary.DAL
 {
     public class FileImageRepo : IImageRepo
     {
-        private static readonly string DIR = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"temp";
+        private static readonly string DIR = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\temp";
         private static readonly string PATH = DIR + "/images.txt";
         private static readonly char DEL = '|';
 

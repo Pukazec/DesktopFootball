@@ -4,9 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFFootball"
+        xmlns:props="clr-namespace:WPFFootball.Properties"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen" Background="Purple"
-        Title="PlayerDetails" Height="250" Width="300">
+        Title="{x:Static props:Resources.pdTitle}" Height="250" Width="300">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -34,13 +35,13 @@
         </Grid.Triggers>
         <Label x:Name="lblName" Content="Luka Modric"/>
         <Label Grid.Column="1" x:Name="lblNumber" Content="10"/>
-        <Image x:Name="imgPlayer" Grid.Column="2" Grid.RowSpan="6" Source="/NoIcon.png" Height="150"/>
-        <Label Grid.Row="1" x:Name="lblCapetan" Content="Capetan"/>
+        <Image x:Name="imgPlayer" Grid.Column="2" Grid.RowSpan="6" Source="/NoIcon.png" Height="150" Width="150"/>
+        <Label Grid.Row="1" Content="{x:Static props:Resources.pdlblCapetan}"/>
         <Label Grid.Row="1" Grid.Column="1" x:Name="lblIsCapetan" Content="Capetan"/>
-        <Label Grid.Row="2" x:Name="lblGoal" Content="Goals:"/>
+        <Label Grid.Row="2" Content="{x:Static props:Resources.pdlblGoals}"/>
         <Label Grid.Row="2" Grid.Column="1" x:Name="lblGoals" Content="10"/>
-        <Label Grid.Row="3" x:Name="lblYellows" Content="Yellow cards:"/>
+        <Label Grid.Row="3" Content="{x:Static props:Resources.pdlblYellowCards}"/>
         <Label Grid.Row="3" Grid.Column="1" x:Name="lblYellowCards" Content="10"/>
-        <Button Grid.Row="5" Content="Close" Click="Button_Click" Margin="5"/>
+        <Button Grid.Row="5" Content="{x:Static props:Resources.btnClose}" Click="Button_Click" Margin="5"/>
     </Grid>
 </Window>

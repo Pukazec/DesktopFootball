@@ -3,8 +3,10 @@ using DataLibrary.DAL;
 using DataLibrary.Model;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,6 +27,7 @@ namespace WPFFootball
         private static IRepo repo;
         private static Settings settings;
         private static IImageRepo images;
+        private Settings.LanguageE language;
         private static bool edit;
 
         public SettingsDefault()
@@ -36,31 +39,22 @@ namespace WPFFootball
             {
                 settings = settings.Load();
                 repo.Settings(settings);
+                language = settings.Language;
                 OpenNextForm(settings);
             }
-            InitializeComponent();
-            LoadLanguages();
+            language = Settings.LanguageE.en;
+            SetCulture();
         }
 
-        private void LoadLanguages()
+        private void SetCulture()
         {
-            ddlChampionship.Items.Add(Settings.ChampionshipE.Women);
-            ddlChampionship.Items.Add(Settings.ChampionshipE.Men);
-            ddlChampionship.SelectedIndex = 0;
-            ddlLanguage.Items.Add(Settings.LanguageE.en);
-            ddlLanguage.Items.Add(Settings.LanguageE.hr);
-            ddlLanguage.SelectedIndex = 0;
-            ddlSize.Items.Add(Settings.WindowSizeE.Small);
-            ddlSize.Items.Add(Settings.WindowSizeE.Midium);
-            ddlSize.Items.Add(Settings.WindowSizeE.Maximize);
-            ddlSize.SelectedIndex = 0;
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language.ToString());
         }
 
         public SettingsDefault(bool editing)
         {
             edit = editing;
             InitializeComponent();
-            LoadLanguages();
         }
 
         private void BtnExit_Click(object sender, RoutedEventArgs e)
@@ -70,9 +64,12 @@ namespace WPFFootball
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            settings.Championship = (Settings.ChampionshipE)Enum.Parse(typeof(Settings.ChampionshipE), ddlChampionship.SelectedItem.ToString());
-            settings.Language = (Settings.LanguageE)Enum.Parse(typeof(Settings.LanguageE), ddlLanguage.SelectedItem.ToString());
-            settings.Size = (Settings.WindowSizeE)Enum.Parse(typeof(Settings.WindowSizeE), ddlSize.SelectedItem.ToString());
+            ComboBoxItem selectedChampionship = (ComboBoxItem)ddlChampionship.SelectedItem;
+            settings.Championship = (Settings.ChampionshipE)Enum.Parse(typeof(Settings.ChampionshipE), selectedChampionship.Name);
+            ComboBoxItem selectedLanguage = (ComboBoxItem)ddlLanguage.SelectedItem;
+            settings.Language = (Settings.LanguageE)Enum.Parse(typeof(Settings.LanguageE), selectedLanguage.Name);
+            ComboBoxItem selectedSize = (ComboBoxItem)ddlSize.SelectedItem;
+            settings.Size = (Settings.WindowSizeE)Enum.Parse(typeof(Settings.WindowSizeE), selectedSize.Name);
 
             OpenNextForm(settings);
         }
@@ -83,6 +80,13 @@ namespace WPFFootball
             game.Settings(this, images);
             game.Show();
             this.Hide();
+        }
+
+        private void ddlLanguage_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBoxItem selectedLanguage = (ComboBoxItem)ddlLanguage.SelectedItem;
+            language = (Settings.LanguageE)Enum.Parse(typeof(Settings.LanguageE), selectedLanguage.Name);
+            SetCulture();
         }
     }
 }

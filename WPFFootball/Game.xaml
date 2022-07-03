@@ -4,12 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFFootball"
-        xmlns:data="clr-namespace:DataLibrary;assembly=DataLibrary"
+        xmlns:props="clr-namespace:WPFFootball.Properties"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Closing="Window_Closing"
-        Title="Game" MinHeight="500" MinWidth="650"
+        Title="{x:Static props:Resources.gTitle}" 
+        MinHeight="500" MinWidth="650"
         Background="Gray">
     <Window.Resources>
         <Style TargetType="{x:Type Label}">
@@ -56,17 +57,17 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <Label Content="Home team"/>
-            <Label Grid.Column="1" Content="Away team" />
-            <Label Grid.Column="2" Content="Result" />
-            <Button Grid.Column="3" Content="Settings" Click="Settings_Click" />
+            <Label Content="{x:Static props:Resources.glblHomeTeam}"/>
+            <Label Grid.Column="1" Content="{x:Static props:Resources.glblAwayTeam}" />
+            <Label Grid.Column="2" Content="{x:Static props:Resources.glblResult}" />
+            <Button Grid.Column="3" Content="{x:Static props:Resources.gbtnSettings}" Click="Settings_Click" />
 
             <ComboBox Grid.Row="1" x:Name="ddlHomeTeam" SelectionChanged="ddlHomeTeam_IndexChanged"></ComboBox>
             <ComboBox Grid.Row="1" Grid.Column="1" x:Name="ddlAgainstTeam" SelectionChanged="ddlAwayTeam_IndexChanged"></ComboBox>
             <Label Grid.Row="1" Grid.Column="2" x:Name="lblResult" FontSize="25" FontWeight="Bold" Visibility="Hidden"/>
 
-            <Button Grid.Row="2" x:Name="btnHomeTeamDetails" Content="Open home team" Click="OpenHomeTeam_Click"/>
-            <Button Grid.Row="2" Grid.Column="1" x:Name="btnAwayTeamDetails" Content="Open home team" Click="AwayHomeTeam_Click"/>
+            <Button Grid.Row="2" x:Name="btnHomeTeamDetails" Content="{x:Static props:Resources.gbtnOpenHomeTeam}" Click="OpenHomeTeam_Click"/>
+            <Button Grid.Row="2" Grid.Column="1" x:Name="btnAwayTeamDetails" Content="{x:Static props:Resources.gbtnOpenAwayTeam}" Click="AwayHomeTeam_Click"/>
             <StackPanel Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" >
                 <Label x:Name="lblError" Foreground="Red" />
                 <fa:ImageAwesome x:Name="sPError" Icon="Cog" Spin="True" SpinDuration="2" Height="20" Visibility="Hidden"/>

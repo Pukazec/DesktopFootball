@@ -3,8 +3,10 @@ using DataLibrary.DAL;
 using DataLibrary.Model;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,6 +26,7 @@ namespace WPFFootball
     {
         private static IRepo repo;
         private static IImageRepo images;
+        private Settings.LanguageE language;
         private IList<Team> teams;
         private IList<Match> matches;
         private IList<Match> homeTeamMatches = new List<Match>();
@@ -37,6 +40,8 @@ namespace WPFFootball
             repo = repository;
             settings = mainSettings;
             repo.Settings(settings);
+            language = settings.Language;
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language.ToString());
             if (settings.Size == DataLibrary.Model.Settings.WindowSizeE.Small)
             {
                 this.Height = this.MinHeight;

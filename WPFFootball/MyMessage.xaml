@@ -4,10 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFFootball"
+        xmlns:props="clr-namespace:WPFFootball.Properties"
         mc:Ignorable="d"
         KeyUp="Window_KeyUp"
         WindowStartupLocation="CenterScreen"
-        Title="MyMessage" Height="250" Width="400"
+        Title="{x:Static props:Resources.mmTitle}" Height="250" Width="400"
         Background="Gray">
     <Window.Resources>
         <Style TargetType="{x:Type TextBlock}">
@@ -33,7 +34,7 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.ColumnSpan="2" TextWrapping="Wrap" x:Name="txtMessage"/>
-        <Button Grid.Row="1" x:Name="Yes" Content="Yes" Click="Yes_Click"/>
-        <Button Grid.Row="1" Grid.Column="1" x:Name="No" Content="No" Click="No_Click"/>
+        <Button Grid.Row="1" x:Name="Yes" Content="{x:Static props:Resources.mmbtnYes}" Click="Yes_Click"/>
+        <Button Grid.Row="1" Grid.Column="1" x:Name="No" Content="{x:Static props:Resources.mmbtnNo}" Click="No_Click"/>
     </Grid>
 </Window>

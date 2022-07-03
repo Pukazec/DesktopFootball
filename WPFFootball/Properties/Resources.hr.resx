@@ -118,108 +118,108 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="btnClose" xml:space="preserve">
-    <value>Close</value>
+    <value>Zatvori</value>
   </data>
   <data name="gbtnOpenAwayTeam" xml:space="preserve">
-    <value>Open away team</value>
+    <value>Otvori gostujući tim</value>
   </data>
   <data name="gbtnOpenHomeTeam" xml:space="preserve">
-    <value>Open home team</value>
+    <value>Otvori tim domaćin</value>
   </data>
   <data name="gbtnSettings" xml:space="preserve">
-    <value>Settings</value>
+    <value>Postavke</value>
   </data>
   <data name="glblAwayTeam" xml:space="preserve">
-    <value>Away team</value>
+    <value>Gostujući tim</value>
   </data>
   <data name="glblHomeTeam" xml:space="preserve">
-    <value>Home team</value>
+    <value>Domaći tim</value>
   </data>
   <data name="glblResult" xml:space="preserve">
-    <value>Result</value>
+    <value>Rezultat</value>
   </data>
   <data name="gTitle" xml:space="preserve">
-    <value>Game</value>
+    <value>Utakmica</value>
   </data>
   <data name="mmbtnNo" xml:space="preserve">
-    <value>No</value>
+    <value>Ne</value>
   </data>
   <data name="mmbtnYes" xml:space="preserve">
-    <value>Yes</value>
+    <value>Da</value>
   </data>
   <data name="mmTitle" xml:space="preserve">
-    <value>Message</value>
+    <value>Poruka</value>
   </data>
   <data name="pdlblCapetan" xml:space="preserve">
-    <value>Capetan:</value>
+    <value>Kapetan:</value>
   </data>
   <data name="pdlblGoals" xml:space="preserve">
-    <value>Goals scored:</value>
+    <value>Golova zabijeno</value>
   </data>
   <data name="pdlblYellowCards" xml:space="preserve">
-    <value>Yellow cards:</value>
+    <value>Žutih kartona:</value>
   </data>
   <data name="pdTitle" xml:space="preserve">
-    <value>Player details</value>
+    <value>Detalji o igraču</value>
   </data>
   <data name="sdbtnNext" xml:space="preserve">
-    <value>Next</value>
+    <value>Dalje</value>
   </data>
   <data name="sdddliMaximize" xml:space="preserve">
-    <value>Maximize</value>
+    <value>Maksimizirano</value>
   </data>
   <data name="sdddliMedium" xml:space="preserve">
-    <value>Medium</value>
+    <value>Srednje</value>
   </data>
   <data name="sdddliSmall" xml:space="preserve">
-    <value>Small</value>
+    <value>Malo</value>
   </data>
   <data name="sdddliWomen" xml:space="preserve">
-    <value>Women</value>
+    <value>Žensko</value>
   </data>
   <data name="sddliCroatian" xml:space="preserve">
-    <value>Croatian</value>
+    <value>Hrvatski</value>
   </data>
   <data name="sddliEnglish" xml:space="preserve">
-    <value>English</value>
+    <value>Engleski</value>
   </data>
   <data name="sddliMen" xml:space="preserve">
-    <value>Men</value>
+    <value>Muško</value>
   </data>
   <data name="sdlblChampionship" xml:space="preserve">
-    <value>Football championship:</value>
+    <value>Nogometno prvenstvo:</value>
   </data>
   <data name="sdlblLanguage" xml:space="preserve">
-    <value>Language:</value>
+    <value>Jezik:</value>
   </data>
   <data name="sdlblResolution" xml:space="preserve">
-    <value>Window size</value>
+    <value>Veličina prozora</value>
   </data>
   <data name="sdTitle" xml:space="preserve">
-    <value>Settings default</value>
+    <value>Početne postavke</value>
   </data>
   <data name="tdlblDraws" xml:space="preserve">
-    <value>Draws:</value>
+    <value>Izjednačenja</value>
   </data>
   <data name="tdlblGamesPlayed" xml:space="preserve">
-    <value>Games played:</value>
+    <value>Odigranih utakmica:</value>
   </data>
   <data name="tdlblGaolsTaken" xml:space="preserve">
-    <value>Taken:</value>
+    <value>Dobivenih:</value>
   </data>
   <data name="tdlblGoalsDifferential" xml:space="preserve">
-    <value>Goals differential:</value>
+    <value>Razlika golova:</value>
   </data>
   <data name="tdlblGoalsGiven" xml:space="preserve">
-    <value>Given:</value>
+    <value>Zabijeni:</value>
   </data>
   <data name="tdlblLosses" xml:space="preserve">
-    <value>Losses:</value>
+    <value>Primljeni:</value>
   </data>
   <data name="tdlblWins" xml:space="preserve">
-    <value>Wins:</value>
+    <value>Pobjede:</value>
   </data>
   <data name="tdTitle" xml:space="preserve">
-    <value>Team details</value>
+    <value>Detalji o timu</value>
   </data>
 </root>
